@@ -1,12 +1,12 @@
 # README
 
-This is both a self-learning and a homeschooling project. I know Computer Science, but have never done data analysis or R before. Johanna has never done any programming.
+This is both a self-learning and a homeschooling project. I know Computer Science, but have never done data analysis or R before. Johanna is new to programming.
 
 The motivation to do this now came from the coronavirus crisis. One can read a lot of analyses. So why not making your own?
 
 And it is more fun to do sth interesting right from the start, rather than to work through long tutorials. So each lesson below is a lesson we set ourselves. 
 
-Of course, it is also good to follow a course. We chose Stefano de Sabbata's [GRANOLARR](https://sdesabbata.github.io/granolarr/), which is a geog**GR**aphic d**A**ta scie**N**ce, repr**O**ducib**L**e te**A**ching resou**R**ce in **R**.
+Of course, it is also good to follow a course. We chose Stefano de Sabbata's [GRANOLARR](https://sdesabbata.github.io/granolarr/), which is short for a geog**GR**aphic d**A**ta scie**N**ce, repr**O**ducib**L**e te**A**ching resou**R**ce in **R**. An awesome course.   
 
 We'd love to get feedback and one way of doing this is, is to raise an issue. Or send me an email.
 
