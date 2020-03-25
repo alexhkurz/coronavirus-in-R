@@ -1,11 +1,11 @@
 # Lesson 2
 
-program: [lesson-02.R](lesson-02.R)
-Rmarkdown: [lesson-02.Rmd](lesson-02.Rmd)
+program: [lesson-02.R](lesson-02.R)  
+Rmarkdown: [lesson-02.Rmd](lesson-02.Rmd)  
 
-## How many days does Germany lag behind Italy?
+## How many days does Germany lag behind Italy?  
 
-For example, there is a discussion now why Germany has many fewer deaths than Italy. In fact, writing March 22, according to [worldometers](https://www.worldometers.info/coronavirus/#countries), Italy has 60k cases and 5.5k deaths, whereas Germany has 25k cases and 0.1k deaths. That is, Italy has a case fatality rate of 9% and Germany of 0.4%. What is going on here? 
+There is a discussion now why Germany has many fewer deaths than Italy. In fact, writing March 22, according to [worldometers](https://www.worldometers.info/coronavirus/#countries), Italy has 60k cases and 5.5k deaths, whereas Germany has 25k cases and 0.1k deaths. That is, Italy has a case fatality rate of 9% and Germany of 0.4%. What is going on here? 
 
 Could it be that this is just due to different testing regimes? 
 
@@ -37,6 +37,6 @@ Running the data on UK vs Italy and on California vs Italy produces similar resu
 
 **Remark:** (March 22) Intriguingly, looking at the righ-hand side of the German and Californian graphs raises the question whether deaths in Italy increase faster. But right now there is not enough data to say that this is a trend. It will be interesting to watch this over the next days as new data will come in.
 
-## Homework
+## Suggested exercises
 
 To do your own analysis, load [lesson-02.Rmd](lesson-02.Rmd) into Rstudio and adapt the program to show graphs of different countries.
