@@ -4,9 +4,15 @@ program: [lesson-01.R](lesson-01.R)
 
 ## Technical preliminaries
 
-Download [R](https://cran.r-project.org/) and [Rstudio](https://rstudio.com/products/rstudio/download/).
+- Download [R](https://cran.r-project.org/) and [Rstudio](https://rstudio.com/products/rstudio/download/).
 
-Start up Rstudio. 
+- Start up Rstudio. 
+
+If you got that far, you can just dive into it, following the rest of the lecture. If you want more background on R in general and on programming in R in particular, try (ignore what they say about "Server Pro" and "Preview"):
+
+- [Programming - Part 1 (Writing code in RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart1-2)
+
+This video contains much more than we need to know for this lesson, so you can also just start the lesson and come back to the video later.
 
 ## Import the data
 
@@ -89,13 +95,14 @@ Download this file, save it in a local folder and open it in Rstudio. It should 
 - select all and click on run to execute all in one go;
 - change the program and plot your own data ...
 
-
 ## Suggested exercises
 
 (Time for some music? I wrote this listening to [London Calling](https://www.youtube.com/watch?v=hZw23sWlyG0&list=PLkLimRXN6NKzoSccJhADNW42Ayxf7mYwF&index=8).)
 
 Make your own exercises. Choose different countries, or different time ranges. Look at the data with your naked eyes. You will find that not for all countries there is reliable data. Etc, etc, ...
 
+## Further study
 
+If you didn't to this already, watch the video [Programming - Part 1 (Writing code in RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart1-2) linked above in the intro. We don't need everthing that is in there now, but it is great to get an overview of some of the possibilities that R offers.
 
 [^ascii]: If you want to understand this in more detail, look at how characters are encoded in a machine. This code is called [ASCII](https://en.wikipedia.org/wiki/ASCII#Printable_characters). For example, you see that `a` is encoded as `110 0001` (the space is just for readability) and `0` as a character is encoded as `011 0000`. But `0` as a number is encoded differently, namely as a sequence of 64 `0`s.

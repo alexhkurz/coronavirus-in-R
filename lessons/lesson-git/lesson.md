@@ -13,3 +13,9 @@ Personally, I like to use the editor `visual studio code`, which also has a good
 ---
 
 git clone https://github.com/alexhkurz/coronavirus-in-R.git
+
+---
+
+- https://resources.rstudio.com/wistia-rstudio-essentials-2
+
+  - 
