@@ -1,35 +1,34 @@
-# Lesson 1
+# Plotting coronavirus data
 
 program: [lesson-01.R](lesson-01.R)  
-RMarkdown: [lesson-01.Rmd](lesson-01.Rmd)  
 
-## Plotting coronavirus data of a country
+## Technical preliminaries
 
 Download [R](https://cran.r-project.org/) and [Rstudio](https://rstudio.com/products/rstudio/download/).
 
 Start up Rstudio. 
 
-### Import the data. 
+### Import the data
 
 First look at the table  [time_series_covid19_deaths_global.csv](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv). 
 
-`csv` stands for comma separated values. To see where the name comes from we can look at the raw data, that is, at the data how it looks to the computer, without pretty formatting. To do this, either find the **Raw** button on this [webpage](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv) or just click [here for the raw data](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
+`csv` stands for *comma separated values*. To see where the name comes from we can look at the raw data, that is, at the data how it looks to the computer, without pretty formatting. To do this, either find the **Raw** button on the webpage displaying [time_series_covid19_deaths_global](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv) or just click [here](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv) to see the *raw data*.
 
 To import the raw data use this same link and enter into the console:
 
     mydata = read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
 
-The console should be in the lower left on Rstudio. You can just copy and paste from above.
+The console should be in the lower left on Rstudio. You can just copy and paste from above (and then don't to forget to use the `return`-key).
 
-To verify that Rstudio imported the data enter into the Console:
+To verify that Rstudio imported the data enter into the console:
 
     View(mydata)
 
-You should now see the table in the upper left.
+You should now see the imported table in the upper left window of Rstudio.
 
-### Extract the data for one country
+### Extract the data of one country
 
-Search the table for "Italy".
+Search the table for "Italy". 
 
 I found "Italy" in row 138.
 
@@ -37,7 +36,7 @@ Extract this row from the data and show the first two cells:
 
     View(mydata[138,1:2])
 
-When I do this, I see "Italy" in the upper left window of Rstudio. So I found the correct row.
+I see "Italy" in the upper left window of Rstudio, verifying that I found the correct row.
 
 Ok, now we can extract some data from this row. Let us extract the last 30 days and save the result in a **variable** `deaths_italy':
 
@@ -65,13 +64,11 @@ Next, we want to plot the data.
 
 First we need to remove the commas using the function `gsub`:
 
-Convert the data to a list of numbers and plot it.
-
     deaths_italy <- gsub(",", "", deaths_italy)
 
 We read this line as: Subtract the "," from the data stored in the variable `deaths_italy` and store the result again in `deaths_italy`.
 
-Next, we come to subtle point. Whenever you see `0` you may just think of the number zero. But to a computer, the symbol `0` in a text is different from the number `0`. In a text, `0` is just another letter, or *character* as one says. It doesn't make sense to arithmetic on characters. Computers only know how to do arithmetic on numbers. So they do need to convert the characters into numbers before they can computer with them. [^ascii]
+Next, we come to subtle point. Whenever you see `0` you may just think of the number zero. But to a computer, the symbol `0` in a text is different from the number `0`. In a text, `0` is just another letter, or *character* as one says. It doesn't make sense to do arithmetic on characters. Computers know how to do arithmetic on numbers but not on characters. So we need to convert the characters into numbers before the they can be plotted: [^ascii]
 
     deaths_italy <- as.numeric(deaths_italy)
 
@@ -83,7 +80,7 @@ That's it for the first lesson. I felt good when I got this going.
 
 ### Storing the program as a file
 
-Now it is play time. First, let us save everything in a file [lesson-01](lesson-01.R). 
+Now it is play time. First, let us save everything in a file [lesson-01.R](lesson-01.R). 
 
 Download this file, save it in a local folder and open it in Rstudio. It should appear in the upper left window. You can now
 
@@ -92,12 +89,13 @@ Download this file, save it in a local folder and open it in Rstudio. It should 
 - select all and click on run to execute all in one go;
 - change the program and plot your own data ...
 
+
 ### Suggested exercises
 
-Make your own exercises. Choose different countries, or different time rantes. Look at the data with your naked eyes. You will find that not for all countries there is reliable data. Etc, etc, ...
+(Time for some music? I wrote this listening to [London Calling](https://www.youtube.com/watch?v=hZw23sWlyG0&list=PLkLimRXN6NKzoSccJhADNW42Ayxf7mYwF&index=8).)
 
----
+Make your own exercises. Choose different countries, or different time ranges. Look at the data with your naked eyes. You will find that not for all countries there is reliable data. Etc, etc, ...
 
-I wrote this listening to [The Clash](https://www.youtube.com/watch?v=hZw23sWlyG0&list=PLkLimRXN6NKzoSccJhADNW42Ayxf7mYwF&index=8).
+
 
 [^ascii]: If you want to understand this in more detail, look at how characters are encoded in a machine. This code is called [ASCII](https://en.wikipedia.org/wiki/ASCII#Printable_characters). For example, you see that `a` is encoded as `110 0001` (the space is just for readability) and `0` as a character is encoded as `011 0000`. But `0` as a number is encoded differently, namely as a sequence of 64 `0`s.
