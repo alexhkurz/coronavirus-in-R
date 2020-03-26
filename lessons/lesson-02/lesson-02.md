@@ -28,7 +28,7 @@ We ask the question whether the data is consistent with the **hypothesis** that 
 
 ###### Germany vs Italy
 
-- The graph: [March 22](../../plots/Germany-Italy-March-22.png)
+- The graph: [March 22](../../plots/2020-03-22/Germany-Italy-March-22.png)
 
 It looks to me that Germany may just be lagging behind by approx 32-13=19 days and may be on the same course as Italy. 
 
@@ -36,11 +36,11 @@ Running the data on UK vs Italy and on California vs Italy produces similar resu
 
 ###### UK vs Italy
 
-- The graph: [March 22](../../plots/UK-Italy-March-22.png)
+- The graph: [March 22](../../plots/2020-03-22/UK-Italy-March-22.png)
 
 ###### California vs Italy
 
-- The graph: [March 22](../../plots/California-Italy-March-22.png)
+- The graph: [March 22](../../plots/2020-03-22/California-Italy-March-22.png)
 
 **Remark:** (March 22) Intriguingly, looking at the righ-hand side of the German and Californian graphs raises the question whether deaths in Italy increase faster. But right now there is not enough data to say that this is a trend. It will be interesting to watch this over the next days as new data will come in.
 
