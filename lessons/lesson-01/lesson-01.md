@@ -8,7 +8,7 @@ Download [R](https://cran.r-project.org/) and [Rstudio](https://rstudio.com/prod
 
 Start up Rstudio. 
 
-### Import the data
+## Import the data
 
 First look at the table  [time_series_covid19_deaths_global.csv](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv). 
 
@@ -26,7 +26,7 @@ To verify that Rstudio imported the data enter into the console:
 
 You should now see the imported table in the upper left window of Rstudio.
 
-### Extract the data of one country
+## Extract the data of one country
 
 Search the table for "Italy". 
 
@@ -58,7 +58,7 @@ Of course, since we already saved this data in the variable `deaths_italy` we ca
     
 for the same result.
 
-### Plot the data
+## Plot the data
 
 Next, we want to plot the data. 
 
@@ -78,7 +78,7 @@ Now, we can plot the data.
 
 That's it for the first lesson. I felt good when I got this going. 
 
-### Storing the program as a file
+## Storing the program as a file
 
 Now it is play time. First, let us save everything in a file [lesson-01.R](lesson-01.R). 
 
@@ -90,7 +90,7 @@ Download this file, save it in a local folder and open it in Rstudio. It should 
 - change the program and plot your own data ...
 
 
-### Suggested exercises
+## Suggested exercises
 
 (Time for some music? I wrote this listening to [London Calling](https://www.youtube.com/watch?v=hZw23sWlyG0&list=PLkLimRXN6NKzoSccJhADNW42Ayxf7mYwF&index=8).)
 

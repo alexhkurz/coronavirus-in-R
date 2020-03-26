@@ -22,15 +22,13 @@ Here is a simple analysis. The idea is to see what happens if we ignore tests (t
 
 We use the [time series of deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv) from Johns Hopkins. A brief look at the [raw data](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv) shows that there is not reliable data for all countries, but I am going to assume that the data for the major industrialised countries is reasonably accurate. 
 
-(As of March 23, the program [deaths.R](deaths.R) does not run with the current data as Johns Hopkins changed the format of the data. I will adapt this as soon as I find the time. For now I can offer a snapshot of the [March 22 data](time_series_19-covid-Deaths-March-22.csv).)
-
 We ask the question whether the data is consistent with the **hypothesis** that Germany and Italy follow the same development, only separated by a certain time lag. We try to answer the question by **estimating** the time lag by moving the Italian curve so that it best matches the German curve.
 
  On March 22, this produced the following graph, overlaying deaths in Italy in red and deaths in Germany in blue. The German curve starts 13 days ago when the first deaths appeared and the Italian curve starts 32 days ago. Italian numbers are multiplied by 1.32 to account for the difference in population sizes. 
 
 ###### Germany vs Italy
 
-- The graph: [March 22](Germany-Italy-March-22.png)
+- The graph: [March 22](../../plots/Germany-Italy-March-22.png)
 
 It looks to me that Germany may just be lagging behind by approx 32-13=19 days and may be on the same course as Italy. 
 
@@ -38,11 +36,11 @@ Running the data on UK vs Italy and on California vs Italy produces similar resu
 
 ###### UK vs Italy
 
-- The graph: [March 22](UK-Italy-March-22.png)
+- The graph: [March 22](../../plots/UK-Italy-March-22.png)
 
 ###### California vs Italy
 
-- The graph: [March 22](California-Italy-March-22.png)
+- The graph: [March 22](../../plots/California-Italy-March-22.png)
 
 **Remark:** (March 22) Intriguingly, looking at the righ-hand side of the German and Californian graphs raises the question whether deaths in Italy increase faster. But right now there is not enough data to say that this is a trend. It will be interesting to watch this over the next days as new data will come in.
 
