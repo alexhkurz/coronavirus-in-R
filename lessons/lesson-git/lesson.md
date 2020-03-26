@@ -2,6 +2,24 @@
 
 (unfinished draft)
 
+## Basics
+
+The basics about managing projects and files in Rstudio are covered in the video.
+
+- [Managing - Part 1 (Projects in RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsmanagingpart1-2)
+
+If you are new to programming, the video will be easier to understand after learning some basics on 
+
+- Computer Architecture: 
+  - The difference between the working memory (RAM) and the hard drive (HD).
+  - Programming variables denote memory cells in the RAM. Variables have a name and a value. The value of a variable can be modified by assignment.
+
+- File Systems:
+  - Data on the HD is stored in the form of files. A file needs to be read into the RAM before programs can process it. A program needs to save its data in the RAM to the HD if the data is supposed to persist after the program was terminated.
+  - Files are stored on the HD in a tree. To find a file in the tree, one uses its path. 
+
+## Git
+
 Remember that last time you had to save my files from git manually?
 
 A better way is to learn a bit how git works. Git allows us to maintaint and synchronize different copies of the same **repository**.
