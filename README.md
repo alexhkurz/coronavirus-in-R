@@ -18,9 +18,13 @@ We'd love to get feedback and one way of doing this is, is to [raise an issue](h
 
 ---
 
+drafts:
+
+- [Lesson](lessons/lesson-git/lesson.md): Managing projects in Rstudio
+
 possible directions to take:
 
-- Lesson 3: Compare two different countries. Functions in R.
+- Lesson: Compare two different countries. Functions in R.
 
 - Data analysis: Compute the lag automatically, Visualise how the lag changes over time, Find reasons for changing lags, ...
 
