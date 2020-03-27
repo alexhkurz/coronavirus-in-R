@@ -34,6 +34,8 @@ possible directions to take:
 
 - Maths: Metric spaces, similarlity measures, ...
 
+- Once we learned enough we could take part in [Kaggle Challenges](https://www.kaggle.com/covid19)
+
 ---
 
 My [coronavirus blog](https://alexhkurz.github.io/notes/covid-19.html).
