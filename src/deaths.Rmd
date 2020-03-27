@@ -1,0 +1,96 @@
+---
+title: How many days does Germany lag behind Italy?
+---
+
+Estimate how many days Germany lags behind Italy by overlaying the number of deaths in each country.
+The lag between the two countries is computed as italy_first - germany_first.
+`germany_first` can be chosen as the first day of a recorded coronavirus death in Germany.
+`italy_first` is the corresponding day which produce the best match of the two curves. 
+
+Note: The results of the analysis change when Johns Hopkins update their data.
+One may want to adapt the program accordingly by increasing by one the variables
+
+  germany_first, italy_first
+
+Sownload the current data from Johns Hopkins
+
+```{r}
+mydata = read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+View(mydata)
+```
+
+Show the last date for which there is data
+
+```{r}
+View(colnames(mydata)[ncol(mydata)]) 
+```
+Filter for a name of your choice.
+
+```{r}
+region1_name <- "Germany"
+region1 <- filter(mydata,grepl("Germany",Country))
+#region1 <- mydata[mydata$Country.Region=="Germany"]
+View(region1)
+```
+
+# get the number of the rows for different countries
+#
+```{r}
+germany <- 121       
+usa <- 226       
+italy <- 138
+```
+
+Germany vs Italy
+32-13=19 day lag estimated on March 22: range=13, germany_first=13,italy_germany_first=32
+35-15=20 day lag estimated on March 24: range=15, germany_first=15,italy_germany_first=35
+
+```{r}
+range <- 15           # last-day - first_day
+germany_first <- 15   # how many days ago? first German death on March 8
+italy_first <- 35     # how many days ago?
+population_ratio_germany_italy <- 1.38
+
+german_deaths <- mydata[germany,(ncol(mydata)-germany_first):(ncol(mydata)-germany_first+range)]
+german_deaths <- gsub(",", "", german_deaths)                     
+german_deaths <- as.numeric(german_deaths)                      
+plot(german_deaths, col="black", main="German (black), Italy (red)", xlab="days", ylab="German deaths")   
+
+italian_deaths <- mydata[italy,(ncol(mydata)-italy_first):(ncol(mydata)-italy_germany_first+range)]
+#View(mydata[italy,1:2])       # Verify country
+italian_deaths <- gsub(",", "", italian_deaths)                   
+italian_deaths <- as.numeric(italian_deaths)                      
+lines(population_ratio_germany_italy*italian_deaths, col="red")   # plot Italy in the same window
+```
+
+Germany vs Italy
+32-13=19 day lag estimated on March 22: range=13, germany_first=13,italy_germany_first=32
+35-15=20 day lag estimated on March 24: range=15, germany_first=15,italy_germany_first=35
+
+```{r}
+# change the values below
+#
+region1 <- usa
+region2 <- italy
+
+population_ratio_region_1_over_2 <- 5.46
+
+range <- 15           # number of days in the plot
+region1_first <- 15   # how many days ago starts the data for region 1
+region2_first <- 34   # how many days ago starts the data for region 2
+#
+# changes end, everything below is computed automatically
+
+region1_name <- mydata[region1,2]
+region2_name <- mydata[region2,2]
+
+region1_deaths <- mydata[region1,(ncol(mydata)-region1_first):(ncol(mydata)-region1_first+range)]
+region1_deaths <- gsub(",", "", region1_deaths)                     
+region1_deaths <- as.numeric(region1_deaths)                      
+plot(region1_deaths, col="black", main=paste(region1_name,'deaths (black) vs ',region2_name,'deaths (red)'), xlab="days", ylab=paste(region1_name,'deaths'))   
+region2_deaths <- mydata[region2,(ncol(mydata)-region2_first):(ncol(mydata)-region2_first+range)]
+#View(mydata[italy,1:2])       # Verify country
+region2_deaths <- gsub(",", "", region2_deaths)                   
+region2_deaths <- as.numeric(region2_deaths)                      
+lines(population_ratio_region_1_over_2*region2_deaths, col="red")   # plot Italy in the same window
+```
