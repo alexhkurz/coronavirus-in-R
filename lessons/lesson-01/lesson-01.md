@@ -8,11 +8,11 @@ program: [lesson-01.R](lesson-01.R)
 
 - Start up Rstudio. 
 
-If you got that far, you can just dive into it, following the rest of the lesson. If you want more background on R in general and on programming in R in particular, try (ignore what they say about "Server Pro" and "Preview"):
+If you got that far, you can just dive into it, following the rest of the lesson. If you want more background on R, I recommend the first 19.5 min of (ignore what they say about "Server Pro" and "Preview"):
 
 - [Programming - Part 1 (Writing code in RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart1-2)
 
-This video contains much more than we need to know right now. The first 19min of it are the more relevant ones for this lesson. You can also skip the video entirely for now and come to it later.
+Even the first 19min contains much more than we need to know right now. You can also skip the video entirely for now and come backtto it later.
 
 ## Import the data
 

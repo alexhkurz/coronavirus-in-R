@@ -16,11 +16,14 @@ We'd love to get feedback and one way of doing this is, is to [raise an issue](h
 
 - [Lesson 2](lessons/lesson-02/lesson-02.md): How far does Germany lag behind Italy?
 
+- [Lesson 3](lessons/lesson-03.md): Comparing any two countries.
+
 ---
 
 drafts:
 
-- [Lesson](lessons/lesson-git/lesson.md): Managing projects in Rstudio
+- [Lesson A](lessons/lesson-git/lesson.md): Managing projects in Rstudio
+- [Lesson B](lessons/lesson-git/lesson.md): Managing projects with Git
 
 possible directions to take:
 

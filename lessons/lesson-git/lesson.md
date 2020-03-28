@@ -4,9 +4,13 @@
 
 ## Basics
 
-The basics about managing projects and files in Rstudio are covered in the video.
+The basics about managing projects and files in Rstudio are covered in the video in the first **9 min**:
 
 - [Managing - Part 1 (Projects in RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsmanagingpart1-2)
+
+    - set a working directory
+    - save and load files
+    - use the console and the files pane
 
 If you are new to programming, the video will be easier to understand after learning some basics on 
 
