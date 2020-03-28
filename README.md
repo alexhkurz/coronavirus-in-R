@@ -16,6 +16,8 @@ We'd love to get feedback and one way of doing this is, is to [raise an issue](h
 
 - [Lesson 2](lessons/lesson-02/lesson-02.md): How far does Germany lag behind Italy?
 
+It seems one can organise the material into two threads. The numbered lessons all solve a data analysis question. The lettered lessons cover some necessary computer related background and can be skipped by those who already have some experience with computers and programming in general.
+
 ---
 
 drafts:
@@ -42,4 +44,5 @@ possible directions to take:
 ---
 
 My [coronavirus blog](https://alexhkurz.github.io/notes/covid-19.html).
+My [homepage](https://alexhkurz.github.io).
 
