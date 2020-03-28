@@ -51,7 +51,7 @@ Ideally, **we only want to change the name of each country once.**
 
 How can we do this?
 
-#### Step 1: Introduce generic variabales
+### Step 1: Introduce generic variabales
 
 Idea: Rewrite the code above with variable names that are not specific to Italy and to XXXXXX.
 
@@ -82,11 +82,10 @@ These four variables above also depend on the particular regions in question and
     region2_deaths <- as.numeric(region2_deaths)                      
     lines(population_ratio_region1_region2*region2_deaths, col="red")   
 
-Does it run? If not debug it. 
+Does it run? If not, debug it. 
 
-By the way, it is now clearly starting to be annoying to write this lesson by jumping from text to the program and back. Do you as a reader feel the same? From now on I may write the lessons in `Rmd` only. 
+By the way, it is now clearly starting to be annoying to write this lesson by jumping from text to the program and back. Do you as a reader feel the same? From now on I write the lessons in `Rmd` only. 
 
 So let us continue this in [lesson-03.Rmd](lesson-03.Rmd).
 
-Does it run now? What next? Can we improve this?
 

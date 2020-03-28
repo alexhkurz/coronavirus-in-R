@@ -47,3 +47,5 @@ git clone https://github.com/alexhkurz/coronavirus-in-R.git
 - https://resources.rstudio.com/wistia-rstudio-essentials-2
 
   - 
+  
+https://community.rstudio.com/t/should-rproj-files-be-added-to-gitignore/1269
