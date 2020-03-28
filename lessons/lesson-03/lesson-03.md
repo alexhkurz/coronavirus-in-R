@@ -1,5 +1,7 @@
 # Comparing any two countries
 
+[lesson-03.Rmd](lesson-03.Rmd)
+
 (draft ... under construction)
 
 In the exercises of the last lesson we took the code for plotting Germany vs Italy
