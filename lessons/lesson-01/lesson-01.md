@@ -1,6 +1,6 @@
 # Plotting coronavirus data
 
-program: [lesson-01.R](lesson-01.R)  
+program: [lesson-01.R](lesson-01.R), [lesson-01.Rmd](lesson-01.Rmd)
 
 ## Technical preliminaries
 
