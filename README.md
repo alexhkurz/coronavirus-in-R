@@ -6,7 +6,7 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 The motivation to learn about data anlysis now comes from the coronavirus crisis. One can read a lot of analyses. So why not making your own? 
 
-An example of what can be done if you are good at enough at is [How To Tell If We're Beating COVID-19](https://www.youtube.com/watch?v=54XLXg4fYsc).
+An good example of what can be done with data analysis is this visualisation on [How To Tell If We're Beating COVID-19](https://www.youtube.com/watch?v=54XLXg4fYsc). By the way, one of my favourite visualisation is about [the history of the top chess players over time players](https://www.youtube.com/watch?v=z2DHpW79w0Y).
 
 And it is more interesting to have a project right from the start, rather than to work through long tutorials and textbooks first. Each lesson below is a lesson we set ourselves. 
 

@@ -28,16 +28,6 @@ If you are new to programming, the video will be easier to understand after lear
   - Data on the HD is stored in the form of files. A file needs to be read into the RAM before programs can process it. A program needs to save its data in the RAM to the HD if the data is supposed to persist after the program was terminated.
   - Files are stored on the HD in a tree. To find a file in the tree, one uses its path. 
 
-## Git
-
-Remember that last time you had to save my files from git manually?
-
-A better way is to learn a bit how git works. Git allows us to maintaint and synchronize different copies of the same **repository**.
-
-We will follow the instructions on [Using Git with RStudio](https://jennybc.github.io/2014-05-12-ubc/ubc-r/session03_git.html).
-
-Personally, I like to use the editor `visual studio code`, which also has a good integration with git. But for this project, I am planning to see how far we can get with staying inside Rstudio.
-
 ---
 
 git clone https://github.com/alexhkurz/coronavirus-in-R.git

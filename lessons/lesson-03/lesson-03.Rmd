@@ -1,7 +1,5 @@
 # Comparing any two countries
 
-(draft ... under construction)
-
 Let us first recall how we download the data.
 
 ```{r}
@@ -98,8 +96,8 @@ Idea: Rewrite the code above with variable names that are not specific to Italy 
 In our case, while the first idea was to have variables `country1` and `country2`, we may want to use the code for regions that are not countries such as California or New York. So we decided on to start with
 
 ```{r}
-    region1 <- 1 # fill in the row of region 1
-    region2 <- 2 # fill in the row of region 2
+    region1 <- 121 # fill in the row of region 1
+    region2 <- 138 # fill in the row of region 2
 ```
 
 The comments are marking the two places where variables will be changed to refer to the particular countries/regions in question.
@@ -133,6 +131,21 @@ Now it is running, what next? How can we improve the program?
 **Rule of Good Practice:** Solving a problem and implementing the solution takes much less work than embedding the solution in a nice software package that is easy to use.
 
 In our case, comparing Germany vs Italy in a particular time interval is much faster to implement then to develop a flexible tool that allows us to compare any countries over any time intervals and then to visualise the results in interesting ways.
+
+One thing we want to improve on is the labelling of the graph.
+
+```{r}
+    plot(region1_deaths, col="black", main="region1 (black), region2 (red)",xlab="days", ylab="region1 deaths")   
+```
+
+We want the labelling to be parametric, that is, whatever values we choose for `region1` and `region2`, the graph should be labelled with the names of the respective regions
+
+```{r}
+    plot(region1_deaths, col="black", main=paste(mydata[region1,2], "(black), ", mydata[region2,2],  "(red)"), xlab="days", ylab=paste(mydata[region1,2], "deaths"))   
+```
+Note how the code replaces `"Region 1" by "Germany" and "Region 2" by "Italy".
+
+**Exercise:** Change the values of the variables `region1` and `region2` to obtain plots for different countries.
 
 
 
