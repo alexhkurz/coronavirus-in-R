@@ -1,2 +1,196 @@
-lesson-variables.Rmd
+# Variables, Integers and Strings
+
+(unfinished draft ... under construction)
+
+Before starting, make sure that you see on the upper right in Rstudio the Environment tab.
+
+Clear its contents by clicking on the brush. You should see now "Environment is empty".
+
+Now impor the data and the regions.
+
+```{r}
+mydata <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+
+region1 <- 121 # Germany
+region2 <- 138 # Italy
+```
+
+The code above defines three variables. 
+
+In the Environment tab you can see the names of the variables on the left and their values on the right. (In fact, the value of mydata is the big table with all of the data, which is not displayed for reasons of space.)
+
+Now let us add a few more variables and see how the Environment changes:
+
+```{r}
+    range <- 15           
+    region1_first <- 15   
+    region2_first <- 35     
+    population_ratio_region1_region2 <- 1.38
+```
+
+Next, we create a new variable that stores the last `range` days of the row of `region1`:
+
+```{r}   
+    region1_deaths <- mydata[region1,(ncol(mydata)-region1_first):(ncol(mydata)-region1_first+range)]
+```
+
+Observe how this variable is added to the Environment. Click on the little white triangle on in the blue disk to see the details. 
+
+This data still has invisible commas which you can see if you look at the [raw data](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv). 
+
+The next step eliminates the commas. Verify this by looking at the Environment.
+
+```{r}   
+    region1_deaths <- gsub(",", "", region1_deaths)  
+```
+
+## Data Types: Integers and Strings
+
+This is a good moment to learn more about data types. We need to know at least two data types.  Numbers and text. Whenever you see something like 123, this could be the text 123 or the number 123. If we mean the text, we put it in double quotes, like "123". If we mean the number we write it without the double quotes.
+
+By the way, in computer lingo, we say "string" instead of "text" and "integer", or "int" insted of "number".
+
+To illustrate the difference let us try the following. First, let us check that 123 is an integer.
+
+```{r}
+123+123
+```
+
+Next, let us check that "123" is not an integer.
+
+```{r}
+"123"+"123"
+```
+
+Do you see the red error message above? Can you explain it in your own words?
+
+**Rule of Programming Languages:** What is a **data type**? Data types are distinguished by the operations they support. For example, on integers we have + and on strings we do not. 
+
+Now let us see an operation we have on strings. One thing we want to do with strings is to concatenate them.
+
+```{r}
+paste("123","123")
+```
+
+You can also use `paste` to concatenate more than one string:
+
+```{r}
+paste("Hello", "world", "is", "a", "boring", "program")
+```
+
+**Exercise:** Modify the program to add a full stop at the end of the text. Invent your own further modifications.
+
+In this example, it is certainly nice that `paste` does not just concatenate the strings but also puts a space in between any two strings. If you do not want this you can do
+
+```{r}
+paste("Hello", "world", "is", "a", "boring", "program", sep="")
+```
+
+By the way, "" is called the **empty string**. It can be useful, for example, if you want to concatenate strings without separating them: Just use the empty string as your separator.
+
+**Exercise:** Find out what happens to the example above if you use different separators.
+
+What will happen if you run the following?
+
+   paste(Hello, world)
+   
+Did you make a guess? Ok let us try:
+
+```{r}
+paste(Hello, world)
+```
+
+What is the problem? 
+
+Remember
+
+```{r}
+paste("123","123")
+```
+
+What will happen if you run the following?
+
+   paste(123, 123)
+   
+If your guess was that it won't work because 123 is an integer and not a string, well done!
+
+Now let us try:
+
+```{r}
+paste(123,123)
+```
+
+Oops, is this unexpected?
+
+What is going on here?
+
+Can you explain this?
+
+## More on data types
+
+R has the following basic data types.
+
+    character
+    double 
+    integer
+    logical
+    complex
+    
+To understand what some of these these types are let us ask R itself:
+
+```{r}
+    typeof(123)
+    typeof(12.3)
+    typeof(12.3e5)
+    typeof(123L)
+    typeof("123")
+    typeof(TRUE)
+    typeof(FALSE)
+```
+
+
+Personally, I find it annoying if language designers break with almost universally held conventions and rename well-established concepts. For example, "character" denotes a single character, whereas what is called character in R is called a string elsewhere. Similarly, logicals are usually called booleans. But I don't want to take away anything from R. I have been learning it now for a couple of days and I find it awesome. In particular together with Rstudio. 
+
+## Transforming strings into numerics
+
+Numerics is an umbrella term for integers and doubles (=decimals), if I understand correctly.
+
+Let us resume the discussion of the following. 
+
+```{r}   
+    region1_deaths <- mydata[region1,(ncol(mydata)-region1_first):(ncol(mydata)-region1_first+range)]
+    typeof(region1_deaths)
+```
+
+
+```{r}   
+    region1_deaths <- gsub(",", "", region1_deaths)  
+    typeof(region1_deaths)
+```
+
+
+```{r}
+    region1_deaths <- as.numeric(region1_deaths)
+    typeof(region1_deaths)
+```
+
+## Manipulating Strings
+
+Let us now explore the code from Lesson 3 and understand how the labelling of the graph works:
+
+```{r}
+    plot(region1_deaths, col="black", main="region1 (black), region2 (red)",xlab="days", ylab="region1 deaths")   
+```
+
+
+```{r}
+    paste(mydata[region1,2], "(black), ", mydata[region2,2],  "(red)")
+```
+
+...
+
+## References
+
+More on [data types in R](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/).
+
 
