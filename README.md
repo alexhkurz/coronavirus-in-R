@@ -21,7 +21,7 @@ We'd love to get feedback and one way of doing this is, is to [raise an issue](h
 It seems one can organise the material into two threads. The numbered lessons all solve a data analysis question. The lettered lessons cover some necessary computer related background and can be skipped by those who already have some experience with computers and programming in general.
 
 ---
-
+ 
 drafts:
 
 - [Lesson 3](lessons/lesson03/lesson-03.md): Comparing any two countries.
