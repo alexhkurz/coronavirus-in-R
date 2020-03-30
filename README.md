@@ -4,7 +4,9 @@ This is both a self-learning and a homeschooling project. I know Mathematics and
 
 Ideally, these notes will turn into a first  introduction to programming for high-school students with no previous experience. But I will assume that students can install programs, download files and open them in applications.
 
-The motivation to learn about data anlysis now comes from the coronavirus crisis. One can read a lot of analyses. So why not making your own?
+The motivation to learn about data anlysis now comes from the coronavirus crisis. One can read a lot of analyses. So why not making your own? 
+
+An example of what can be done if you are good at enough at is [How To Tell If We're Beating COVID-19](https://www.youtube.com/watch?v=54XLXg4fYsc).
 
 And it is more interesting to have a project right from the start, rather than to work through long tutorials and textbooks first. Each lesson below is a lesson we set ourselves. 
 
