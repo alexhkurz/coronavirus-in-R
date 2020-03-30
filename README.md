@@ -26,8 +26,9 @@ drafts:
 
 - [Lesson 3](lessons/lesson03/lesson-03.md): Comparing any two countries.
 
-- [Lesson A](lessons/lesson-git/lesson.md): Managing projects in Rstudio
-- [Lesson B](lessons/lesson-git/lesson.md): Managing projects with Git
+- [Lesson files](lessons/lesson-A-files.md): Managing files in Rstudio
+- [Lesson git](lessons/lesson-git.md): Managing projects with Git
+- [Lesson strings](lessons/lesson-strings.md): Variables, types and basic string manipulation
 
 possible directions to take:
 
