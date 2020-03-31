@@ -11,6 +11,7 @@ If you are, like me, new to R, see the [README](../README.md) for details.
 
 Some takeaways suggested by only looking at how the number of deaths have been developing:
 
+- Most countries follow the same growth trajectory, only separated by different time lags.
 - Spain looks to be affected worse than Italy
 - Sweden is not going to be better off than Italy
 - US, UK, Germany follow Italy with a lag between 2-3 weeks
