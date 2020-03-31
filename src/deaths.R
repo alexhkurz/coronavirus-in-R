@@ -4,13 +4,13 @@
 # region1 is the name in the corona_data table, eg "US", "Korea, South"
 # region1_pop is the name in the population_data table, eg "United States", "Korea, Rep."
 #
-region1     <- "US"  
-region1_pop <- "United States"  
-region2 <- "Germany"
-region2_pop <- "Germany"  
+region1     <- "Germany"  
+region1_pop <- "Germany"  
+region2 <- "US"
+region2_pop <- "United States"  
 range <- 20           
 region1_first <- 21   
-region2_first <- 21    
+region2_first <- 22    
 
 # Output: If the graphs match, the estimated lag is the `region1_first - region2_first`
 
