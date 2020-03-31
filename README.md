@@ -46,7 +46,7 @@ drafts:
 **Programming skills**:
 - [Managing files.](lessons/lesson-files.md)
 - [Variables and types](lessons/lesson-strings.Rmd). How to manipulate strings?
-- [Filtering data](). How to automatically extract information from data?
+- [Filtering data](lessons/lesson-filter.Rmd). How to automatically extract information from data?
 - [Managing projects with Git](lessons/lesson-git.md). How to use version control?
 
 **possible directions to take**:
