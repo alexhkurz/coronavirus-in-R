@@ -15,8 +15,8 @@ One may want to adapt the program accordingly by increasing by one the variables
 Sownload the current data from Johns Hopkins
 
 ```{r}
-mydata = read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
-View(mydata)
+mydata <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+# View(mydata)
 ```
 
 Show the last date for which there is data

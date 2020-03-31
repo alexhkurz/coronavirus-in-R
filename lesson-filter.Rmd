@@ -1,0 +1,244 @@
+---
+title: "filter-for-names.Rmd"
+output: html_document
+---
+
+Load data
+
+```{r}
+mydata <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+```
+
+View the column names and verify that there is a column called `"Country.Region"`.
+
+```{r}
+View(colnames(mydata))
+```
+
+We see that columns can be identified by numbers and by strings. For example the column at index 2 is named "Country.Region". To extract this column, we can use the number (as we did before when we processed mydata)
+
+```{r}
+View(mydata[,2])
+```
+
+or we can use the name as in
+
+```{r}
+View(mydata[,"Country.Region"])
+```
+
+It seems that in `mydata[,X])` what we fill in for `X` can be either a number or a string. To let R know that `Country.Region` is a string we need to put it in double quotes.
+
+By the way, instead of `View(mydata[,"Country.Region"])` we can also use
+
+```{r}
+View(mydata$"Country.Region")
+```
+
+but, apparently, the `$` notation only works for strings, not for numbers:
+
+```{r}
+View(mydata$2)
+```
+
+Surprisingly, we get a different (but still non-intended) result if we replace the `2` above by a variable that has value `2`:
+
+```{r}
+X <- 2
+View(mydata$X)
+```
+
+Anyway, let us go back to the question of how to search and filter the data for a string such as "Germany":
+
+```{r}
+View(mydata[mydata[,"Country.Region"]=="Germany",])
+```
+
+Now you should see the row that has "Germany" in the column named "Country.Region". If you find that this looks horrible, I agree. Book this under boring-but-necessary. Like English spelling.
+
+Finally, if we want to access a row by its name, which is a number for our current example data, we can find it using the `row.names()` function:
+
+```{r}
+View(row.names(mydata[mydata[,"Country.Region"]=="Germany",]))
+```
+
+
+We can use this now to improve our code. We can parameterise it, not by numbers that we have to look up in a table (and that can change over time), but by names of regions.
+
+Here it is:
+
+```{r}
+    # User input
+    region1_name <- "Austria"
+    region2_name <- "Italy"
+    range <- 15           
+    region1_first <- 15   
+    region2_first <- 35     
+    population_ratio_region1_region2 <- 1.38
+
+    # Automated processing
+    region1 <- row.names(mydata[mydata[,"Country.Region"]==region1_name,])
+    region2 <- row.names(mydata[mydata[,"Country.Region"]==region2_name,])
+
+    region1_deaths <- mydata[region1,(ncol(mydata)-region1_first):(ncol(mydata)-region1_first+range)]
+    region1_deaths <- gsub(",", "", region1_deaths)                     
+    region1_deaths <- as.numeric(region1_deaths)                      
+    plot(region1_deaths, col="black", main=paste(mydata[region1,2], "(black), ", mydata[region2,2],  "(red)"), xlab="days", ylab=paste(mydata[region1,2], "deaths"))   
+    
+    region2_deaths <- mydata[region2,(ncol(mydata)-region2_first):(ncol(mydata)-region2_first+range)]
+    #View(mydata[region2,1:2])       
+    region2_deaths <- gsub(",", "", region2_deaths)                   
+    region2_deaths <- as.numeric(region2_deaths)                      
+    lines(population_ratio_region1_region2*region2_deaths, col="red")   
+```
+
+The next improvement is to calculate the population ratio. First we import some data
+
+```{r}
+    data_countries_by_population <- read.csv(url("https://raw.githubusercontent.com/datasets/population/master/data/population.csv"))
+```
+
+```{r}
+    dcp <- data_countries_by_population
+```
+
+We go now through the same steps as before:
+
+```{r}
+View(colnames(data_countries_by_population))
+```
+
+```{r}
+View(dcp[,"Country.Name"])
+```
+
+```{r}
+View(dcp[dcp[,"Country.Name"]==region1_name,])
+```
+
+Here something new shows up. We get a long list comprising years from approx 1961 go 2016. How do we select a year? 
+
+```{r}
+View(dcp[dcp[,"Country.Name"]==region1_name & dcp[,"Year"]==2015,])
+```
+
+
+```{r}
+View(dcp[dcp[,"Country.Name"]==region1_name & dcp[,"Year"]==2015,])
+```
+
+
+```{r}
+    View(row.names(dcp[dcp[,"Country.Name"]==region1_name & dcp[,"Year"]==2015,]))
+```
+
+And now the population:
+
+```{r}
+    View(dcp[dcp[,"Country.Name"]==region1_name & dcp[,"Year"]==2015,"Value"])
+```
+
+Now we can compute
+
+```{r}
+    pop1 <- dcp[dcp[,"Country.Name"]==region1_name & dcp[,"Year"]==2015,"Value"]
+    pop2 <- dcp[dcp[,"Country.Name"]==region2_name & dcp[,"Year"]==2015,"Value"]
+    population_ratio_region1_region2 <- pop1/pop2
+```
+
+Finally, putting all together
+
+```{r}
+    # User input
+    region1 <- "Austria"
+    region2 <- "Italy"
+    range <- 15           
+    region1_first <- 15   
+    region2_first <- 35     
+
+    # Automatically processed from here
+    
+    # Load coronavirus data from Johns Hopkins
+    corona_data <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+    
+    # Load population data
+    population_data <- read.csv(url("https://raw.githubusercontent.com/datasets/population/master/data/population.csv"))
+    
+    # Compute population ratio of the twi regions
+    pop1 <- dcp[dcp[,"Country.Name"]==region1 & dcp[,"Year"]==2015,"Value"]
+    pop2 <- dcp[dcp[,"Country.Name"]==region2 & dcp[,"Year"]==2015,"Value"]
+    population_ratio_region1_region2 <- pop1/pop2
+
+    # Automated processing
+    r1 <- row.names(mydata[mydata[,"Country.Region"]==region1,])
+    r2 <- row.names(mydata[mydata[,"Country.Region"]==region2,])
+
+    region1_deaths <- mydata[r1,(ncol(mydata)-region1_first):(ncol(mydata)-region1_first+range)]
+    region1_deaths <- gsub(",", "", region1_deaths)                     
+    region1_deaths <- as.numeric(region1_deaths)                      
+    plot(region1_deaths, col="black", main=paste(mydata[r1,2], "(black), ", mydata[r2,2],  "(red)"), xlab="days", ylab=paste(mydata[region1,2], "deaths"))   
+    
+    region2_deaths <- mydata[r2,(ncol(mydata)-region2_first):(ncol(mydata)-region2_first+range)]
+    #View(mydata[region2,1:2])       
+    region2_deaths <- gsub(",", "", region2_deaths)                   
+    region2_deaths <- as.numeric(region2_deaths)                      
+    lines(population_ratio_region1_region2*region2_deaths, col="red")   
+
+```
+
+
+
+```{r}
+    # User input
+    region1     <- "US"             # Name of region1 in the corona_data table
+    region1_pop <- "United States"  # Name of region1 in the population_data table
+    region2 <- "Italy"
+    region2_pop <- region2  # Name of region1 in the population_data table
+    range <- 15           
+    region1_first <- 15   
+    region2_first <- 35     
+    
+    # Output: If the graphs match, the estimated lag is the `region1_first - region2_first`
+
+    # Automatically processed from here
+    state1 <- ""              # Column 1 of the corona_data table
+    state2 <- ""              # Column 1 of the corona_data table
+    
+    # Load coronavirus data from Johns Hopkins
+    corona_data <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+    
+    # Load population data
+    population_data <- read.csv(url("https://raw.githubusercontent.com/datasets/population/master/data/population.csv"))
+    
+    # Abbreviations
+    cd <- corona_data
+    pd <- population_data
+    r1 <- row.names(cd[cd[,"Country.Region"]==region1 & cd[,"Province.State"]==state1,])
+    r2 <- row.names(cd[cd[,"Country.Region"]==region2 & cd[,"Province.State"]==state1,])
+
+    # Compute the population ratio of the two regions
+    pop1 <- pd[pd[,"Country.Name"]==region1_pop & pd[,"Year"]==2015,"Value"]
+    pop2 <- pd[pd[,"Country.Name"]==region2_pop & pd[,"Year"]==2015,"Value"]
+    population_ratio_region1_region2 <- pop1/pop2
+
+    # Uncomment for debugging
+    # View(cd[r1,])
+    # View(cd[r2,])
+    # View(pd[pd[,"Country.Name"]==region1_pop & pd[,"Year"]==2015,]) 
+    # View(pd[pd[,"Country.Name"]==region2_pop & pd[,"Year"]==2015,]) 
+
+    region1_deaths <- cd[r1,(ncol(cd)-region1_first):(ncol(cd)-region1_first+range)]
+    region1_deaths <- gsub(",", "", region1_deaths)                     
+    region1_deaths <- as.numeric(region1_deaths)                      
+    plot(region1_deaths, col="black", main=paste(cd[r1,2], "(black), ", cd[r2,2],  "(red)"), xlab="days", ylab=paste(cd[r1,2], "deaths"))   
+    
+    region2_deaths <- cd[r2,(ncol(cd)-region2_first):(ncol(cd)-region2_first+range)]
+    #View(cd[region2,1:2])       
+    region2_deaths <- gsub(",", "", region2_deaths)                   
+    region2_deaths <- as.numeric(region2_deaths)                      
+    lines(population_ratio_region1_region2*region2_deaths, col="red")   
+
+```
+
+
+
