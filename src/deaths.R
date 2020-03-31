@@ -1,16 +1,16 @@
 # User input
+#
 # Most countries have the same names in the two tables, but not all
-# Name of region1 in the corona_data table, eg 
-# "US", "Korea, South"
-region1     <- "Sweden"  
-# Name of region1 in the population_data table, eg 
-# "United States", "Korea, Rep."
-region1_pop <- "Sweden"  
+# region1 is the name in the corona_data table, eg "US", "Korea, South"
+# region1_pop is the name in the population_data table, eg "United States", "Korea, Rep."
+#
+region1     <- "Greece"  
+region1_pop <- "Greece"  
 region2 <- "Italy"
 region2_pop <- "Italy"  
 range <- 20           
-region1_first <- 20   
-region2_first <- 38    
+region1_first <- 21   
+region2_first <- 48    
 
 # Output: If the graphs match, the estimated lag is the `region1_first - region2_first`
 
@@ -55,3 +55,4 @@ region2_deaths <- cd[r2,(ncol(cd)-region2_first):(ncol(cd)-region2_first+range)]
 region2_deaths <- gsub(",", "", region2_deaths)                   
 region2_deaths <- as.numeric(region2_deaths)                      
 lines(population_ratio_region1_region2*region2_deaths, col="red")   
+

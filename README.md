@@ -37,21 +37,20 @@ The aim is to develop a program that can be used to match the curves of the deat
 
 - [Lesson 3](lessons/lesson03/lesson-03.md): How far do other countries lag behind Italy? 
 
-I collected an [example](reports/report-2020-03-29.md) obtained from using the program [deaths.R](src/deaths.R).
+Examples of [reports](reports/report-2020-03-29.md) one can quickly generated with the program [deaths.R](src/deaths.R).
+
+
+**Programming skills**: (unfinished drafts only)
+- [Managing files.](lessons/lesson-files.md)
+- [Variables and types](lessons/lesson-strings.Rmd). How to manipulate strings.
+- [Filtering data](lessons/lesson-filter.Rmd). How to automatically extract information from data.
+- [Managing projects with Git](lessons/lesson-git.md). How to use version control.
 
 ---
- 
-drafts:
 
-**Programming skills**:
-- [Managing files.](lessons/lesson-files.md)
-- [Variables and types](lessons/lesson-strings.Rmd). How to manipulate strings?
-- [Filtering data](lessons/lesson-filter.Rmd). How to automatically extract information from data?
-- [Managing projects with Git](lessons/lesson-git.md). How to use version control?
+**possible future directions to take**:
 
-**possible directions to take**:
-
-- Lesson: Compare more than. Functions in R.
+- Lesson 4: Automating reports: Functions in R.
 
 - Data analysis: Compute the lag automatically, Visualise how the lag changes over time, Find reasons for changing lags, ...
 
