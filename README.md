@@ -37,7 +37,7 @@ The aim is to develop a program that can be used to match the curves of the deat
 
 - [Lesson 3](lessons/lesson03/lesson-03.md): How far do other countries lag behind Italy? 
 
-I collected some examples for using the program [deaths.R](src/deaths.R) [here](reports/report-2020-03-29.md).
+I collected an [example](reports/report-2020-03-29.md) obtained from using the program [deaths.R](src/deaths.R).
 
 ---
  
