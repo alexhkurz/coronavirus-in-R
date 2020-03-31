@@ -6,7 +6,7 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 The motivation to learn about data anlysis now comes from the coronavirus crisis. One can read a lot of analyses. So why not making your own? 
 
-An good example of what can be done with data analysis is this visualisation on [How To Tell If We're Beating COVID-19](https://www.youtube.com/watch?v=54XLXg4fYsc). By the way, one of my favourite visualisation is about the [history of the top chess players](https://www.youtube.com/watch?v=z2DHpW79w0Y).
+A good example of what can be done with data analysis is this visualisation on [How To Tell If We're Beating COVID-19](https://www.youtube.com/watch?v=54XLXg4fYsc). By the way, one of my favourite visualisation is about the [history of the top chess players](https://www.youtube.com/watch?v=z2DHpW79w0Y).
 
 And it is more interesting to have a project right from the start, rather than to work through long tutorials and textbooks first. Each lesson below is a lesson we set ourselves. 
 
@@ -37,7 +37,7 @@ The aim is to develop a program that can be used to match the curves of the deat
 
 - [Lesson 3](lessons/lesson03/lesson-03.md): How far do other countries lag behind Italy? 
 
-Examples of [reports](reports/report-2020-03-29.md) one can quickly generated with the program [deaths.R](src/deaths.R).
+Examples of [reports](reports/reports.md) one can quickly generated with the program [deaths.R](src/deaths.R).
 
 
 **Programming skills**: (unfinished drafts only)
