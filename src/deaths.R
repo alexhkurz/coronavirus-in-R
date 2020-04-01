@@ -4,13 +4,13 @@
 # region1 is the name in the corona_data table, eg "US", "Korea, South"
 # region1_pop is the name in the population_data table, eg "United States", "Korea, Rep."
 #
-region1     <- "Germany"  
-region1_pop <- "Germany"  
+region1     <- "Italy"  
+region1_pop <- "Italy"  
 region2 <- "US"
 region2_pop <- "United States"  
-range <- 20           
-region1_first <- 21   
-region2_first <- 22    
+range <- 40           
+region1_first <- 40   
+region2_first <- 40    
 
 # Output: If the graphs match, the estimated lag is the `region1_first - region2_first`
 
@@ -44,7 +44,17 @@ population_ratio_region1_region2 <- pop1/pop2
 
 region1_deaths <- cd[r1,(ncol(cd)-region1_first):(ncol(cd)-region1_first+range)]
 region1_deaths <- gsub(",", "", region1_deaths)                     
-region1_deaths <- as.numeric(region1_deaths)                      
+region1_deaths <- as.numeric(region1_deaths)  
+
+# Only plot region one
+
+plot(region1_deaths, 
+     col="black", main=paste(cd[r1,2]), 
+     xlab=paste(colnames(cd)[ncol(cd)-region1_first], "to", colnames(cd)[ncol(cd)-region1_first+range]), 
+     ylab=paste(cd[r1,2], "deaths"))   
+
+# Plot region one and two
+
 plot(region1_deaths, 
      col="black", 
      main=paste(cd[r1,2], "(black) vs", cd[r2,2],  "(red):", "lag =",region2_first-region1_first, "days"), 
@@ -55,4 +65,6 @@ region2_deaths <- cd[r2,(ncol(cd)-region2_first):(ncol(cd)-region2_first+range)]
 region2_deaths <- gsub(",", "", region2_deaths)                   
 region2_deaths <- as.numeric(region2_deaths)                      
 lines(population_ratio_region1_region2*region2_deaths, col="red")   
+
+
 
