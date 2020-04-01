@@ -4,13 +4,13 @@
 # region1 is the name in the corona_data table, eg "US", "Korea, South"
 # region1_pop is the name in the population_data table, eg "United States", "Korea, Rep."
 #
-region1     <- "US"  
-region1_pop <- "United States"  
+admin2     <- "Orange"  
+province_state <- "California"  
 region2 <- "Italy"
 region2_pop <- "Italy"  
-range <- 30           
-region1_first <- 30   
-region2_first <- 49    
+range <- 29           
+region1_first <- 29   
+region2_first <- 56   
 
 # Output: If the graphs match, the estimated lag is the `region1_first - region2_first`
 
@@ -20,18 +20,20 @@ state2 <- ""              # Column 1 of the corona_data table
 
 # Load coronavirus data from Johns Hopkins
 corona_data <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+corona_data_us <- read.csv(check.names=FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"))
 
 # Load population data
 population_data <- read.csv(url("https://raw.githubusercontent.com/datasets/population/master/data/population.csv"))
 
 # Abbreviations
 cd <- corona_data
+cd_us <- corona_data_us
 pd <- population_data
-r1 <- row.names(cd[cd[,"Country/Region"]==region1 & cd[,"Province/State"]==state1,])
+r1 <- row.names(cd_us[cd_us[, "Admin2"]==admin2 & cd_us[,"Province_State"]==province_state,])
 r2 <- row.names(cd[cd[,"Country/Region"]==region2 & cd[,"Province/State"]==state1,])
 
 # Compute the population ratio of the two regions
-pop1 <- pd[pd[,"Country.Name"]==region1_pop & pd[,"Year"]==2015,"Value"]
+pop1 <- cd_us[cd_us[, "Admin2"]==admin2 & cd_us[,"Province_State"]==province_state,12]
 pop2 <- pd[pd[,"Country.Name"]==region2_pop & pd[,"Year"]==2015,"Value"]
 population_ratio_region1_region2 <- pop1/pop2
 
@@ -42,24 +44,17 @@ population_ratio_region1_region2 <- pop1/pop2
 # View(pd[pd[,"Country.Name"]==region2_pop & pd[,"Year"]==2015,]) 
 # View(population_ratio_region1_region2)
 
-region1_deaths <- cd[r1,(ncol(cd)-region1_first):(ncol(cd)-region1_first+range)]
+region1_deaths <- cd_us[r1,(ncol(cd_us)-region1_first):(ncol(cd_us)-region1_first+range)]
 region1_deaths <- gsub(",", "", region1_deaths)                     
 region1_deaths <- as.numeric(region1_deaths)  
-
-# Only plot region one
-
-plot(region1_deaths, 
-     col="black", main=paste(cd[r1,1], cd[r1,2]), 
-     xlab=paste(colnames(cd)[ncol(cd)-region1_first], " to ", colnames(cd)[ncol(cd)-region1_first+range]), 
-     ylab=paste(cd[r1,1], cd[r1,2], "deaths"))   
 
 # Plot region one and two
 
 plot(region1_deaths, 
      col="black", 
-     main=paste(cd[r1,2], "(black) vs", cd[r2,2],  "(red):", "lag =",region2_first-region1_first, "days"), 
-     xlab=paste("Black data runs from ", colnames(cd)[ncol(cd)-region1_first], " to ", colnames(cd)[ncol(cd)-region1_first+range]), 
-     ylab=paste(cd[r1,2], "deaths"))   
+     main=paste(cd_us[r1,6], cd_us[r1,7], "(black) vs", cd[r2,2],  "(red):", "lag =",region2_first-region1_first, "days"), 
+     xlab=paste("Black data runs from ", colnames(cd_us)[ncol(cd_us)-region1_first], " to ", colnames(cd_us)[ncol(cd_us)-region1_first+range]), 
+     ylab=paste(cd_us[r1,6], "deaths"))   
 
 region2_deaths <- cd[r2,(ncol(cd)-region2_first):(ncol(cd)-region2_first+range)]
 region2_deaths <- gsub(",", "", region2_deaths)                   
