@@ -4,18 +4,18 @@
 # region1 is the name in the corona_data table, eg "US", "Korea, South"
 # region1_pop is the name in the population_data table, eg "United States", "Korea, Rep."
 #
-region1     <- "Italy"  
+region1     <- "China"  
 region1_pop <- "Italy"  
 region2 <- "US"
 region2_pop <- "United States"  
-range <- 40           
-region1_first <- 40   
-region2_first <- 40    
+range <- 69           
+region1_first <- 69   
+region2_first <- 32    
 
 # Output: If the graphs match, the estimated lag is the `region1_first - region2_first`
 
-# Automatically processed from here
-state1 <- ""              # Column 1 of the corona_data table
+# Automatically processed from here for most countries, for China put eg Hubei
+state1 <- "Hubei"              # Column 1 of the corona_data table
 state2 <- ""              # Column 1 of the corona_data table
 
 # Load coronavirus data from Johns Hopkins
@@ -49,9 +49,9 @@ region1_deaths <- as.numeric(region1_deaths)
 # Only plot region one
 
 plot(region1_deaths, 
-     col="black", main=paste(cd[r1,2]), 
+     col="black", main=paste(cd[r1,1], cd[r1,2]), 
      xlab=paste(colnames(cd)[ncol(cd)-region1_first], "to", colnames(cd)[ncol(cd)-region1_first+range]), 
-     ylab=paste(cd[r1,2], "deaths"))   
+     ylab=paste(cd[r1,1], cd[r1,2], "deaths"))   
 
 # Plot region one and two
 
