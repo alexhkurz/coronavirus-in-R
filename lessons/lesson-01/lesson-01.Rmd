@@ -1,5 +1,6 @@
 ---
 title: "Lesson 1"
+output: html_document
 ---
 
 ## Plotting coronavirus data of a country
@@ -12,13 +13,13 @@ Start up Rstudio.
 
 First look at the table  [time_series_covid19_deaths_global.csv](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv). 
 
-`csv` stands for comma separated values. To see where the name comes from we can look at the raw data, that is, at the data how it looks to the computer, without pretty formatting. To do this, either find the **Raw** button on this [webpage](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv) or just click [here for the raw data](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
+`csv` stands for comma separated values. To see where the name comes from we can look at the raw data, that is, at the data how it looks to the computer, without pretty formatting. To do this, either find the **Raw** button on the webpage above or just click [here for the raw data](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
 
-To import the raw data click the play button on the right below:
+To import the raw data click the play button on the right below. Before doing this watch the Environment tab in the upper right.
 ```{r}
-    mydata = read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+    mydata <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
 ```
-The console should be in the lower left on Rstudio. You can just copy and paste from above.
+If you missed what happened in the environment tab, you can clear it my clicking on the brush and then go back to clicking on the green play button. You should see that the variable "mydata" has been added to the Environment. We will come back to this later in more detail.
 
 To verify that Rstudio imported the data click the play button on the right below:
 ```{r}
