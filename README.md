@@ -16,7 +16,7 @@ The aim is to develop a program that can be used to match the curves of the deat
 
 - [Lesson 2](lessons/lesson-02/lesson-02.md): How far does Germany lag behind Italy?
 
-- [Lesson 3](lessons/lesson03/lesson-03.md): How far do other countries lag behind Italy? 
+- [Lesson 3](lessons/lesson-03/lesson-03.md): How far do other countries lag behind Italy? 
 
 Examples of [reports](reports/reports.md) one can quickly generated with the program [deaths.R](src/deaths.R).
 
