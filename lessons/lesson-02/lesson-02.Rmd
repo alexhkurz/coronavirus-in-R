@@ -1,25 +1,28 @@
 ---
 title: How many days does Germany lag behind Italy?
+output:
+  html_document:
+    keep_md: yes
+  pdf_document: default
 ---
 
 Estimate how many days Germany lags behind Italy by overlaying the number of deaths in each country.
+
 The lag between the two countries is computed as italy_first - germany_first.
-`germany_first` can be chosen as the first day of a recorded coronavirus death in Germany.
-`italy_first` is the corresponding day which produce the best match of the two curves. 
 
-Note: The results of the analysis change when Johns Hopkins update their data.
-One may want to adapt the program accordingly by increasing by one the variables
+`germany_first` can be chosen as the first day of a recorded coronavirus death in Germany' or just as 30 days ago, or as the number of days that have passed in the current month or ...
 
-  germany_first, italy_first
+`italy_first` is the corresponding day which produce the best match of the two curves. At the time of writing this was approx `germany_first+19`.
 
-Sownload the current data from Johns Hopkins
+Note: The results of the analysis change when Johns Hopkins update their data. One may want to adapt the program accordingly by changing the variables `germany_first` and `italy_first`.
 
+Download the current data from Johns Hopkins
 ```{r}
 mydata = read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
 View(mydata)
 ```
 
-Show the last date for which there is data
+Show the last date for which there is data (recall `ncol` from the first lesson):
 
 ```{r}
 View(colnames(mydata)[ncol(mydata)]) 

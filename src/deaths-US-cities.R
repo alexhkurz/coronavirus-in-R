@@ -19,8 +19,8 @@ state1 <- ""              # Column 1 of the corona_data table
 state2 <- ""              # Column 1 of the corona_data table
 
 # Load coronavirus data from Johns Hopkins
-corona_data <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
-corona_data_us <- read.csv(check.names=FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"))
+corona_data <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"),check.names = FALSE)
+corona_data_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
 
 # Load population data
 population_data <- read.csv(url("https://raw.githubusercontent.com/datasets/population/master/data/population.csv"))
