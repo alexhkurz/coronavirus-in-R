@@ -2,7 +2,7 @@
 # Lesson 1: Plotting Coronavirus Data
 
   - This lesson is best read by loading [lesson-01.Rmd](lesson-01.Rmd)
-    into Rstudio because the code can be run inside.
+    into Rstudio because the code can be run inside the Rmd-file.
   - On the other hand, the typesetting is better in
     [lesson-01.md](lesson-01.md), the latter being automatically
     produced from lesson-01.Rmd using the Knit feature of Rstudio.
@@ -189,17 +189,36 @@ is at least something …
 ## Storing the program as a file
 
 Now it is play time. First, let us save everything in a file
-[lesson-01](lesson-01.R).
+[lesson-01.R](lesson-01.R).
 
 Download this file, save it in a local folder and open it in Rstudio. It
-should appear in the upper left window. You can now
+should appear in the upper left window. Make sure you see the Console in
+the lower left. You can now
 
   - go through the program line by line with control-enter (windows) or
     cmd-enter (macos);
-
   - select all and click on run to execute all in one go;
-
   - change the program and plot your own data …
+
+## `.R` vs `.Rmd`
+
+Compare the two files `lesson-01.R` and `lesson-01.Rmd`. The first is an
+R-program. The second one is a so-called Rmarkdown file. Can you say how
+Rmd-files are different from R-files?
+
+  - In R-files comments start with `#`.
+  - Rmd-files have white and grey areas.
+  - White areas are comments. They are not introduced by`#`, but just
+    plain text.
+  - The grey areas contain the executable code in Rmd-files.
+  - You can execute the code directly in the Rmd-file by clicking on the
+    little green play buttons.
+
+The computer scientist Donald Knuth invented this style of mixing text
+and code and called it [literate
+programming](https://en.wikipedia.org/wiki/Literate_programming). It was
+fancy then, but is now quickly becoming the new standard (most famously
+in Jupyter notebooks).
 
 ## Suggested exercises
 
@@ -230,18 +249,18 @@ entering ctrl-enter (Windows) or command-return (Mac).
     also make a mental note of data tables being faster than data
     frames.
 
-  - If you didn’t to this already, you may want to the first 19min of
-    the video [Programming - Part 1 (Writing code in
+  - If you didn’t to this already, you may want to watch the first 19min
+    of the video [Programming - Part 1 (Writing code in
     RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart1-2)
     linked above in the intro. We don’t need everthing that is in there
     now, but it is great to get an overview of some of the possibilities
     that R offers.
 
-  - This will be of interest later, for now this is just a not on
-    [Specifying multiple simultaneous output formats in
-    knitr](https://stackoverflow.com/questions/25078572/specifying-multiple-simultaneous-output-formats-in-knitr).
-    Actually, what worked for me was [How can i see output of .rmd in
-    github?](https://stackoverflow.com/questions/39814916/how-can-i-see-output-of-rmd-in-github).
+  - This will be of interest later, for now this is just a note on
+    specifying {multiple simultaneous output formats in
+    knitr\](<https://stackoverflow.com/questions/25078572/specifying-multiple-simultaneous-output-formats-in-knitr>).
+    Actually, what worked for me was [output of .rmd in
+    github](https://stackoverflow.com/questions/39814916/how-can-i-see-output-of-rmd-in-github).
 
 -----
 

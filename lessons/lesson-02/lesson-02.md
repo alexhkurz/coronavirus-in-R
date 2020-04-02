@@ -1,83 +1,170 @@
-# Lesson 2
 
-program: [lesson-02.R](lesson-02.R)  
-Rmarkdown: [lesson-02.Rmd](lesson-02.Rmd)  
+# How many days does Germany lag behind Italy?
 
-## Practical trivialities
+**Lesson 2:**
 
-- In your browser, click on [lesson-02.Rmd](lesson-02.Rmd).
-- Click on the **Raw** button. 
-- Save the displayed page on your computer ("Save Page As" in Firefox) under the name `lesson-02.Rmd`.  
-- Open your local copy of `lesson-02.Rmd` in Rstudio.
+  - This lesson is best read by loading [lesson-02.Rmd](lesson-02.Rmd)
+    into Rstudio because the code can be run inside the Rmd-file.
+  - On the other hand, the typesetting is better in
+    [lesson-02.md](lesson-02.md), the latter being automatically
+    produced from lesson-01.Rmd using the Knit feature of Rstudio.
+  - The aim of this lesson is the short program
+    [lesson-02.R](lesson-02.R).
 
-Now you can either read the next section for an explanation of what we are trying to do (the coronavirus point of view) or you can jump directly to the sections Draw Your Own Plots and Suggested Exercises to plays with the code.
+## Idea
 
-## How many days does Germany lag behind Italy?  
+(Written March 22, 2020.)
 
-There is a discussion now why Germany has many fewer deaths than Italy. In fact, writing March 22, according to [worldometers](https://www.worldometers.info/coronavirus/#countries), Italy has 60k cases and 5.5k deaths, whereas Germany has 25k cases and 0.1k deaths. That is, Italy has a case fatality rate of 9% and Germany of 0.4%. What is going on here? 
+There is a discussion now why Germany has many fewer deaths than Italy.
+In fact, writing March 22, according to
+[worldometers](https://www.worldometers.info/coronavirus/#countries),
+Italy has 60k cases and 5.5k deaths, whereas Germany has 25k cases and
+0.1k deaths. That is, Italy has a case fatality rate of 9% and Germany
+of 0.4%. What is going on here?
 
-Could it be that this is just due to different testing regimes? 
+Could it be that this is just due to different testing regimes?
 
-Here is a simple analysis. The idea is to see what happens if we ignore tests (that is, ignore the number of total cases) and only look at the number of confirmed deaths. Can we then see any difference between Germany and Italy when we take into account that Germany lags behind Italy? 
+Here is a simple analysis. The idea is to see what happens if we ignore
+tests (that is, ignore the number of total cases) and only look at the
+number of confirmed deaths. Can we then see any difference between
+Germany and Italy when we take into account that Germany lags behind
+Italy?
 
-We use the [time series of deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv) from Johns Hopkins. A brief look at the [raw data](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv) shows that there is not reliable data for all countries, but I am going to assume that the data for the major industrialised countries is reasonably accurate. 
+We ask the question whether the data is consistent with the
+**hypothesis** that Germany and Italy follow the same development, only
+separated by a certain time lag. We **estimate** the time lag by moving
+the Italian curve so that it best matches the German curve.
 
-We ask the question whether the data is consistent with the **hypothesis** that Germany and Italy follow the same development, only separated by a certain time lag. We try to answer the question by **estimating** the time lag by moving the Italian curve so that it best matches the German curve.
+On March 22, this produced [this
+graph](https://github.com/alexhkurz/coronavirus-in-R/blob/master/plots/2020-03-22/Germany-Italy-March-22.png),
+overlaying deaths in Italy in red and deaths in Germany in blue. The
+German curve starts 13 days ago when the first deaths appeared and the
+Italian curve starts 32 days ago. Italian numbers are multiplied by 1.32
+to account for the difference in population sizes.
 
- On March 22, this produced the following graph, overlaying deaths in Italy in red and deaths in Germany in blue. The German curve starts 13 days ago when the first deaths appeared and the Italian curve starts 32 days ago. Italian numbers are multiplied by 1.32 to account for the difference in population sizes. 
+If you run the program on more recent data you will get a different
+result. It will be interesting to compare.
 
-###### Germany vs Italy
+## Implementation
 
-- The graph: [March 22](../../plots/2020-03-22/Germany-Italy-March-22.png)
+Estimate how many days Germany lags behind Italy by overlaying the
+number of deaths in each country.
 
-It looks to me that Germany may just be lagging behind by approx 32-13=19 days and may be on the same course as Italy. 
+The lag between the two countries is computed as `italy_first -
+germany_first`.
 
-Running the data on UK vs Italy and on California vs Italy produces similar results (lags of 15 and 19 days, respectively):
+`germany_first` is the number of days ago from which we want to start
+plotting the data. It could be chosen as the first day of a recorded
+coronavirus death in Germany’ or just as 30 days ago, or as the number
+of days that have passed in the current month or any other number of
+days that interests you.
 
-###### UK vs Italy
+`italy_first` should be the corresponding number of days which produces
+the best match of the two curves. At the time of writing this was
+approximately `germany_first+19`.
 
-- The graph: [March 22](../../plots/2020-03-22/UK-Italy-March-22.png)
+Note: The results of the analysis change when Johns Hopkins update their
+data. One may want to adapt the program accordingly by changing the
+variables `germany_first` and `italy_first`.
 
-###### California vs Italy
+## Download the data
 
-- The graph: [March 22](../../plots/2020-03-22/California-Italy-March-22.png)
+Download the current data from Johns Hopkins
 
-**Remark:** (March 22) Intriguingly, looking at the righ-hand side of the German and Californian graphs raises the question whether deaths in Italy increase faster. But right now there is not enough data to say that this is a trend. It will be interesting to watch this over the next days as new data will come in.
+``` r
+mydata = read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+```
 
-## Draw your own plots
+Show the last date for which there is data (recall the function `ncol()`
+from the first lesson):
 
-Go back to Rstudio where you opened `lesson-02.Rmd`.
+``` r
+View(colnames(mydata)[ncol(mydata)]) 
+```
 
-This looks a bit different from [last time](../lesson-01/lesson-01.R). This time we have an **Rmarkdown** file, hence the `.Rmd` file extension. Can you say how Rmd files are different from R files?
+Get the indides of the rows for Germany and Italy:
 
-- There are white and grey areas.
-- White areas are comments.
-- Comments are not introduced by`#`. They are just plain text.
-- The grey areas contain the executable code.
-- You can execute the code in each grey area by clicking. 
+``` r
+germany <- 121       
+italy <- 138
+```
 
-The computer scientist Donald Knuth invented this style of mixing texts and code and called it [literate programming](https://en.wikipedia.org/wiki/Literate_programming). It was fancy then, but is now quickly becoming the new standard (most famously in Jupyter notebooks). So the task is now to
+`range` is the width of the window (number of days -1)
 
-- *read* through the file and 
-- *execute* the code as you go on reading.
+``` r
+range <- 15           # last-day - first_day
+germany_first <- 15   # how many days ago? first German death on March 8
+italy_first <- 35     # how many days ago?
+```
 
-## Suggested exercises
+We need to correct for the fact that the German population is bigger
+than the Italian one.
 
-(Time for some music? I wrote this listening to [Interstellar Space](https://www.youtube.com/watch?v=RyIPmmCmIb0&list=PLSeOx7nxhymJl1aXmMDM3-TyiLodxcavz).)
+``` r
+population_ratio_germany_italy <- 1.38
+```
 
+The next four lines are (almost) the same as in Lesson 1
 
-- If the graphs do not match, play around with the variable `italy_first` and try to find the best match. The difference between `germany_first` and `italy_first` is the new lag.
+``` r
+german_deaths <- mydata[germany,(ncol(mydata)-germany_first):(ncol(mydata)-germany_first+range)]
+german_deaths <- gsub(",", "", german_deaths)                     
+german_deaths <- as.numeric(german_deaths)                      
+```
 
-- Copy and paste the code between lines 39 and 55 and adapt the program so that it compares a country of your choice to Italy.
+And now we repeat the same for Italian data
 
-  - The copied code should appear under the Germany-Italy plot.
-  - Find a country. Remember the number of its row.
-  - In the copied code
-    - replace `germany` by `name_of_new_country`
-    - run your code 
-    - watch out for error messages
-    - one error is likely to be `object `name_of_new_country` ... a good place to define the variable `name_of_new_country` is after the lines defining `germany` and `italy`
+``` r
+italian_deaths <- mydata[italy,(ncol(mydata)-italy_first):(ncol(mydata)-italy_first+range)]
+italian_deaths <- gsub(",", "", italian_deaths)                   
+italian_deaths <- as.numeric(italian_deaths)
+```
 
-  - Don't forget to put in the correct ratio of the new country versus Italian population.
+One last twist: We do not use the function `plot()` draw German data and
+then use the function `lines()` to draw the Italian data in the German
+plot:
 
-- Estimate the lag between the two countries by finding the best fit for the two curves by changing the value of `italy_first`.
+``` r
+plot(german_deaths, col="black", main="German (black), Italy (red)", xlab="days", ylab="German deaths")   
+lines(population_ratio_germany_italy*italian_deaths, col="red")   # plot Italy in the same window
+```
+
+![](lesson-02_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+## Suggested Exercises
+
+(Time for some music? I wrote this listening to [Interstellar
+Space](https://www.youtube.com/watch?v=RyIPmmCmIb0&list=PLSeOx7nxhymJl1aXmMDM3-TyiLodxcavz).)
+
+  - If the graphs do not match, play around with the variable
+    `italy_first` and try to find the best match. The difference between
+    `germany_first` and `italy_first` is the new lag.
+
+  - Copy and paste the code and adapt the program so that it compares a
+    country of your choice to Italy.
+    
+      - The copied code should appear under the Germany-Italy plot.
+    
+      - Find a country. Remember the number of its row.
+    
+      - In the copied code
+        
+          - replace `germany` by `name_of_new_country`
+          - run your code
+          - watch out for error messages
+          - one error is likely to be `object`name\_of\_new\_country`...
+            a good place to define the
+            variable`name\_of\_new\_country`is after the lines
+            defining`germany`and`italy\`
+    
+      - Don’t forget to put in the correct ratio of the new country’s
+        versus Italian’s population.
+    
+      - Estimate the lag between the two countries by finding the best
+        fit for the two curves by changing the value of `italy_first`.
+    
+      - Adapt the labelling of the plot to fit the new country.
+
+  - Repeat with some other countries. Here are some I would find
+    interesting: Brazil, South Korea, Japan, France, Spain, US, UK,
+    Australia, etc
