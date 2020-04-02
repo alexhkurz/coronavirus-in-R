@@ -10,7 +10,7 @@ region2 <- "Italy"
 region2_pop <- "Italy"  
 range <- 29           
 region1_first <- 29   
-region2_first <- 56   
+region2_first <- 55   
 
 # Output: If the graphs match, the estimated lag is the `region1_first - region2_first`
 
