@@ -31,7 +31,7 @@ The aim is to develop a program that can be used to match the curves of the deat
 
 **Data analysis:**
 
-- [Lesson 1](lessons/lesson-01/lesson-01.md): Download coronavirus data and plot it.   
+- [Lesson 1](lessons/lesson-01/lesson-01.html): Download coronavirus data and plot it.   
 
 - [Lesson 2](lessons/lesson-02/lesson-02.md): How far does Germany lag behind Italy?
 
