@@ -8,7 +8,7 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 ## Part I: Basics
 
-The aim is to develop a program that can be used to match the curves of the deaths of two countries. If you want to see how what it does right now, load [deaths.R](src/deaths.R) into R, run it, and produce some sample graphs. If you understand how the program works and you can modify it to suit your own interests there will be not much to learn in Part I.
+The aim is to develop a program that can be used to match the curves of the deaths of two countries. If you want to see what it does right now, load [deaths.R](src/deaths.R) into R, run it, and produce some sample graphs. If you understand how the program works and you can modify it to produce your own plots there will be not much to learn in Part I.
 
 **Data analysis:**
 
