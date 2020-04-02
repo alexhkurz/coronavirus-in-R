@@ -182,7 +182,9 @@ Now, we can plot the data.
 
 ![](lesson-01_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
-That’s it for the first lesson. I felt good when I got this going.
+That’s it for the first lesson. There is not much we can do in these
+times of crisis and self-isolation. Learning a new programming language
+is at least something …
 
 ## Storing the program as a file
 
@@ -238,6 +240,8 @@ entering ctrl-enter (Windows) or command-return (Mac).
   - This will be of interest later, for now this is just a not on
     [Specifying multiple simultaneous output formats in
     knitr](https://stackoverflow.com/questions/25078572/specifying-multiple-simultaneous-output-formats-in-knitr).
+    Actually, what worked for me was [How can i see output of .rmd in
+    github?](https://stackoverflow.com/questions/39814916/how-can-i-see-output-of-rmd-in-github).
 
 -----
 

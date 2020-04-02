@@ -4,7 +4,7 @@ output: rmarkdown::github_document
 
 # Lesson 1: Plotting Coronavirus Data
 
-- This lesson is best read by loading [lesson-01.Rmd](lesson-01.Rmd) into Rstudio because the code can be run inside. 
+- This lesson is best read by loading [lesson-01.Rmd](lesson-01.Rmd) into Rstudio because the code can be run inside the Rmd-file.
 - On the other hand, the typesetting is better in [lesson-01.md](lesson-01.md), the latter being automatically produced from lesson-01.Rmd using the Knit feature of Rstudio.
 - The aim of this lesson is a short program, [lesson-01.R](lesson-01.R),  of just 5 lines of code.
 
@@ -113,7 +113,7 @@ Now, we can plot the data.
     plot(deaths_italy)
 ```
 
-That's it for the first lesson. I felt good when I got this going. 
+That's it for the first lesson. There is not much we can do in these times of crisis and self-isolation. Learning a new programming language is at least something ...
 
 ## Storing the program as a file
 
@@ -141,7 +141,7 @@ If you want to just work with the naked code use the file [lesson-01.R](lesson-0
 
 - If you didn't to this already, you may want to the first 19min of the video [Programming - Part 1 (Writing code in RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart1-2) linked above in the intro. We don't need everthing that is in there now, but it is great to get an overview of some of the possibilities that R offers.
 
-- This will be of interest later, for now this is just a not on [Specifying multiple simultaneous output formats in knitr](https://stackoverflow.com/questions/25078572/specifying-multiple-simultaneous-output-formats-in-knitr).
+- This will be of interest later, for now this is just a not on [Specifying multiple simultaneous output formats in knitr](https://stackoverflow.com/questions/25078572/specifying-multiple-simultaneous-output-formats-in-knitr). Actually, what worked for me was [How can i see output of .rmd in github?](https://stackoverflow.com/questions/39814916/how-can-i-see-output-of-rmd-in-github).
 
 ---
 
