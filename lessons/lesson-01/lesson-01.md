@@ -2,7 +2,6 @@
 title: "Lesson 1: Plotting Coronavirus Data"
 output:
   html_document:
-    keep_md: yes
 ---
 
 - This lesson is best read by loading [lesson-01.Rmd](lesson-01.Rmd) into Rstudio because you can then run the code without leaving the file. 
