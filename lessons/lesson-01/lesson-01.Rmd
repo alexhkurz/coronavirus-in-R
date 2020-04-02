@@ -1,14 +1,12 @@
 ---
-output:
-  html_document:
-    keep_md: yes
+output: rmarkdown::github_document
 ---
 
-# title: Lesson 1: Plotting Coronavirus Data
+# Lesson 1: Plotting Coronavirus Data
 
-- This lesson is best read by loading [lesson-01.Rmd](lesson-01.Rmd) into Rstudio because you can then run the code without leaving the file. 
-- On the other hand, the typesetting is better in [lesson-01.html](lesson-01.html), the latter being automatically produced from lesson-01.Rmd using the Knit feature of Rstudio.
-- The final result is a short program, [lesson-01.R](lesson-01.R),  of just 5 lines of code.
+- This lesson is best read by loading [lesson-01.Rmd](lesson-01.Rmd) into Rstudio because the code can be run inside. 
+- On the other hand, the typesetting is better in [lesson-01.md](lesson-01.md), the latter being automatically produced from lesson-01.Rmd using the Knit feature of Rstudio.
+- The aim of this lesson is a short program, [lesson-01.R](lesson-01.R),  of just 5 lines of code.
 
 ## Technical preliminaries
 

@@ -1,165 +1,250 @@
----
-output:
-  html_document:
-    keep_md: yes
----
 
-# title: Lesson 1: Plotting Coronavirus Data
+# Lesson 1: Plotting Coronavirus Data
 
-- This lesson is best read by loading [lesson-01.Rmd](lesson-01.Rmd) into Rstudio because you can then run the code without leaving the file. 
-- On the other hand, the typesetting is better in [lesson-01.html](lesson-01.html), the latter being automatically produced from lesson-01.Rmd using the Knit feature of Rstudio.
-- The final result is a short program, [lesson-01.R](lesson-01.R),  of just 5 lines of code.
+  - This lesson is best read by loading [lesson-01.Rmd](lesson-01.Rmd)
+    into Rstudio because the code can be run inside.
+  - On the other hand, the typesetting is better in
+    [lesson-01.md](lesson-01.md), the latter being automatically
+    produced from lesson-01.Rmd using the Knit feature of Rstudio.
+  - The aim of this lesson is a short program,
+    [lesson-01.R](lesson-01.R), of just 5 lines of code.
 
 ## Technical preliminaries
 
-- Download [R](https://cran.r-project.org/) and [Rstudio](https://rstudio.com/products/rstudio/download/).
-- Start up Rstudio. 
+  - Download [R](https://cran.r-project.org/) and
+    [Rstudio](https://rstudio.com/products/rstudio/download/).
+  - Start up Rstudio.
 
-If you got that far, you can just dive into it, following the rest of the lesson. If you want more background on R, I recommend the first 19.5 min of (ignore what they say about "Server Pro" and "Preview"):
+If you got that far, you can just dive into it, following the rest of
+the lesson. If you want more background on R, I recommend the first 19.5
+min of (ignore what they say about “Server Pro” and “Preview”):
 
-- [Programming - Part 1 (Writing code in RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart1-2)
+  - [Programming - Part 1 (Writing code in
+    RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart1-2)
 
-Even the first 19min contain much more than we need to know right now. You can also skip the video entirely for now and come backt to it later.
+Even the first 19min contain much more than we need to know right now.
+You can also skip the video entirely for now and come backt to it later.
 
-## Import the data 
+## Import the data
 
-First look at the table  [time_series_covid19_deaths_global.csv](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv). 
+First look at the table
+[time\_series\_covid19\_deaths\_global.csv](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
 
-`csv` stands for comma separated values. To see where the name comes from we can look at the raw data, that is, at the data how it looks to the computer, without pretty formatting. To do this, either find the **Raw** button on the webpage above or just click [here for the raw data](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
+`csv` stands for comma separated values. To see where the name comes
+from we can look at the raw data, that is, at the data how it looks to
+the computer, without pretty formatting. To do this, either find the
+**Raw** button on the webpage above or just click [here for the raw
+data](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
 
-To import the raw data click the play button on the right below. Before doing this watch the Environment tab in the upper right.
+To import the raw data click the play button on the right below. Before
+doing this watch the Environment tab in the upper right.
 
-```r
+``` r
     mydata <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"),check.names = FALSE)
 ```
-If you missed what happened in the environment tab, you can clear it my clicking on the brush and then go back to clicking on the green play button. You should see that the variable "mydata" has been added to the Environment. We will come back to this later in more detail.
 
-To verify that Rstudio imported the data click the play button on the right below (and remember that you can close a tab with ctrl-w (Windows) or command-w (Mac)):
+If you missed what happened in the environment tab, you can clear it my
+clicking on the brush and then go back to clicking on the green play
+button. You should see that the variable “mydata” has been added to the
+Environment. We will come back to this later in more detail.
 
-```r
+To verify that Rstudio imported the data click the play button on the
+right below (and remember that you can close a tab with ctrl-w (Windows)
+or command-w (Mac)):
+
+``` r
     View(mydata)
 ```
 
-In R, the type of `mydata` is called a data frame. We can think of it just as table, much as it looks like if we run `View(mydata)`.
+In R, the type of `mydata` is called a data frame. We can think of it
+just as table, much as it looks like if we run `View(mydata)`.
 
 ## Extract data from a data frame
 
-Search the table you just opened with above for "Italy". There is a search box in top right corner of the table.
+Search the table you just opened with above for “Italy”. There is a
+search box in top right corner of the table.
 
-I found "Italy" in row 138.
+I found “Italy” in row 138.
 
-How do we extract data automatically? By using square brackets. Square brackets with two numbers inside as in `mydata[row,column]` are used to select from the table `mydata` the cell indexed by the number `row` and the number `column`. For example:
+How do we extract data automatically? By using square brackets. Square
+brackets with two numbers inside as in `mydata[row,column]` are used to
+select from the table `mydata` the cell indexed by the number `row` and
+the number `column`. For example:
 
-```r
+``` r
     View(mydata[138,2])
 ```
-To extract everything in the column indexed by 2 we do (before playing the code say what you expect to see):
 
-```r
+To extract everything in the column indexed by 2 we do (before playing
+the code say what you expect to see):
+
+``` r
     View(mydata[,2])
 ```
-This is notation one needs to get used to. One specifies a column by not specifying a particular row: There is now index before the `,`.
+
+This is notation one needs to get used to. One specifies a column by not
+specifying a particular row: There is now index before the `,`.
 
 Similarly, to extract the row of Italy, run:
 
-```r
+``` r
     View(mydata[138,])
 ```
+
 We can also extract a range of cells, for example:
 
-```r
+``` r
     View(mydata[138,1:5])
 ```
+
 To extract the last cell:
 
-```r
+``` r
     View(mydata[138,ncol(mydata)])
 ```
-`ncol` is a function that maps a table to the number of its columns. The number of columns is also the index of the last column in the table.
 
-We can verify this. 
+`ncol` is a function that maps a table to the number of its columns. The
+number of columns is also the index of the last column in the table.
 
-First, look again at [time_series_covid19_deaths_global](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv). Find the row for Italy (note that it may have a different number) and then the last cell in that row. Remember the number in this cell. Now run
+We can verify this.
 
-```r
+First, look again at
+[time\_series\_covid19\_deaths\_global](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
+Find the row for Italy (note that it may have a different number) and
+then the last cell in that row. Remember the number in this cell. Now
+run
+
+``` r
     View(mydata[138,ncol(mydata)])
 ```
-You should see that same number. 
 
-**Exercise:** Data science is as much about interpreting data as it is about processing data. What is the meaning of the number `mydata[138,ncol(mydata)]`? 
+You should see that same number.
+
+**Exercise:** Data science is as much about interpreting data as it is
+about processing data. What is the meaning of the number
+`mydata[138,ncol(mydata)]`?
 
 **Exercise:** How can one extract the last 30 days in that row?
 
 ## Extract the data we want to plot
 
-Ok, now we can extract the data that we want to plot. Let us extract the last 30 days and save the result in a **variable** `deaths_italy':
+Ok, now we can extract the data that we want to plot. Let us extract the
+last 30 days and save the result in a **variable** \`deaths\_italy’:
 
-```r
+``` r
     deaths_italy <- mydata[138,(ncol(mydata)-30):ncol(mydata)]
 ```
-Recall that `ncol` is a function that computes the number of columns of the table. This is important, because the number of columns in the table changes every day when the data is updated. `ncol(mydata)` is the number of columns of `mydata`. Of course, since we already saved this data in the variable `deaths_italy` we can also simply run
 
-```r
+Recall that `ncol` is a function that computes the number of columns of
+the table. This is important, because the number of columns in the table
+changes every day when the data is updated. `ncol(mydata)` is the number
+of columns of `mydata`. Of course, since we already saved this data in
+the variable `deaths_italy` we can also simply run
+
+``` r
     View(deaths_italy)
 ```
+
 for the same result.
 
 ## Plot the data
 
-Next, we want to plot the data. 
+Next, we want to plot the data.
 
 First we need to remove the commas using the function `gsub`:
 
 Convert the data to a list of numbers and plot it.
 
-```r
+``` r
     deaths_italy <- gsub(",", "", deaths_italy)
 ```
-We read this line as: Subtract the "," from the data stored in the variable `deaths_italy` and store the result again in `deaths_italy`.
 
-Next, we come to subtle point. Whenever you see `0` you may just think of the number zero. But to a computer, the symbol `0` in a text is different from the number `0`. In a text, `0` is just another letter, or *character* as one says. It doesn't make sense to arithmetic on characters. Computers only know how to do arithmetic on numbers. So they do need to convert the characters into numbers before they can computer with them. [^ascii]
+We read this line as: Subtract the “,” from the data stored in the
+variable `deaths_italy` and store the result again in `deaths_italy`.
 
-```r
+Next, we come to subtle point. Whenever you see `0` you may just think
+of the number zero. But to a computer, the symbol `0` in a text is
+different from the number `0`. In a text, `0` is just another letter, or
+*character* as one says. It doesn’t make sense to arithmetic on
+characters. Computers only know how to do arithmetic on numbers. So they
+do need to convert the characters into numbers before they can computer
+with them. \[1\]
+
+``` r
     deaths_italy <- as.numeric(deaths_italy)
 ```
+
 Now, we can plot the data.
 
-```r
+``` r
     plot(deaths_italy)
 ```
 
-![](lesson-01_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](lesson-01_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
-That's it for the first lesson. I felt good when I got this going. 
+That’s it for the first lesson. I felt good when I got this going.
 
 ## Storing the program as a file
 
-Now it is play time. First, let us save everything in a file [lesson-01](lesson-01.R). 
+Now it is play time. First, let us save everything in a file
+[lesson-01](lesson-01.R).
 
-Download this file, save it in a local folder and open it in Rstudio. It should appear in the upper left window. You can now
+Download this file, save it in a local folder and open it in Rstudio. It
+should appear in the upper left window. You can now
 
-- go through the program line by line with control-enter (windows) or cmd-enter (macos);
+  - go through the program line by line with control-enter (windows) or
+    cmd-enter (macos);
 
-- select all and click on run to execute all in one go;
-- change the program and plot your own data ...
+  - select all and click on run to execute all in one go;
+
+  - change the program and plot your own data …
 
 ## Suggested exercises
 
-(Time for some music? I wrote this listening to [London  Calling](https://www.youtube.com/watch?v=hZw23sWlyG0&list=PLkLimRXN6NKzoSccJhADNW42Ayxf7mYwF&index=8))
+(Time for some music? I wrote this listening to [London
+Calling](https://www.youtube.com/watch?v=hZw23sWlyG0&list=PLkLimRXN6NKzoSccJhADNW42Ayxf7mYwF&index=8))
 
-Make your own exercises. Choose different countries, or different time ranges. Look at the data with your naked eyes. You will find that not for all countries there is reliable data. Etc, etc, ...
+Make your own exercises. Choose different countries, or different time
+ranges. Look at the data with your naked eyes. You will find that not
+for all countries there is reliable data. Etc, etc, …
 
-If you want to just work with the naked code use the file [lesson-01.R](lesson-01.R). Load it into Rstudio, make sure you see the Console window in the lower left and execute a line in lesson-01.R by entering ctrl-enter (Windows) or command-return (Mac).
-
+If you want to just work with the naked code use the file
+[lesson-01.R](lesson-01.R). Load it into Rstudio, make sure you see the
+Console window in the lower left and execute a line in lesson-01.R by
+entering ctrl-enter (Windows) or command-return (Mac).
 
 ## Further reading
 
-- To learn a new programming language it is essential to aquire the skill to google your questions and to find  the right answers on Stackoverflow. It is useful to know that you can search inside Stackoverflow by adding `site:stackoverflow.com` to your google search. Here is an example for further reading one might want to search for after learning that R distinguishes betweed [data tables and data frames](https://www.google.com?q=site:stackoverflow.com data frame vs table in R). The upshot of the discussion is that we are going to ignore the difference and work with data frames until we encounter problems. We also make a mental note of data tables being faster than data frames.
+  - To learn a new programming language it is essential to aquire the
+    skill to google your questions and to find the right answers on
+    Stackoverflow. It is useful to know that you can search inside
+    Stackoverflow by adding `site:stackoverflow.com` to your google
+    search. Here is an example for further reading one might want to
+    search for after learning that R distinguishes betweed [data tables
+    and data
+    frames](https://www.google.com?q=site:stackoverflow.com%20data%20frame%20vs%20table%20in%20R).
+    The upshot of the discussion is that we are going to ignore the
+    difference and work with data frames until we encounter problems. We
+    also make a mental note of data tables being faster than data
+    frames.
 
-- If you didn't to this already, you may want to the first 19min of the video [Programming - Part 1 (Writing code in RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart1-2) linked above in the intro. We don't need everthing that is in there now, but it is great to get an overview of some of the possibilities that R offers.
+  - If you didn’t to this already, you may want to the first 19min of
+    the video [Programming - Part 1 (Writing code in
+    RStudio)](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart1-2)
+    linked above in the intro. We don’t need everthing that is in there
+    now, but it is great to get an overview of some of the possibilities
+    that R offers.
 
-- This will be of interest later, for now this is just a not on [Specifying multiple simultaneous output formats in knitr](https://stackoverflow.com/questions/25078572/specifying-multiple-simultaneous-output-formats-in-knitr).
+  - This will be of interest later, for now this is just a not on
+    [Specifying multiple simultaneous output formats in
+    knitr](https://stackoverflow.com/questions/25078572/specifying-multiple-simultaneous-output-formats-in-knitr).
 
----
+-----
 
-[^ascii]: If you want to understand this in more detail, look at how characters are encoded in a machine. This code is called [ASCII](https://en.wikipedia.org/wiki/ASCII#Printable_characters). For example, you see that `a` is encoded as `110 0001` (the space is just for readability) and `0` as a character is encoded as `011 0000`. But `0` as a number is encoded differently, namely as a sequence of 64 `0`s.
+1.  If you want to understand this in more detail, look at how
+    characters are encoded in a machine. This code is called
+    [ASCII](https://en.wikipedia.org/wiki/ASCII#Printable_characters).
+    For example, you see that `a` is encoded as `110 0001` (the space is
+    just for readability) and `0` as a character is encoded as
+    `011 0000`. But `0` as a number is encoded differently, namely as a
+    sequence of 64 `0`s.
