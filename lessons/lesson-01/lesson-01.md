@@ -27,13 +27,15 @@ First look at the table  [time_series_covid19_deaths_global.csv](https://github.
 `csv` stands for comma separated values. To see where the name comes from we can look at the raw data, that is, at the data how it looks to the computer, without pretty formatting. To do this, either find the **Raw** button on the webpage above or just click [here for the raw data](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
 
 To import the raw data click the play button on the right below. Before doing this watch the Environment tab in the upper right.
-```{r}
+
+```r
     mydata <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"),check.names = FALSE)
 ```
 If you missed what happened in the environment tab, you can clear it my clicking on the brush and then go back to clicking on the green play button. You should see that the variable "mydata" has been added to the Environment. We will come back to this later in more detail.
 
 To verify that Rstudio imported the data click the play button on the right below (and remember that you can close a tab with ctrl-w (Windows) or command-w (Mac)):
-```{r}
+
+```r
     View(mydata)
 ```
 
@@ -46,25 +48,30 @@ Search the table you just opened with above for "Italy". There is a search box i
 I found "Italy" in row 138.
 
 How do we extract data automatically? By using square brackets. Square brackets with two numbers inside as in `mydata[row,column]` are used to select from the table `mydata` the cell indexed by the number `row` and the number `column`. For example:
-```{r}
+
+```r
     View(mydata[138,2])
 ```
 To extract everything in the column indexed by 2 we do (before playing the code say what you expect to see):
-```{r}
+
+```r
     View(mydata[,2])
 ```
 This is notation one needs to get used to. One specifies a column by not specifying a particular row: There is now index before the `,`.
 
 Similarly, to extract the row of Italy, run:
-```{r}
+
+```r
     View(mydata[138,])
 ```
 We can also extract a range of cells, for example:
-```{r}
+
+```r
     View(mydata[138,1:5])
 ```
 To extract the last cell:
-```{r}
+
+```r
     View(mydata[138,ncol(mydata)])
 ```
 `ncol` is a function that maps a table to the number of its columns. The number of columns is also the index of the last column in the table.
@@ -72,7 +79,8 @@ To extract the last cell:
 We can verify this. 
 
 First, look again at [time_series_covid19_deaths_global](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv). Find the row for Italy (note that it may have a different number) and then the last cell in that row. Remember the number in this cell. Now run
-```{r}
+
+```r
     View(mydata[138,ncol(mydata)])
 ```
 You should see that same number. 
@@ -84,11 +92,13 @@ You should see that same number.
 ## Extract the data we want to plot
 
 Ok, now we can extract the data that we want to plot. Let us extract the last 30 days and save the result in a **variable** `deaths_italy':
-```{r}
+
+```r
     deaths_italy <- mydata[138,(ncol(mydata)-30):ncol(mydata)]
 ```
 Recall that `ncol` is a function that computes the number of columns of the table. This is important, because the number of columns in the table changes every day when the data is updated. `ncol(mydata)` is the number of columns of `mydata`. Of course, since we already saved this data in the variable `deaths_italy` we can also simply run
-```{r}
+
+```r
     View(deaths_italy)
 ```
 for the same result.
@@ -100,19 +110,24 @@ Next, we want to plot the data.
 First we need to remove the commas using the function `gsub`:
 
 Convert the data to a list of numbers and plot it.
-```{r}
+
+```r
     deaths_italy <- gsub(",", "", deaths_italy)
 ```
 We read this line as: Subtract the "," from the data stored in the variable `deaths_italy` and store the result again in `deaths_italy`.
 
 Next, we come to subtle point. Whenever you see `0` you may just think of the number zero. But to a computer, the symbol `0` in a text is different from the number `0`. In a text, `0` is just another letter, or *character* as one says. It doesn't make sense to arithmetic on characters. Computers only know how to do arithmetic on numbers. So they do need to convert the characters into numbers before they can computer with them. [^ascii]
-```{r}
+
+```r
     deaths_italy <- as.numeric(deaths_italy)
 ```
 Now, we can plot the data.
-```{r}
+
+```r
     plot(deaths_italy)
 ```
+
+![](lesson-01_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 That's it for the first lesson. I felt good when I got this going. 
 
