@@ -10,3 +10,8 @@ We will follow the instructions on [Using Git with RStudio](https://jennybc.gith
 
 Personally, I like to use the editor `visual studio code`, which also has a good integration with git. But for this project, I am planning to see how far we can get with staying inside Rstudio.
 
+## Further Reading
+
+[Version Control with RStudio and GitHub, Simply Explained](https://aberdeenstudygroup.github.io/studyGroup/lessons/SG-T1-GitHubVersionControl/VersionControl/)
+
+[https://cfss.uchicago.edu/setup/git-with-rstudio/](Using Git within RStudio)

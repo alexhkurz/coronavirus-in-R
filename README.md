@@ -36,6 +36,7 @@ Examples of [reports](reports/reports.md) one can quickly generated with the pro
 - Data analysis: 
   - Compute the lag automatically, Visualise how the lag changes over time, Find reasons for changing lags, ...
   - Compute doubling times. Chart doubling times over time and space. What patterns arise?
+  - How many days after lockdown does growth become linear in different countries? Can we relate this to policy measures?
 
 - Classify countries according to different growth rates. At the moment it looks as if almost all countries have the same growth rate, but, also, at the moment we always ever directly compare two countries.
 

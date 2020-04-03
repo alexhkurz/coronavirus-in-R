@@ -56,8 +56,8 @@ or command-w (Mac)):
     View(mydata)
 ```
 
-In R, the type of `mydata` is called a data frame. We can think of it
-just as table, much as it looks like if we run `View(mydata)`.
+In R, the type of `mydata` is called a **data frame**. We can think of
+it just as table, much as it looks like if we run `View(mydata)`.
 
 ## Extract data from a data frame
 
@@ -225,14 +225,24 @@ in Jupyter notebooks).
 (Time for some music? I wrote this listening to [London
 Calling](https://www.youtube.com/watch?v=hZw23sWlyG0&list=PLkLimRXN6NKzoSccJhADNW42Ayxf7mYwF&index=8))
 
-Make your own exercises. Choose different countries, or different time
-ranges. Look at the data with your naked eyes. You will find that not
-for all countries there is reliable data. Etc, etc, …
+**Data analysis:** - Make your own exercises. Choose different
+countries, or different time ranges. Look at the data with your naked
+eyes. You will find that not for all countries there is reliable data.
+Etc, etc, …
 
-If you want to just work with the naked code use the file
-[lesson-01.R](lesson-01.R). Load it into Rstudio, make sure you see the
-Console window in the lower left and execute a line in lesson-01.R by
-entering ctrl-enter (Windows) or command-return (Mac).
+  - If you want to just work with the naked code use the file
+    [lesson-01.R](lesson-01.R). Load it into Rstudio, make sure you see
+    the Console window in the lower left and execute a line in
+    lesson-01.R by entering ctrl-enter (Windows) or command-return
+    (Mac).
+
+**R programming:**
+
+  - [Data Frame: Create, Append, Select,
+    Subset](https://www.guru99.com/r-data-frames.html) has a concise
+    summary of how to extract data from a data frame. Be sure to paste
+    the code examples into the Console and experiment with your own
+    variations.
 
 ## Further reading
 
@@ -261,6 +271,8 @@ entering ctrl-enter (Windows) or command-return (Mac).
     knitr\](<https://stackoverflow.com/questions/25078572/specifying-multiple-simultaneous-output-formats-in-knitr>).
     Actually, what worked for me was [output of .rmd in
     github](https://stackoverflow.com/questions/39814916/how-can-i-see-output-of-rmd-in-github).
+    This is what I used to turn this file into a webpage with nicer
+    layout.
 
 -----
 
