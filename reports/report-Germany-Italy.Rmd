@@ -1,16 +1,16 @@
 ---
-title: "Report Germany vs Italy"
+title: "Coronavirus in Germany"
 output: html_document
 ---
 
-```{r}
+```{r, echo=FALSE}
 source("../src/library.R")
 ```
 
 On [March 13](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Germany), 
 most federal German states closed there schools. At the time there were only 3 deaths in all of Germany and not enough data to make a useful comparison with Italy ... comparison of deaths in Germany and Italy looked like this:
 
-```{r}
+```{r, echo=FALSE}
 deaths_2_countries(region1="Germany",region2="Italy",last_day="3/12/20",range=11,lag=18)
 ```
 
@@ -22,13 +22,13 @@ On 20 March, Bavaria was the first state to declare a curfew,
 inspired by an identical one in Austria implemented four days before. 
 At the time the deaths had developed as follows:
 
-```{r}
-deaths_2_countries(region1="Germany",region2="Italy",last_day="3/19/20",range=18,region2_first=37) 
+```{r, echo=FALSE}
+deaths_2_countries(region1="Germany",region2="Italy",last_day="3/19/20",range=18,lag=19) 
 ```
 
 And here is the situation from end of March
 
-```{r}
+```{r, echo=FALSE}
 deaths_2_countries(region1="Germany",region2="Italy",last_day="3/29/20",range=28,lag=19)
 ```
 
