@@ -1,6 +1,6 @@
 (unfinished draft)
 
-## Git
+## Git 
 
 Remember that last time you had to save my files from git manually?
 
@@ -14,4 +14,6 @@ Personally, I like to use the editor `visual studio code`, which also has a good
 
 [Version Control with RStudio and GitHub, Simply Explained](https://aberdeenstudygroup.github.io/studyGroup/lessons/SG-T1-GitHubVersionControl/VersionControl/)
 
-[https://cfss.uchicago.edu/setup/git-with-rstudio/](Using Git within RStudio)
+[Using Git within RStudio](https://cfss.uchicago.edu/setup/git-with-rstudio/) 
+
+[Merging 2 branches together in GIT](https://stackoverflow.com/questions/3404294/merging-2-branches-together-in-git)
