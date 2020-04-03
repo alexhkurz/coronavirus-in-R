@@ -14,7 +14,7 @@
 
 # download the current data from Johns Hopkins
 #
-mydata = read.csv(url("https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"))
+mydata <- read.csv(url("https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"))
 # View(mydata) 
 View(colnames(mydata)[ncol(mydata)]) # Show the last date for which there is data
 
