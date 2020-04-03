@@ -4,13 +4,13 @@
 # region1 is the name in the corona_data table, eg "US", "Korea, South"
 # region1_pop is the name in the population_data table, eg "United States", "Korea, Rep."
 #
-admin2     <- "Orange"  
-province_state <- "California"  
+admin2     <- "New York"  
+province_state <- "New York"  
 region2 <- "Italy"
 region2_pop <- "Italy"  
 range <- 29           
 region1_first <- 29   
-region2_first <- 55   
+region2_first <- 41  
 
 # Output: If the graphs match, the estimated lag is the `region1_first - region2_first`
 
@@ -31,7 +31,7 @@ cd_us <- corona_data_us
 pd <- population_data
 r1 <- row.names(cd_us[cd_us[, "Admin2"]==admin2 & cd_us[,"Province_State"]==province_state,])
 r2 <- row.names(cd[cd[,"Country/Region"]==region2 & cd[,"Province/State"]==state1,])
-
+# View(cd_us)
 # Compute the population ratio of the two regions
 pop1 <- cd_us[cd_us[, "Admin2"]==admin2 & cd_us[,"Province_State"]==province_state,12]
 pop2 <- pd[pd[,"Country.Name"]==region2_pop & pd[,"Year"]==2015,"Value"]

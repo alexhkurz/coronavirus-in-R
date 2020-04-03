@@ -18,13 +18,13 @@ The aim is to develop a program that can be used to match the curves of the deat
 
 - [Lesson 3](lessons/lesson-03/lesson-03.md): How far do other countries lag behind Italy? 
 
-Examples of [reports](reports/reports.md) one can quickly generated with the program [deaths.R](src/deaths.R).
-
+Examples of [reports](reports/reports.md) one can quickly generated with the program [deaths.R](src/deaths.R). While this works well, if one is interested in comparing just two countries at a specific point in time, this method does not scale to comparing many countries at many points in time for two reasons: First, we should not be forced to copy code around in order to adapt the same algorithm to different inputs. This problem will be solved by functions. Second, we should not be forced to save each single plot we generate at a specific place, then upload it to a webserver and link it by hand. One solution to this problem is to use Knit ... work in progress ...
 
 **Programming skills**: (unfinished drafts only)
 - [Managing files.](lessons/lesson-files.md)
 - [Variables and types](lessons/lesson-strings.Rmd). How to manipulate strings.
 - [Filtering data](lessons/lesson-filter.Rmd). How to automatically extract information from data.
+- []() How to write reports using functions, Rmarkdown and Knit.
 - [Managing projects with Git](lessons/lesson-git.md). How to use version control.
 
 ---
@@ -33,7 +33,9 @@ Examples of [reports](reports/reports.md) one can quickly generated with the pro
 
 - Lesson 4: Automating reports: Functions in R.
 
-- Data analysis: Compute the lag automatically, Visualise how the lag changes over time, Find reasons for changing lags, ...
+- Data analysis: 
+  - Compute the lag automatically, Visualise how the lag changes over time, Find reasons for changing lags, ...
+  - Compute doubling times. Chart doubling times over time and space. What patterns arise?
 
 - Classify countries according to different growth rates. At the moment it looks as if almost all countries have the same growth rate, but, also, at the moment we always ever directly compare two countries.
 

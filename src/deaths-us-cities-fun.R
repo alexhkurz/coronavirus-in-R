@@ -1,17 +1,12 @@
-# User input
-#
-# Most countries have the same names in the two tables, but not all
-# region1 is the name in the corona_data table, eg "US", "Korea, South"
-# region1_pop is the name in the population_data table, eg "United States", "Korea, Rep."
-#
-region1     <- "Germany"  
-region1_pop <- "Germany"  
-region2 <- "Italy"
-region2_pop <- "Italy"  
-range <- 31           
-region1_first <- 31   
-region2_first <- 58    
-
+deaths_us_city_country <-(
+admin2,  
+province_state, 
+region2, 
+region2_pop,  
+range,          
+region1_first,   
+region2_first)
+{
 # Output: If the graphs match, the estimated lag is the `region1_first - region2_first`
 
 # Automatically processed from here for most countries, for China put eg Hubei
@@ -19,14 +14,13 @@ state1 <- ""              # Column 1 of the corona_data table
 state2 <- ""              # Column 1 of the corona_data table
 
 # Load coronavirus data from Johns Hopkins
-corona_data <- read.csv(check.names=FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
-cd <- corona_data
+corona_data <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
 
 # Load population data
 population_data <- read.csv(url("https://raw.githubusercontent.com/datasets/population/master/data/population.csv"))
 
 # Abbreviations
-
+cd <- corona_data
 pd <- population_data
 r1 <- row.names(cd[cd[,"Country/Region"]==region1 & cd[,"Province/State"]==state1,])
 r2 <- row.names(cd[cd[,"Country/Region"]==region2 & cd[,"Province/State"]==state1,])
@@ -37,7 +31,7 @@ pop2 <- pd[pd[,"Country.Name"]==region2_pop & pd[,"Year"]==2015,"Value"]
 population_ratio_region1_region2 <- pop1/pop2
 
 # Uncomment for debugging
-View(cd[r1,])
+# View(cd)
 # View(pd)
 # View(pd[pd[,"Country.Name"]==region1_pop & pd[,"Year"]==2015,]) 
 # View(pd[pd[,"Country.Name"]==region2_pop & pd[,"Year"]==2015,]) 
@@ -66,7 +60,15 @@ region2_deaths <- cd[r2,(ncol(cd)-region2_first):(ncol(cd)-region2_first+range)]
 region2_deaths <- gsub(",", "", region2_deaths)                   
 region2_deaths <- as.numeric(region2_deaths)                      
 lines(population_ratio_region1_region2*region2_deaths, col="red")   
+}
 
-
+deaths_us_city_country(
+admin2=Orange,  
+province_state=California, 
+region2=Italy, 
+region2_pop=Italy,  
+range=29,          
+region1_firs=29,   
+region2_first=55)
 
 
