@@ -1,0 +1,57 @@
+---
+title: "Coronavirus in Austria"
+output: html_document
+---
+
+```{r, echo=FALSE}
+source("../src/library3.R")
+```
+
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
+
+The program that produces the plots is available as [report-Austria.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Austria.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+
+(In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+    
+```{r, echo=FALSE}    
+deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+
+cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
+```
+
+## March 12
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Austria",region2="Italy",last_day="3/12/20",range=12,lag=10)
+```
+
+## March 19
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Austria",region2="Italy",last_day="3/19/20",range=18,lag=8) 
+```
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="Austria",region2="Italy",last_day="3/19/20",range=18,lag=18) 
+```
+
+## March 27
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Austria",region2="Italy",last_day="3/27/20",lag=6)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="Austria",region2="Italy",last_day="3/27/20",lag=19)
+```
+
+## April 2
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Austria",region2="Italy",last_day="4/2/20",lag=7)
+```
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="Austria",region2="Italy",last_day="4/2/20",lag=20)
+```

@@ -34,7 +34,7 @@ Since the number of deaths at the time is still very low, it makes sense to look
 two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="3/12/20",range=12,lag=9)
 ```
 
-This picture means that on **13th March**, Germany has roughly as many cases as Italy had 9 days earlier. Of course, the data of confirmed cases is very sensitive to different testing regimes. The number of cases will vary widely depending on whether everybody is tested, or whether only  patients with symptoms are tested.
+This picture means that on **13th March**, Germany has very roughly as many cases as Italy had 9 days earlier. Of course, the data of confirmed cases is very sensitive to different testing regimes. The number of cases will vary widely depending on whether everybody is tested, or whether only  patients with symptoms are tested.
 
 A comparison of deaths instead of cases gives:
 
@@ -42,11 +42,11 @@ A comparison of deaths instead of cases gives:
 two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="3/12/20",range=12,lag=18)
 ```
 
-Because of the scarcity of data this is no strong evidence that Germany lags 18 days behind Italy in terms of deaths. But it is a number to keep in mind for the time coming.
+Because of the number of deaths is still very low at this time, this provides no strong evidence that Germany lags 18 days behind Italy in terms of deaths. But it is a number to keep in mind for the time coming.
 
-It would be interesting to remember how was the situation 19 days earlier in Italy? On 23rd February 2020, Austria 
+It would be interesting to remember how was the situation 18 days earlier in Italy? On 23rd February 2020, Austria 
 [suspended all trains to and from Italy](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Italy#Travel_restrictions) 
-for a few hours because of suspected cases. But how was the mood in Italy at the time? Did Italy suspect what was lying ahead?
+for a few hours because of suspected cases. How was the mood in Italy at the time? Did Italy suspect what was lying ahead?
   
 A week later, on **20th March**, Bavaria is the first German state to declare a curfew, 
 inspired by a similar one in Austria four days earlier. 
