@@ -1,16 +1,21 @@
 ---
-title: "Coronavirus in Orange"
+title: "Coronavirus California vs Italy"
 output: html_document
 ---
 
 We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
 
-The program that produces the plots is available as [report-Orange-deaths.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Orange-deaths.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+The program that produces the plots is available as [report-Orange.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Orange.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
 
 (In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
     
 ```{r, echo=FALSE}    
 deaths_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
+
+View(subset(deaths_us, Province_State=="California"))
+
+  r1 <- row.names(cd_us[cd_us[, "Admin2"]==admin2 & cd_us[,"Province_State"]==province_state,])
+
 
 cases_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"),check.names = FALSE)
 
@@ -23,16 +28,38 @@ cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.
 source("../src/covid-19_US.R")
 ```
 
+## March 19
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=27)
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",last_day="3/19/20",range=18,lag=20) 
 ```
 
-The graph shows that the number of deaths is doubling approximately every 3 days. This is very much the situation in which Italy was a month ago.
+## March 27
 
-We can also compare the number of confirmed cases. This shows a similar pattern:
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",last_day="3/27/20",lag=20)
+```
+
+
+## April 2
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",last_day="4/2/20",lag=21)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",last_day="4/2/20",lag=26)
+```
+
+## latest
 
 ```{r, echo=FALSE}
 two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=22)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=27)
 ```
 

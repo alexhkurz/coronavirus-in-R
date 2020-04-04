@@ -1,0 +1,89 @@
+---
+title: "Coronavirus New York vs Italy"
+output: html_document
+---
+
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
+
+The program that produces the plots is available as [report-New_York.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-New_York.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+
+(In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+    
+```{r, echo=FALSE}    
+deaths_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
+
+cases_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"),check.names = FALSE)
+
+deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+
+cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
+```
+
+```{r, echo=FALSE}
+source("../src/covid-19_US.R")
+```
+## March 12
+
+New York, New York is a special case. On March 12, it still looks to be in a similar position to other European countries other than Italy. Just one death and a still small number of cases. The graph below gives an estimate of NY lagging 13 days behind Italy.
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/12/20",range=18,lag=13) 
+```
+
+## March 19
+
+But only a week later something weird has happened. The number of deaths is following the line predicted by the number of cases a week earlier:
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/19/20",range=18,lag=13) 
+```
+
+But the number of cases is going through the roof:
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/19/20",range=18,lag=13) 
+```
+
+
+## March 27
+
+A week later, it is clear that the deaths in New York are growing much faster:
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/27/20",range=18,lag=13) 
+```
+
+And, as worrying, the lag in the number of cases has totally disappeared:
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/27/20",lag=0)
+```
+
+
+## April 2
+
+Another week later, the lag has also disappeared in the number of deaths:
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="New York",province_state="New York",region2="Italy",last_day="4/2/20",lag=0)
+```
+
+And the number of cases keeps looking very bad indeed.
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New York",province_state="New York",region2="Italy",last_day="4/2/20",lag=0)
+```
+
+
+## latest
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New York",province_state="New York",region2="Italy",lag=0)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="New York",province_state="New York",region2="Italy",lag=0)
+```
+
