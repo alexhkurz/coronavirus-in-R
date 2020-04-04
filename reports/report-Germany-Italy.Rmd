@@ -16,12 +16,7 @@ The program that produces the plots is available as [report-Germany-Italy.Rmd](h
 ```{r, echo=FALSE}    
 deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
 
-View(deaths_global)
-
 cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
-
-View(cases_global[121,])
-View(cases_global[138,])
 ```
 
 On [March 13](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Germany), 
