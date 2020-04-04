@@ -4,31 +4,93 @@ output: html_document
 ---
 
 ```{r, echo=FALSE}
-source("../src/library.R")
+source("../src/library3.R")
+```
+
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
+
+The program that produces the plots is available as [report-Germany-Italy.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Germany-Italy.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+
+(In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+    
+```{r, echo=FALSE}    
+deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+
+View(deaths_global)
+
+cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
+
+View(cases_global[121,])
+View(cases_global[138,])
 ```
 
 On [March 13](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Germany), 
-most federal German states closed there schools. At the time there were only 3 deaths in all of Germany and not enough data to make a useful comparison with Italy ... comparison of deaths in Germany and Italy looked like this:
+most federal German states closed there schools. At the time there were only 3 deaths in all of Germany.  But Italy already had over 800:
 
 ```{r, echo=FALSE}
-deaths_2_countries(region1="Germany",region2="Italy",last_day="3/12/20",range=11,lag=18)
+one_region(what="deaths",data=deaths_global,region="Italy",last_day="3/12/20",range=11)
 ```
 
-How was the situation 19 days earlier in Italy? On 23 February 2020, Austria 
+How does Germany compare to Italy at this time? Should Germany expect the relatively small number of 3 deaths to grow as in Italy? What would be a reasonable estimate of how far Germany was lagging behind Italy?
+
+Since the number of deaths at the time is still very low, it makes sense to look at the confirmed cases. Comparing the data gives:  
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="3/12/20",range=12,lag=9)
+```
+
+This picture means that on **13th March**, Germany has roughly as many cases as Italy had 9 days earlier. Of course, the data of confirmed cases is very sensitive to different testing regimes. The number of cases will vary widely depending on whether everybody is tested, or whether only  patients with symptoms are tested.
+
+A comparison of deaths instead of cases gives:
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="3/12/20",range=12,lag=18)
+```
+
+Because of the scarcity of data this is no strong evidence that Germany lags 18 days behind Italy in terms of deaths. But it is a number to keep in mind for the time coming.
+
+It would be interesting to remember how was the situation 19 days earlier in Italy? On 23rd February 2020, Austria 
 [suspended all trains to and from Italy](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Italy#Travel_restrictions) 
 for a few hours because of suspected cases. But how was the mood in Italy at the time? Did Italy suspect what was lying ahead?
   
-On 20 March, Bavaria was the first state to declare a curfew, 
-inspired by an identical one in Austria implemented four days before. 
-At the time the deaths had developed as follows:
+A week later, on **20th March**, Bavaria is the first German state to declare a curfew, 
+inspired by a similar one in Austria four days earlier. 
+At the time the data has developed as follows. A comparison of the confirmed cases is
 
 ```{r, echo=FALSE}
-deaths_2_countries(region1="Germany",region2="Italy",last_day="3/19/20",range=18,lag=19) 
+two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="3/19/20",range=18,lag=9) 
 ```
 
-And here is the situation from end of March
+and of deaths is
 
 ```{r, echo=FALSE}
-deaths_2_countries(region1="Germany",region2="Italy",last_day="3/29/20",range=28,lag=19)
+two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="3/19/20",range=18,lag=19) 
 ```
 
+One observation that will be confirmed by comparing future numbers as well as by comparing other countries is that the time lags between countries are surprisingly robust.
+
+Again a week later, on **March 27** the situation is as follows:
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="3/27/20",lag=19)
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="3/27/20",lag=9)
+```
+
+Again a week later on **2nd April** the situation looks as follows:
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="4/2/20",lag=22)
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="4/2/20",lag=10)
+```
+
+The good news is here that the deaths in Italy seem to be now for approximately 10 days in linear growth and we all hope that the rate will go down now soon into an inverse expoenential. In fact, there is a slight downturn visible ...
+
+```{r, echo=FALSE}
+one_region(what="deaths",data=deaths_global,region="Italy",last_day="4/2/20")
+```

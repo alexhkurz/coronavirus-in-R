@@ -1,7 +1,5 @@
 # deaths() --- plot the number of deaths in a country
-# cases() --- plot the number of cases in a country
 # deaths_2_countries() --- plot the number deaths comparing two countries
-# cases_2_countries() --- plot the number cases comparing two countries
 
 #################################
 #
