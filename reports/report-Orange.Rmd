@@ -23,9 +23,20 @@ cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.
 source("../src/covid-19_US.R")
 ```
 
+# latest
 
 ```{r, echo=FALSE}
 two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=27)
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=22)
+```
+
+# April 3
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=27,last_day="4/3/20")
 ```
 
 The graph shows that the number of deaths is doubling approximately every 3 days. This is very much the situation in which Italy was a month ago.
@@ -33,6 +44,6 @@ The graph shows that the number of deaths is doubling approximately every 3 days
 We can also compare the number of confirmed cases. This shows a similar pattern:
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=22)
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=22,last_day="4/3/20")
 ```
 
