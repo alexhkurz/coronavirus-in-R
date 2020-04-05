@@ -43,6 +43,12 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 **Applying the results of Part 2:** An example report is [here](https://rpubs.com/alexhkurz/594386) and its source code is [here](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Germany-Italy.Rmd). Due to the modular way we constructed the software of this part, and also due to tools such as git, knit, and rpub it takes only a few minutes to adapt this report to a new country.
 
+## Part 3: Data Wrangling with Tidyverse
+
+**References:**
+
+- [R for Data Science](https://r4ds.had.co.nz/introduction.html)
+
 ---
 
 **possible future directions to take**:

@@ -9,6 +9,8 @@ And it is more interesting to have a project right from the start, rather than t
 
 Of course, it is also good to follow a course. We chose Stefano de Sabbata's [GRANOLARR](https://sdesabbata.github.io/granolarr/), which is short for a geog**GR**aphic d**A**ta scie**N**ce, repr**O**ducib**L**e te**A**ching resou**R**ce in **R**. An awesome course. 
 
+An excellent book is [R for Data Science](https://r4ds.had.co.nz/data-visualisation.html). Like this course this book is aimed at beginners, but it is also a well-rounded textbook written by actual experts.
+
 We'd love to get feedback and one way of doing this is, is to [raise an issue](https://github.com/alexhkurz/coronavirus-in-R/issues). Or send me an email. In particular, it would be  great to hear from parents and children who took up a similar project.
 
 ## Organisation
