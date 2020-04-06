@@ -3,9 +3,14 @@
 
 The motivation to learn about data anlysis now comes from the coronavirus crisis. One can read a lot of analyses. So why not making your own? 
 
-A good example of what can be done with data analysis is this visualisation on [How To Tell If We're Beating COVID-19](https://www.youtube.com/watch?v=54XLXg4fYsc). But also simple graphs can be interesting, see eg [here](https://www.nytimes.com/2020/03/31/opinion/coronavirus-cases-united-states.html) and [here](https://www.nytimes.com/2020/04/03/opinion/coronavirus-united-states-europe.html).
+Here are some examples of visualisations that I would like to be able to do myself at the end the course:
 
-And it is more interesting to have a project right from the start, rather than to work through long tutorials and textbooks first. Each lesson below is a lesson we set ourselves. 
+- [How To Tell If We're Beating COVID-19](https://www.youtube.com/watch?v=54XLXg4fYsc)
+- [Cumulative cases by county in California](https://www.latimes.com/projects/california-coronavirus-cases-tracking-outbreak/) 
+
+But also simple graphs can already be interesting, see eg [here](https://www.nytimes.com/2020/03/31/opinion/coronavirus-cases-united-states.html) and [here](https://www.nytimes.com/2020/04/03/opinion/coronavirus-united-states-europe.html). This can be done already with what we will learn in Part 1.
+
+Disclaimer: This course does not contain original research about the coronavirus. It is more about learning R and some basic data analysis. But it is more interesting to have a project right from the start, rather than to work through long tutorials and textbooks first. Each lesson below is a lesson we set ourselves, with the aim to learn something new (to us) about the coronavirus.
 
 Of course, it is also good to follow a course. We chose Stefano de Sabbata's [GRANOLARR](https://sdesabbata.github.io/granolarr/), which is short for a geog**GR**aphic d**A**ta scie**N**ce, repr**O**ducib**L**e te**A**ching resou**R**ce in **R**. An awesome course. 
 
