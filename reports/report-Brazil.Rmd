@@ -4,7 +4,7 @@ output: html_document
 ---
 
 ```{r, echo=FALSE}
-source("../src/library3.R")
+source("../src/covid-19_global.R")
 ```
 
 We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
@@ -25,9 +25,6 @@ cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.
 two_regions(what="cases",data=cases_global,region1="Brazil",region2="Italy",last_day="3/19/20",range=18,lag=25) 
 ```
 
-```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Brazil",region2="Italy",last_day="3/19/20",range=18,lag=26) 
-```
 
 ## March 27
 
@@ -40,12 +37,12 @@ two_regions(what="cases",data=cases_global,region1="Brazil",region2="Italy",last
 two_regions(what="deaths",data=deaths_global,region1="Brazil",region2="Italy",last_day="3/27/20",lag=27)
 ```
 
-## April 2
+## latest
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="Brazil",region2="Italy",last_day="4/2/20",lag=30)
+two_regions(what="cases",data=cases_global,region1="Brazil",region2="Italy",lag=30)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Brazil",region2="Italy",last_day="4/2/20",lag=29)
+two_regions(what="deaths",data=deaths_global,region1="Brazil",region2="Italy",lag=29)
 ```

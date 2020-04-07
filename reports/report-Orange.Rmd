@@ -26,6 +26,8 @@ source("../src/covid-19_US.R")
 
 # Latest plots
 
+It would be great if the growth in number of cases was slowing down already ... 
+
 ```{r, echo=FALSE}
 two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=27)
 ```
@@ -34,7 +36,7 @@ two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Or
 two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=22)
 ```
 
-# April 2
+# April 3
 
 ```{r, echo=FALSE}
 two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=27,last_day="4/3/20")

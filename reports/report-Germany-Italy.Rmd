@@ -20,6 +20,8 @@ deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent
 cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
 ```
 
+## March 12
+
 On [March 13](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Germany), 
 most federal German states closed there schools. At the time there were only 3 deaths in all of Germany.  But Italy already had over 800:
 
@@ -49,6 +51,8 @@ It would be interesting to remember how was the situation 18 days earlier in Ita
 [suspended all trains to and from Italy](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Italy#Travel_restrictions) 
 for a few hours because of suspected cases. How was the mood in Italy at the time? Did Italy suspect what was lying ahead?
   
+## March 19
+
 A week later, on **20th March**, Bavaria is the first German state to declare a curfew, 
 inspired by a similar one in Austria four days earlier. 
 At the time the data has developed as follows. A comparison of the confirmed cases is
@@ -65,17 +69,21 @@ two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",l
 
 One observation that will be confirmed by comparing future numbers as well as by comparing other countries is that the time lags between countries are surprisingly robust.
 
+## March 26
+
 Again a week later, on **March 27** the situation is as follows:
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="3/27/20",lag=19)
+two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="3/26/20",lag=19)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="3/27/20",lag=9)
+two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="3/26/20",lag=9)
 ```
 
-Again a week later on **2nd April** the situation looks as follows:
+
+## April 2
+Again a week later the situation looks as follows:
 
 ```{r, echo=FALSE}
 two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="4/2/20",lag=22)
@@ -85,14 +93,14 @@ two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",l
 two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="4/2/20",lag=10)
 ```
 
-The good news is here that the deaths in Italy seem to be now for approximately 10 days in linear growth and we all hope that the rate will go down now soon into an inverse expoenential. In fact, there is a slight downturn visible ...
-
-Here for the **latest charts**:
+The good news is here that the deaths in Italy seem to be now for approximately 10 days in linear growth and we all hope that the rate will go down now soon into an inverse expoenential. In fact, there was a slight downturn already vivisible ... and we see that this trend has been confirmed in the following days:
 
 
 ```{r, echo=FALSE}
 one_region(what="deaths",data=deaths_global,region="Italy")
 ```
+
+## latest
 
 
 ```{r, echo=FALSE}

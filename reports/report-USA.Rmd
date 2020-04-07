@@ -4,7 +4,7 @@ output: html_document
 ---
 
 ```{r, echo=FALSE}
-source("../src/library3.R")
+source("../src/covid-19_global.R")
 ```
 
 We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
@@ -19,39 +19,41 @@ deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent
 cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
 ```
 
-## March 12
+## March 11
+
+On March 12, Chapman University had switched to online teaching and I gave my first lecture online. I remember that while there were plans to do this, I was suprised by how quickly that decision was taken. The number of cases at the time was as follows:
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States" ,region2="Italy",last_day="3/12/20",range=12,lag=15)
+two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States" ,region2="Italy",last_day="3/11/20",range=12,lag=15)
 ```
 
-## March 19
+## March 18
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/19/20",range=18,lag=16) 
-```
-
-```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/19/20",range=18,lag=18) 
-```
-
-## March 27
-
-```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/27/20",lag=14)
-```
-
-
-```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/27/20",lag=19)
-```
-
-## April 2
-
-```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Italy",last_day="4/2/20",lag=13)
+two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/18/20",range=18,lag=16) 
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",last_day="4/2/20",lag=20)
+two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/18/20",range=18,lag=18) 
+```
+
+## March 25
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/25/20",lag=14)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/25/20",lag=19)
+```
+
+## latest
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Italy",lag=13)
+```
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",lag=20)
 ```
