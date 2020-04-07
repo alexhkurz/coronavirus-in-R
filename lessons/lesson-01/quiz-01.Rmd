@@ -1,0 +1,95 @@
+---
+title: "Quiz 1"
+---
+
+Load this file into Rstudio.
+
+Brush out your Environment.
+
+## Variables
+
+Can you predict the results of running the following?
+
+```{r}
+x
+```
+```{r}
+x <- 0
+x
+```
+```{r}
+x <- 1
+y <- 2
+x 
+y
+```
+
+```{r}
+x <- 1
+y <- 2
+z <- x
+x <- y
+y <- z
+x
+y
+```
+
+Any questions on what might happen on other inputs? Ask them to the Console!
+
+## Data frames
+
+Can you predict the results of running the following?
+
+
+```{r}
+df <- data.frame (country = c("Germany","Italy","UK","US"),
+       capital = c("Berlin", "Roma", "London", "Washington DC"),
+       population = c(83149300,60238522,66435550,329579147))
+df
+```
+
+
+```{r}
+df[1,]
+```
+```{r}
+df[,1]
+```
+
+```{r}
+df[,"country"]
+```
+
+```{r}
+df[,country]
+```
+
+```{r}
+df[2,3]
+```
+
+```{r}
+df[,3]
+```
+
+```{r}
+df[,2:3]
+```
+
+```{r}
+df[1,2:3]
+```
+
+```{r}
+x+y
+```
+
+
+Any questions on what might happen on other inputs? Ask them to the Console!
+
+There is also a predefined data frame you can play around with.
+
+```{r}
+mtcars
+```
+
