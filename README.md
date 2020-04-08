@@ -12,11 +12,10 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 **Data analysis:**
 
-- [Lesson 1](lessons/lesson-01/lesson-01.md): Download coronavirus data and plot it.   
-
-- [Lesson 2](lessons/lesson-02/lesson-02.md): How far does Germany lag behind Italy?
-
-- [Lesson 3](lessons/lesson-03/lesson-03.md): How far do other countries lag behind Italy? 
+- [Lesson 1](lessons/lesson-01/lesson-01.md): Download coronavirus data and plot it.  
+[Quiz](lessons/lesson-01/quiz-01.Rmd)  
+- [Lesson 2](lessons/lesson-02/lesson-02.md): How far does Germany lag behind Italy?  
+- [Lesson 3](lessons/lesson-03/lesson-03.md): How far do other countries lag behind   Italy? 
 
 **Programming skills**: (unfinished drafts only)
 - [Managing files.](lessons/lesson-files.md)
@@ -44,6 +43,8 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 **Applying the results of Part 2:** An example report is [here](https://rpubs.com/alexhkurz/594386) and its source code is [here](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Germany-Italy.Rmd). Due to the modular way we constructed the software of this part, and also due to tools such as git, knit, and rpub it takes only a few minutes to adapt this report to a new country.
 
 ## Part 3: Data Wrangling with Tidyverse
+
+(not even started yet)
 
 **References:**
 

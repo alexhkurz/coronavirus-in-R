@@ -29,11 +29,11 @@ source("../src/covid-19_US.R")
 It would be great if the growth in number of cases was slowing down already ... 
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=27)
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=30)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=22)
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=25)
 ```
 
 # April 3
