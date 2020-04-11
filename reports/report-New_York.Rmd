@@ -23,13 +23,16 @@ cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.
 ```{r, echo=FALSE}
 source("../src/covid-19_US.R")
 ```
+
+
 ## March 12
 
 New York, New York is a special case. On March 12, it still looks to be in a similar position to other European countries other than Italy. Just one death and a still small number of cases. The graph below gives an estimate of NY lagging 13 days behind Italy.
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/12/20",range=18,lag=13) 
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/12/20",range=11,lag=13) 
 ```
+
 
 ## March 19
 
@@ -51,20 +54,19 @@ two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New Y
 A week later, it is clear that the deaths in New York are growing much faster:
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/27/20",range=18,lag=13) 
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/27/20",range=26,lag=13) 
 ```
 
 And, as worrying, the lag in the number of cases has totally disappeared:
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/27/20",lag=0)
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New York",province_state="New York",region2="Italy",last_day="3/27/20",range=26,lag=0)
 ```
 
 
 ## April 2
 
 Another week later, the lag has also disappeared in the number of deaths:
-
 
 ```{r, echo=FALSE}
 two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="New York",province_state="New York",region2="Italy",last_day="4/2/20",lag=0)
@@ -87,4 +89,5 @@ two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="New Y
 ```{r, echo=FALSE}
 two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="New York",province_state="New York",region2="Italy",lag=0)
 ```
+
 

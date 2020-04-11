@@ -18,22 +18,32 @@ cases_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID
 deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
 
 cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
-```
 
-```{r, echo=FALSE}
 source("../src/covid-19_US.R")
 ```
 
 # Latest plots
 
-It would be great if the growth in number of cases was slowing down already ... 
+The slowing trend in comparison to Italy continues ...
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=30)
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=33)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=25)
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=27)
+```
+
+# April 7
+
+The graphs show that during the last four days the growth has been slowing in down in Orange County:
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=30,last_day="4/7/20")
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=25,last_day="4/7/20")
 ```
 
 # April 3

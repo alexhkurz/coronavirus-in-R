@@ -97,16 +97,32 @@ The good news is here that the deaths in Italy seem to be now for approximately 
 
 
 ```{r, echo=FALSE}
-one_region(what="deaths",data=deaths_global,region="Italy")
+one_region(what="deaths",data=deaths_global,last_day="4/2/20",region="Italy")
 ```
+
+## April 9
+Again a week later, one can see in the data that cases and deaths in Germany slowed down as compared to Italy. The German curve is now less steep and the lag increased by three days:
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="4/9/20",lag=25)
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="4/9/20",lag=13)
+```
+
 
 ## latest
 
+```{r, echo=FALSE}
+one_region(what="deaths",data=deaths_global,region="Italy")
+```
+
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",lag=22)
+two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",lag=25)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",lag=10)
+two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",lag=13)
 ```
