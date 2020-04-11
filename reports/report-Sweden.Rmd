@@ -1,6 +1,6 @@
 ---
 title: "Coronavirus in Sweden"
-output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 ```{r, echo=FALSE}

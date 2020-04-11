@@ -1,6 +1,6 @@
 ---
 title: "Coronavirus in USA"
-output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).

@@ -1,6 +1,5 @@
 ---
 title: "Coronavirus Orange vs Italy"
-output: html_document
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
