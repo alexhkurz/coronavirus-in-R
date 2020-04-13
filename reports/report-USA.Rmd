@@ -29,30 +29,23 @@ two_regions(what="cases",data=cases_global,region1="US",region1_pop="United Stat
 ## March 18
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/18/20",range=18,lag=16) 
-```
-
-```{r, echo=FALSE}
 two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/18/20",range=18,lag=18) 
 ```
 
 ## March 25
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/25/20",lag=14)
+two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/25/20",lag=19)
 ```
 
+## April 1
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",last_day="3/25/20",lag=19)
+two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",last_day="4/1/20",lag=20)
 ```
 
 ## latest
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Italy",lag=13)
-```
-
-```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",lag=22)
+two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Italy",lag=23)
 ```

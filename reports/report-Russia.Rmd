@@ -1,0 +1,27 @@
+---
+title: "Coronavirus Russia vs Italy"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
+
+The program that produces the plots is available as [report-Russia.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Russia.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+
+(In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+    
+```{r, echo=FALSE}    
+deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+
+cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
+
+source("../src/covid-19_global.R")
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="Russia",region1_pop="Russian Federation",region2="Italy",lag=40)
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Russia",region1_pop="Russian Federation",region2="Italy",lag=35)
+```
