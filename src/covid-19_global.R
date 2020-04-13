@@ -82,7 +82,6 @@ two_regions <- function(
     last_index <- grep(last_day,names(data))
     data <- data[1:last_index]
   }
-  browser()
   # Load population data
   population_data <- read.csv(url("https://raw.githubusercontent.com/datasets/population/master/data/population.csv"))
   pd <- population_data
