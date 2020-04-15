@@ -6,6 +6,8 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 [Introduction](intro.md)
 
+We are learning this from scratch, but if you want to see how far we got, you can see **some recent data** at my collection of [coronavirus links](https://alexhkurz.github.io/notes/covid-19.html).
+
 ## Part I: Extracting and Plotting Data
 
 **Shortcut:** Sometimes it is fastest to learn from the end. The aim in this part, is to develop a program that can be used to match the curves of the deaths of two countries. If you want to see what it does right now, load [deaths.R](src/deaths.R) into R, run it, and produce some sample graphs. If you understand how the program works and you can modify it to produce your own plots you can skim over Part I or skip it altogether.
