@@ -12,8 +12,7 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 **Data analysis:**
 
-- [Lesson 1](lessons/lesson-01/lesson-01.md): Download coronavirus data and plot it.  
-[Quiz](lessons/lesson-01/quiz-01.Rmd)  
+- [Lesson 1](lessons/lesson-01/lesson-01.md): Download coronavirus data and plot it.  [Quiz](lessons/lesson-01/quiz-01.Rmd)  
 - [Lesson 2](lessons/lesson-02/lesson-02.md): How far does Germany lag behind Italy?  
 - [Lesson 3](lessons/lesson-03/lesson-03.md): How far do other countries lag behind   Italy? 
 
@@ -37,8 +36,10 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 **Programming skills**: (unfinished drafts only)
 - []() How to write reports using functions, Rmarkdown and Knit.
+- Functions in R, Debugging Functions, ... 
 - [Managing projects with Git](lessons/lesson-git.md). How to use version control.
 - https://stackoverflow.com/questions/12235677/bold-boxplot-labels-in-r
+
 
 **Applying the results of Part 2:** An example report is [here](https://rpubs.com/alexhkurz/594386) and its source code is [here](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Germany-Italy.Rmd). Due to the modular way we constructed the software of this part, and also due to tools such as git, knit, and rpub it takes only a few minutes to adapt this report to a new country.
 
@@ -48,18 +49,27 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 **References:**
 
-- [R for Data Science](https://r4ds.had.co.nz/introduction.html)
+Introductory Reading:
+
+- [R for Data Science](https://r4ds.had.co.nz/wrangle-intro.html). In particular: [select()](https://r4ds.had.co.nz/transform.html#select) and [pivot_longer()](https://r4ds.had.co.nz/tidy-data.html#pivoting)
+
+Further references:
+
+- [Suzan Baert](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
+
+Further Reading:
+
+- [Tidy Data](http://www.jstatsoft.org/v59/i10/paper) by Hadley Wickham.
 
 ---
 
-**possible future directions to take**:
-
-- Lesson 4: Automating reports: Functions in R.
+**possible directions to take**:
 
 - Data analysis: 
   - Compute the lag automatically, Visualise how the lag changes over time, Find reasons for changing lags, ...
   - Why do some countries have the same lag wrt deaths, but not the same wrt cases? Cluster countries that have the same lag wrt deaths and the same lag wrt cases. Any patterns?
   - Compute doubling times. Chart doubling times over time and space. What patterns arise?
+  - Compute moving averages.
   - How many days after lockdown does growth become linear in different countries? Can we relate this to policy measures?
 
 - Classify countries according to different growth rates. At the moment it looks as if almost all countries have the same growth rate, but, also, at the moment we always ever directly compare two countries.

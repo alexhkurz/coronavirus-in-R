@@ -17,9 +17,7 @@ cases_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID
 deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
 
 cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
-```
 
-```{r, echo=FALSE}
 source("../src/covid-19_US.R")
 ```
 

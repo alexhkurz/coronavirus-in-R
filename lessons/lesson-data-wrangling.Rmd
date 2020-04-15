@@ -1,0 +1,77 @@
+---
+title: "Data Wrangling"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+## Data Wrangling
+
+First we load the data as usual.
+
+```{r, echo=FALSE}    
+
+library(tidyverse)
+
+d_us_tib <- read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"))
+
+cases_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"),check.names = FALSE)
+
+deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+
+cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
+```
+
+
+```{r, echo=FALSE}    
+
+deaths_df <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
+
+# I dont know how to get the last column after I converted to a tibble
+# I need this later in pivot_longer()
+last_column <- colnames(deaths_df)[ncol(deaths_df)]
+
+deaths <- as_tibble(deaths_df)
+
+### Selecting
+
+deaths <- select(deaths,-UID)
+deaths <- select(deaths,-iso2)
+deaths <- select(deaths,-iso3)
+deaths <- select(deaths,-code3)
+deaths <- select(deaths,-FIPS)
+deaths <- select(deaths,-Country_Region)
+deaths <- select(deaths,-Lat)
+deaths <- select(deaths,-Long_)
+deaths <- select(deaths,-Combined_Key)
+
+### Rename column names
+
+deaths <- rename(deaths,county=Admin2,state=Province_State)
+
+### Pivoting the whole table
+
+deaths_pivoted <- pivot_longer(deaths,c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths")
+
+#### Filter, pivot and plot territories
+
+deaths_territories <- filter(deaths, county=="")
+deaths_territories <- select(deaths_territories, -county)
+deaths_territories_pivoted <- pivot_longer(deaths_territories,c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths")
+
+ggplot(data = deaths_territories_pivoted) + geom_point(mapping = aes(x = date, y = deaths,color=state)) 
+
+puerto_rico <- filter (deaths_territories_pivoted,state=="Puerto Rico")
+ggplot(data = puerto_rico) + geom_point(mapping = aes(x = date, y = deaths)) 
+
+```
+
+
+
+
+**References:**
+
+- [Data Wrangling, R for Data Science](https://r4ds.had.co.nz/wrangle-intro.html). 
+- [filter()](https://r4ds.had.co.nz/transform.html#filter-rows-with-filter)
+- [select()](https://r4ds.had.co.nz/transform.html#select)
+- [pivot_longer()](https://r4ds.had.co.nz/tidy-data.html#pivoting)
+- [ggplot()](https://r4ds.had.co.nz/data-visualisation.html#creating-a-ggplot)
+
