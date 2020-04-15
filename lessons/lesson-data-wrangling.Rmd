@@ -5,19 +5,8 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 ## Data Wrangling
 
-First we load the data as usual.
-
 ```{r, echo=FALSE}    
-
 library(tidyverse)
-
-d_us_tib <- read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"))
-
-cases_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"),check.names = FALSE)
-
-deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
-
-cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
 ```
 
 
@@ -63,8 +52,6 @@ puerto_rico <- filter (deaths_territories_pivoted,state=="Puerto Rico")
 ggplot(data = puerto_rico) + geom_point(mapping = aes(x = date, y = deaths)) 
 
 ```
-
-
 
 
 **References:**
