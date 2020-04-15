@@ -49,17 +49,7 @@ We are learning this from scratch, but if you want to see how far we got, you ca
 
 ( ... [in preparation](https://github.com/alexhkurz/coronavirus-in-R/blob/master/lessons/lesson-data-wrangling.Rmd) ... )
 
-**References:**
-
-Introductory Reading:
-
-- [R for Data Science](https://r4ds.had.co.nz/wrangle-intro.html). In particular: [select()](https://r4ds.had.co.nz/transform.html#select) and [pivot_longer()](https://r4ds.had.co.nz/tidy-data.html#pivoting)
-
-Further references:
-
-- [Suzan Baert](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
-
-Further Reading:
+**Further Reading:**
 
 - [Tidy Data](http://www.jstatsoft.org/v59/i10/paper) by Hadley Wickham.
 
