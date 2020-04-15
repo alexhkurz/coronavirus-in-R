@@ -45,7 +45,7 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 ## Part 3: Data Wrangling with Tidyverse
 
-(not even started yet)
+( ... [in preparation](lessons/lesson_data_wrangling.Rmd) ... )
 
 **References:**
 

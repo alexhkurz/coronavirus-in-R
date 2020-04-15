@@ -7,6 +7,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 ```{r, echo=FALSE}    
 library(tidyverse)
+library(lubridate)
 ```
 
 
@@ -22,46 +23,112 @@ deaths <- as_tibble(deaths_df)
 
 ### Selecting
 
-deaths <- select(deaths,-UID)
-deaths <- select(deaths,-iso2)
-deaths <- select(deaths,-iso3)
-deaths <- select(deaths,-code3)
-deaths <- select(deaths,-FIPS)
-deaths <- select(deaths,-Country_Region)
-deaths <- select(deaths,-Lat)
-deaths <- select(deaths,-Long_)
-deaths <- select(deaths,-Combined_Key)
+deaths <- select(deaths,-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key)
 
 ### Rename column names
 
-deaths <- rename(deaths,county=Admin2,state=Province_State)
+deaths <- rename(deaths,county=Admin2,state=Province_State,population=Population)
 
 ### Pivoting the whole table
 
 deaths_pivoted <- pivot_longer(deaths,c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths")
+```
 
-#### Filter, pivot and plot territories
+```{r}
+### Filter and pivot counties
+
+deaths_counties <- filter(deaths, !(county=="") & !(county=="Unassigned") & !grepl("Out of",county))
+deaths_counties_pivoted <- pivot_longer(deaths_counties,c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths")
+deaths_counties_pivoted <- mutate(deaths_counties_pivoted,date=mdy(date))
+deaths_counties_pivoted <- mutate(deaths_counties_pivoted,county_state=paste(county,state))
+deaths_counties_pivoted <- drop_na(deaths_counties_pivoted)
+deaths_counties_pivoted <- mutate(deaths_counties_pivoted,deaths_per_million=as.numeric(deaths)*as.numeric(population)/1000000)
+
+### Summarise deaths by date
+
+deaths_counties_pivoted %>%
+subset(date > as.Date("2020-03-01")) %>%
+top_n(100) %>%
+ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=county_state)) 
+```
+
+```{r}
+deaths_counties_pivoted %>%
+filter(!county=="New York") %>%
+subset(date > as.Date("2020-03-01")) %>%
+top_n(100) %>%
+ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=vars(county,state))) 
+```
+
+```{r}
+### Summarise deaths by state and date
+
+window <- subset(deaths_counties_pivoted, date > as.Date("2020-03-01"))
+window <- summarise_at(group_by(window,state,date),vars(deaths),sum)
+ggplot(data = window) + geom_point(mapping = aes(x = date, y = deaths,color=state)) 
+```
+
+```{r}
+### Summarise deaths_per_million by state and date
+
+window <- subset(deaths_counties_pivoted, date > as.Date("2020-03-01"))
+window <- summarise_at(group_by(window,state,date),vars(deaths_per_million),sum)
+ggplot(data = window) + geom_point(mapping = aes(x = date, y = deaths_per_million,color=state)) 
+```
+
+```{r}
+### Filter, pivot and plot territories
 
 deaths_territories <- filter(deaths, county=="")
 deaths_territories <- select(deaths_territories, -county)
 deaths_territories_pivoted <- pivot_longer(deaths_territories,c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths")
-
-puerto_rico <- filter (deaths_territories_pivoted,state=="Puerto Rico")
-ggplot(data = puerto_rico) + geom_point(mapping = aes(x = date, y = deaths)) 
+deaths_territories_pivoted <- mutate(deaths_territories_pivoted,date=mdy(date))
+deaths_territories_pivoted <- mutate(deaths_territories_pivoted,deaths_per_million=deaths*population/1000000)
+window <- subset(deaths_territories_pivoted, date > as.Date("2020-03-01"))
+ggplot(data = window) + geom_point(mapping = aes(x = date, y = deaths_per_million,color=state)) 
 ```
 
 ```{r}
-### Filter counties, states, etc
-deaths_us_unassigned <- filter(deaths, (County=="Unassigned"))
-deaths_us_out_of <- filter(deaths, grepl("Out of",County))
-deaths_us_counties <- filter(deaths, !(County=="") & !(County=="Unassigned") & grepl("Out of",County))
+### Filter, pivot  and plot "Unassigned"
+deaths_us_unassigned <- filter(deaths, (county=="Unassigned"))
+deaths_us_unassigned_pivoted <- pivot_longer(deaths_us_unassigned,c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths")
+deaths_us_unassigned_pivoted <- mutate(deaths_us_unassigned_pivoted,date=mdy(date))
+ggplot(data = deaths_us_unassigned_pivoted) + geom_point(mapping = aes(x = state, y = deaths)) + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
-**References:**
+```{r}
+### Filter, pivot and plot "Out of"
+deaths_us_outof <- filter(deaths, grepl("Out of",county))
+deaths_us_outof <- select(deaths_us_outof, -county)
+
+deaths_us_outof_pivoted <- pivot_longer(deaths_us_outof,c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths")
+
+deaths_us_outof_pivoted <- mutate(deaths_us_outof_pivoted,date=mdy(date))
+window <- summarise_at(group_by(window,state),vars(deaths),sum)
+ggplot(data = window) + geom_point(mapping = aes(x = state, y = deaths)) + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+
+
+**References** I used to write this lesson:
 
 - [Data Wrangling, R for Data Science](https://r4ds.had.co.nz/wrangle-intro.html). 
 - [filter()](https://r4ds.had.co.nz/transform.html#filter-rows-with-filter)
 - [select()](https://r4ds.had.co.nz/transform.html#select)
 - [pivot_longer()](https://r4ds.had.co.nz/tidy-data.html#pivoting)
+- [lubridate](https://lubridate.tidyverse.org/)
+- [mutate()](https://dplyr.tidyverse.org/reference/mutate.html), 
 - [ggplot()](https://r4ds.had.co.nz/data-visualisation.html#creating-a-ggplot)
+- [vertical labels on the x-axis](https://stackoverflow.com/a/1331400/4600290)
+- [summarise_at()](https://suzan.rbind.io/2018/04/dplyr-tutorial-4/#summarise-at)
+- [group_by()](https://dplyr.tidyverse.org/reference/group_by.html)
+
+http://www.sthda.com/english/wiki/ggplot2-line-plot-quick-start-guide-r-software-and-data-visualization
+
+**Further References:** Suzan Baert's Tutorial:
+  
+- [Part 1: select columns](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
+- [Part 2: transform columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/)
+- [Part 3: filter rows](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/)
+- [Part 4: summarize and slice data](https://suzan.rbind.io/2018/04/dplyr-tutorial-4/)
 
