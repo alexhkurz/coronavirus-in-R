@@ -47,7 +47,7 @@ We are learning this from scratch, but if you want to see how far we got, you ca
 
 ## Part 3: Data Wrangling with Tidyverse
 
-( ... [in preparation](lessons/lesson_data_wrangling.Rmd) ... )
+( ... [in preparation](https://github.com/alexhkurz/coronavirus-in-R/blob/master/lessons/lesson-data-wrangling.Rmd) ... )
 
 **References:**
 
