@@ -4,9 +4,9 @@ This is both a self-learning and a homeschooling project. I know Mathematics and
 
 Ideally, these notes will turn into a first  introduction to programming for high-school students with no previous experience. But I will assume that students can install programs, download files and open them in applications.
 
-[Introduction](intro.md)
+[Introduction](intro.md).
 
-We are learning this from scratch, but if you want to see how far we got, you can see **some recent data** at my collection of [coronavirus links](https://alexhkurz.github.io/notes/covid-19.html).
+We are learning this from scratch, but if you want to see how far we got by now, you can see **some recent data** at my collection of [coronavirus links](https://alexhkurz.github.io/notes/covid-19.html).
 
 ## Part I: Extracting and Plotting Data
 
@@ -53,6 +53,10 @@ We are learning this from scratch, but if you want to see how far we got, you ca
 
 - [Tidy Data](http://www.jstatsoft.org/v59/i10/paper) by Hadley Wickham.
 
+## Part 4: Statistics 
+
+...
+
 ---
 
 **possible directions to take**:
@@ -66,13 +70,11 @@ We are learning this from scratch, but if you want to see how far we got, you ca
 
 - Classify countries according to different growth rates. At the moment it looks as if almost all countries have the same growth rate, but, also, at the moment we always ever directly compare two countries.
 
-- Data preprocessing: Extracting data from large tables, ...
-
-- Programming: Variables, Functions, How to use git, Machine Learning, ...
+- Programming: Machine Learning, ...
 
 - Maths: Metric spaces, similarlity measures, ...
 
-- Once we learned enough we could take part in [Kaggle Challenges](https://www.kaggle.com/covid19)
+- Once we learned enough we could take part in [Kaggle Challenges](https://www.kaggle.com/covid19) (this is a long way off)
 
 ---
 
