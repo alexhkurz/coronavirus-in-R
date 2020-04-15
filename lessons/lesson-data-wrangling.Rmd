@@ -40,7 +40,6 @@ deaths_pivoted <- pivot_longer(deaths,c(`1/22/20`:all_of(last_column)),names_to=
 deaths_counties <- filter(deaths, !(county=="") & !(county=="Unassigned") & !grepl("Out of",county))
 deaths_counties_pivoted <- pivot_longer(deaths_counties,c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths")
 deaths_counties_pivoted <- mutate(deaths_counties_pivoted,date=mdy(date))
-deaths_counties_pivoted <- mutate(deaths_counties_pivoted,county_state=paste(county,state))
 deaths_counties_pivoted <- drop_na(deaths_counties_pivoted)
 deaths_counties_pivoted <- mutate(deaths_counties_pivoted,deaths_per_million=as.numeric(deaths)*as.numeric(population)/1000000)
 
@@ -49,8 +48,30 @@ deaths_counties_pivoted <- mutate(deaths_counties_pivoted,deaths_per_million=as.
 deaths_counties_pivoted %>%
 subset(date > as.Date("2020-03-01")) %>%
 top_n(100) %>%
-ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=county_state)) 
+ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=county)) 
 ```
+
+The code above is a bit lengthy and contains unncessary clutter, in particular the variable names. Note how we have `deaths`, `deaths_counties`, `deaths_counties_pivoted` and always need to think about whether to reuse the same variable name or whether to choose a fresh one. This inconvenience has a deeper signficance, it indicates that we are not operating on the right level of abstraction. Cudos to the inventors of R who are always striving for providing the right level of asbtraction to the practicioner. Here it is called pipes.
+
+### Pipes
+
+The code below is really exactly the same as the one above, just much more easy to write, read and maintain. Note how, with a bit of practice, each line of code matches up exactly with one data analysis step. 
+
+```{r}
+### Filter and pivot counties, summarise deaths by date, using pipes
+
+deaths %>% 
+  filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
+  pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
+  mutate(date=mdy(date)) %>%
+  drop_na() %>%
+  mutate(deaths_per_million=as.numeric(deaths)*as.numeric(population)/1000000) %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  top_n(100) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=county)) 
+```
+
+
 
 ```{r}
 deaths_counties_pivoted %>%
@@ -119,11 +140,11 @@ ggplot(data = window) + geom_point(mapping = aes(x = state, y = deaths)) + theme
 - [lubridate](https://lubridate.tidyverse.org/)
 - [mutate()](https://dplyr.tidyverse.org/reference/mutate.html), 
 - [ggplot()](https://r4ds.had.co.nz/data-visualisation.html#creating-a-ggplot)
+- [line plots](http://www.sthda.com/english/wiki/ggplot2-line-plot-quick-start-guide-r-software-and-data-visualization)
 - [vertical labels on the x-axis](https://stackoverflow.com/a/1331400/4600290)
 - [summarise_at()](https://suzan.rbind.io/2018/04/dplyr-tutorial-4/#summarise-at)
 - [group_by()](https://dplyr.tidyverse.org/reference/group_by.html)
-
-http://www.sthda.com/english/wiki/ggplot2-line-plot-quick-start-guide-r-software-and-data-visualization
+- [select top or bottom entries](https://dplyr.tidyverse.org/reference/top_n.html)
 
 **Further References:** Suzan Baert's Tutorial:
   
