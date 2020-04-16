@@ -77,6 +77,7 @@ two_regions <- function(
   state2=""
 )
 {
+  # browser()
   # Truncate data frame at `last_day`
   if (last_day !="") {
     last_index <- grep(last_day,names(data))
@@ -112,3 +113,4 @@ two_regions <- function(
   region2_deaths <- as.numeric(region2_deaths)                      
   lines(population_ratio_region1_region2*region2_deaths, col="red")   
 }
+
