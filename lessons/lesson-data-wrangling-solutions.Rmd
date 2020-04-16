@@ -10,32 +10,24 @@ library(tidyverse)
 library(lubridate)
 ```
 
+**Exercise:** Rewrite the code under "Selecting and renaming columns" in the style of pipes.
 
 ```{r, echo=FALSE}    
 
 deaths_df <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
 
-# I dont know how to get the last column after I converted to a tibble
-# I need this later in pivot_longer()
 last_column <- colnames(deaths_df)[ncol(deaths_df)]
 
-deaths <- as_tibble(deaths_df)
-
-### Selecting
-
-deaths <- select(deaths,-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key)
-
-### Rename column names
-
-deaths <- rename(deaths,county=Admin2,state=Province_State,population=Population)
-
-### Pivoting the whole table
-
-deaths_pivoted <- pivot_longer(deaths,c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths")
+deaths_df %>%
+  select(-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key) %>%
+  rename(county=Admin2,state=Province_State,population=Population) ->
+  deaths
 ```
-### Exercise: Plot states and counties
+
+**Exercise:** Add the states to the names of the counties in the plot. Hint: Add a new column to the table using mutate() and paste(). Then color wrt to the new column.
+
 ```{r}
-### Filter and pivot counties, summarise deaths by date, using pipes
+### Filter and pivot counties, summarise the topmost deaths_per_million by date
 
 deaths %>% 
   filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
@@ -48,3 +40,62 @@ deaths %>%
   top_n(100) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=county_state)) 
 ```
+
+**Exercise:** Remove New York from the data above and plot again.
+
+```{r}
+### Filter and pivot counties, summarise the topmost deaths_per_million by date (excluding New York)
+
+deaths %>% 
+  filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
+  pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
+  mutate(date=mdy(date)) %>%
+  drop_na() %>%
+  mutate(deaths_per_million=as.numeric(deaths)*as.numeric(population)/1000000) %>%
+  filter(!county=="New York") %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  top_n(100) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=county)) 
+```
+
+**Exercise:** Remove New York from the plot and draw again
+
+```{r}
+### Summarise deaths by state and date (excluding New York)
+
+deaths %>% 
+  filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
+  pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
+  mutate(date=mdy(date)) %>%
+  drop_na() %>%
+  mutate(deaths_per_million=as.numeric(deaths)*as.numeric(population)/1000000) %>%
+  filter(!state=="New York") %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  top_n(100, deaths_per_million) %>%
+  
+  group_by(state,date) %>%
+  summarise_at(vars(deaths),sum) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths,color=state)) 
+```
+
+**Exercise:** Remove New York from the plot and draw again
+
+```{r}
+### Summarise deaths_per_million by state and date
+
+deaths %>% 
+  filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
+  pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
+  mutate(date=mdy(date)) %>%
+  drop_na() %>%
+  mutate(deaths_per_million = as.numeric(deaths)*as.numeric(population)/1000000) %>%
+  filter(!state=="New York") %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  top_n(150, deaths_per_million) %>%
+  
+  group_by(state,date) %>%
+  summarise_at(vars(deaths_per_million),sum) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=state)) 
+```
+
+
