@@ -45,9 +45,9 @@ We are learning this from scratch, but if you want to see how far we got by now,
 
 **Applying the results of Part 2:** An example report is [here](https://rpubs.com/alexhkurz/594386) and its source code is [here](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Germany-Italy.Rmd). Due to the modular way we constructed the software of this part, and also due to tools such as git, knit, and rpub it takes only a few minutes to adapt this report to a new country.
 
-## Part 3: Data Wrangling with Tidyverse
+## Part 3: Data Wrangling and Plotting with Tidyverse
 
-( ... [in preparation](https://github.com/alexhkurz/coronavirus-in-R/blob/master/lessons/lesson-data-wrangling.Rmd) ... )
+[Lesson with exercises](https://github.com/alexhkurz/coronavirus-in-R/blob/master/lessons/lesson-data-wrangling.Rmd)
 
 **Further Reading:**
 
