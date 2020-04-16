@@ -12,7 +12,7 @@ We are learning this from scratch, but if you want to see how far we got by now,
 
 **Shortcut:** Sometimes it is fastest to learn from the end. The aim in this part, is to develop a program that can be used to match the curves of the deaths of two countries. If you want to see what it does right now, load [deaths.R](src/deaths.R) into R, run it, and produce some sample graphs. If you understand how the program works and you can modify it to produce your own plots you can skim over Part I or skip it altogether.
 
-**Data analysis:**
+**Data exploration:**
 
 - [Lesson 1](lessons/lesson-01/lesson-01.md): Download coronavirus data and plot it.  [Quiz](lessons/lesson-01/quiz-01.Rmd)  
 - [Lesson 2](lessons/lesson-02/lesson-02.md): How far does Germany lag behind Italy?  
