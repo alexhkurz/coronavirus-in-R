@@ -3,6 +3,8 @@ title: "Data Wrangling"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
+Open this file in Rstudio.
+
 ## Data Wrangling
 
 ```{r}    
