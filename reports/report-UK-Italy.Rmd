@@ -1,0 +1,63 @@
+---
+title: "Coronavirus United Kingdom vs Italy"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r, echo=FALSE}
+source("../src/covid-19_global.R")
+```
+
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
+
+The program that produces the plots is available as [report-United Kingdom-Italy.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-United Kingdom-Italy.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+
+(In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+    
+```{r, echo=FALSE}    
+deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+
+cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
+```
+
+## March 10
+
+Italy enforced its first day of nationwide lockdown on the [10th of March](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Italy) 
+
+
+
+```{r, echo=FALSE}
+one_region(what="deaths",data=deaths_global,region="Italy",last_day="3/10/20",range=20)
+```
+ 
+By the 10th of March the UK had experienced its first 6 deaths.
+
+
+
+
+## 23rd of March
+  
+The UK enforced lockdown on the [23rd of March](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_United_Kingdom)
+
+
+If we compare Italy with the UK at the time when UK lockdown first started we see that there is aproximatly a 15 day lag.
+```{r, echo=FALSE}
+two_regions(what="deaths",data=cases_global,region1="United Kingdom",region2="Italy",last_day="3/23/20",range=20,lag=15)
+```
+
+
+## Latest
+
+We can see that in the latest comaprison the lag is still 15 days.
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Italy",last_day="",range=40,lag=15)
+```
+
+When the lag is zero we can see clearly that the growth in deaths for the two countries is the same but the UK is a few weeks behind Italy.
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Italy",last_day="",range=50,lag=0)
+```
