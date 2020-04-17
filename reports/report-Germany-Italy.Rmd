@@ -86,6 +86,8 @@ Again a week later the situation looks as follows:
 two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",last_day="4/2/20",lag=22)
 ```
 
+We see that the growth in Germany is now slower than in Italy at the corresponding time.
+
 ```{r, echo=FALSE}
 two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",last_day="4/2/20",lag=10)
 ```
@@ -117,9 +119,9 @@ one_region(what="deaths",data=deaths_global,range=40,region="Italy")
 
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",lag=25)
+two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Italy",lag=29)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",lag=13)
+two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",lag=17)
 ```

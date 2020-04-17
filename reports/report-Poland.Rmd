@@ -23,10 +23,10 @@ source("../src/covid-19_global.R")
 Poland is showing a slower growth than Italy and bigger lag than most other countries we looked at:
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Poland",region2="Italy",lag=34)
+two_regions(what="deaths",data=deaths_global,region1="Poland",region2="Italy",lag=38)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="Poland",region2="Italy",lag=32
+two_regions(what="cases",data=cases_global,region1="Poland",region2="Italy",lag=36
             )
 ```

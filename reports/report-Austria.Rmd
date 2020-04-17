@@ -69,9 +69,9 @@ two_regions(what="deaths",data=deaths_global,region1="Austria",region2="Italy",l
 While on March 26, the Austrian and Italian curves could still be aligned, the recent data shows that in Austria the curve flattened more quickly.
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="Austria",region2="Italy",lag=12)
+two_regions(what="cases",data=cases_global,region1="Austria",region2="Italy",lag=18)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Austria",region2="Italy",lag=24)
+two_regions(what="deaths",data=deaths_global,region1="Austria",region2="Italy",lag=29)
 ```
