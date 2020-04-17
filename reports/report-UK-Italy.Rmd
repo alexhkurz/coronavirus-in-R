@@ -22,7 +22,7 @@ cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.
 
 ## March 10
 
-Italy enforced its first day of nationwide lockdown on the [10th of March](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Italy) 
+Italy enforced its first day of nationwide lockdown on the [10th of March](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Italy).
 
 
 
@@ -37,7 +37,7 @@ By the 10th of March the UK had experienced its first 6 deaths.
 
 ## 23rd of March
   
-The UK enforced lockdown on the [23rd of March](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_United_Kingdom)
+The UK enforced lockdown on the [23rd of March](https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_the_United_Kingdom).
 
 
 If we compare Italy with the UK at the time when UK lockdown first started we see that there is aproximatly a 15 day lag.
