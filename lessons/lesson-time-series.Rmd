@@ -1,0 +1,14 @@
+---
+title: "lesson-time-series"
+---
+
+[ Plot Time Series Data Using GGPlot](http://www.sthda.com/english/articles/32-r-graphics-essentials/128-plot-time-series-data-using-ggplot/)
+
+[Plotting multiple time series on the same plot using ggplot](https://stackoverflow.com/questions/19921842/plotting-multiple-time-series-on-the-same-plot-using-ggplot)
+
+[Time series visualization with ggplot2](https://www.r-graph-gallery.com/279-plotting-time-series-with-ggplot2)
+
+[Time Series 05: Plot Time Series with ggplot2 in R](https://www.neonscience.org/dc-time-series-plot-ggplot-r)
+
+
+
