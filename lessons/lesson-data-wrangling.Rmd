@@ -55,7 +55,7 @@ deaths_counties_pivoted <- drop_na(deaths_counties_pivoted)
 
 #### Add a column "deaths_per_million"
 
-deaths_counties_pivoted <- mutate(deaths_counties_pivoted,deaths_per_million=as.numeric(deaths)*as.numeric(population)/1000000)
+deaths_counties_pivoted <- mutate(deaths_counties_pivoted,deaths_per_million=as.numeric(deaths)/as.numeric(population)*1000000)
 
 #### Select dates after March 1
 
@@ -63,7 +63,7 @@ deaths_counties_pivoted <- subset(deaths_counties_pivoted, date > as.Date("2020-
 
 #### Select counties with the most ...
 
-deaths_counties_pivoted <- top_n(deaths_counties_pivoted, 100, deaths_per_million)
+deaths_counties_pivoted <- top_n(deaths_counties_pivoted, 150, deaths_per_million)
 
 #### Plot
 
@@ -84,7 +84,7 @@ deaths %>%
   pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
   mutate(date=mdy(date)) %>%
   drop_na() %>%
-  mutate(deaths_per_million=as.numeric(deaths)*as.numeric(population)/1000000) %>%
+  mutate(deaths_per_million=as.numeric(deaths)/as.numeric(population)*1000000) %>%
   subset(date > as.Date("2020-03-01")) %>%
   top_n(100, deaths_per_million) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=county)) 
@@ -104,9 +104,9 @@ deaths %>%
   pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
   mutate(date=mdy(date)) %>%
   drop_na() %>%
-  mutate(deaths_per_million=as.numeric(deaths)*as.numeric(population)/1000000) %>%
+  mutate(deaths_per_million=as.numeric(deaths)/as.numeric(population)*1000000) %>%
   subset(date > as.Date("2020-03-01")) %>%
-  top_n(150, deaths_per_million) %>%
+  top_n(200, deaths_per_million) %>%
   
   group_by(state,date) %>%
   summarise_at(vars(deaths),sum) %>%
@@ -123,7 +123,7 @@ deaths %>%
   pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
   mutate(date=mdy(date)) %>%
   drop_na() %>%
-  mutate(deaths_per_million = as.numeric(deaths)*as.numeric(population)/1000000) %>%
+  mutate(deaths_per_million = as.numeric(deaths)/as.numeric(population)*1000000) %>%
   subset(date > as.Date("2020-03-01")) %>%
   top_n(150, deaths_per_million) %>%
   
@@ -144,7 +144,7 @@ deaths %>%
   pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
   mutate(date=mdy(date)) %>%
   drop_na() %>%
-  mutate(deaths_per_million = as.numeric(deaths)*as.numeric(population)/1000000) %>%
+  mutate(deaths_per_million = as.numeric(deaths)/as.numeric(population)*1000000) %>%
   subset(date > as.Date("2020-03-01")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color=state)) 
 ```
@@ -157,7 +157,7 @@ deaths %>%
   pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
   mutate(date=mdy(date)) %>%
   drop_na() %>%
-  mutate(deaths_per_million = as.numeric(deaths)*as.numeric(population)/1000000) %>%
+  mutate(deaths_per_million = as.numeric(deaths)/as.numeric(population)*1000000) %>%
   subset(date > as.Date("2020-03-01")) %>%
   filter(!state == "Puerto Rico") %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths,color=state)) 
@@ -186,7 +186,6 @@ deaths_us_outof_pivoted <- mutate(deaths_us_outof_pivoted,date=mdy(date))
 window <- summarise_at(group_by(window,state),vars(deaths),sum)
 ggplot(data = window) + geom_point(mapping = aes(x = state, y = deaths)) + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
-
 
 **References** I used to write this lesson:
 

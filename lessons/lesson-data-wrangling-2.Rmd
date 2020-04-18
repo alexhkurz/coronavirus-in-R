@@ -1,0 +1,117 @@
+---
+title: "Data Wrangling 2"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+Open this file in Rstudio.
+
+## Data Wrangling
+
+```{r}    
+library(tidyverse)
+library(lubridate)
+
+deaths_df <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
+
+last_column <- colnames(deaths_df)[ncol(deaths_df)]
+
+deaths_df %>%
+  as_tibble() %>%
+  select(-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key) %>%
+  rename(county=Admin2,state=Province_State,population=Population) %>%
+  filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
+  mutate(population=as.numeric(population)) ->
+deaths_tibble
+```
+
+```{r}
+deaths_tibble %>%
+  pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
+  mutate(date=mdy(date)) %>%
+  mutate(deaths_per_million = round(as.numeric(deaths)/population*1000000)) ->
+deaths
+```
+
+To compute the total population of all counties listed in the table, it is better not pivot first. To understand why compare the pivoted table `deaths` and the not-pivted table `deaths_tibble`.
+
+```{r}
+deaths_tibble %>%
+  group_by(state) %>%
+  summarise(state_pop = sum(population)) ->
+state_populations
+
+state_populations %>%
+  summarise(us_pop = sum(state_pop)) ->
+us_population
+```
+
+**Exercise:** What result do you get for `us_population` if you replace `deaths_tibble` by `deaths` in the above computation? Can you explain the difference?
+
+```{r}
+deaths %>% 
+  subset(date > as.Date("2020-03-15")) %>%
+  group_by(state,date) %>%
+  summarise_at(vars(deaths),sum) %>%
+  ungroup() %>%
+  inner_join(state_populations, by = c("state" = "state")) %>%
+  mutate(deaths_per_million = round(deaths/state_pop*1000000)) ->
+state_deaths_per_million
+
+state_deaths_per_million %>%
+  arrange(desc(deaths_per_million)) %>%
+  distinct(state) %>%
+  slice(1:10) ->
+sliced_states
+
+state_deaths_per_million %>%
+  inner_join(sliced_states, by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million,color = state))
+```
+
+A grouping doesn't change how the data looks (apart from the order in which the data is listed). It changes how it acts with the other "verbs" such as `summarise` and `filter`. Sometimes it can have surprising consequences. For example, the top_n() is affected by the group_by() quite far above in case we do not follow the group_by() by an ungroup().
+
+**Exercise:** Uncomment the `View` afer `top_n(10)` and comment out the `ungroup()` above. Observe how this changes the table resulting from `top_n(10)`.
+
+
+
+```{r} THIS DOESNT WORK ... JUST A LEFTOVER FROM THE ABOVE ...
+deaths %>% 
+  subset(date > as.Date("2020-03-15")) %>%
+  mutate(deaths_per_million = round(deaths/state_pop*1000000)) %>%
+  group_by(state,date) %>%
+  summarise_at(vars(deaths,deaths_per_milion),sum) %>%
+    View
+
+  inner_join(state_populations, by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million))
+```
+
+
+**New References** for Lesson 2:
+
+- [distinct()](https://dplyr.tidyverse.org/reference/distinct.html)
+- [inner_join()](https://dplyr.tidyverse.org/reference/join.html)
+- [arrange()](https://dplyr.tidyverse.org/reference/arrange.html)
+- [slice()](https://dplyr.tidyverse.org/reference/slice.html)
+
+**References** from Lesson 1:
+
+- [filter()](https://r4ds.had.co.nz/transform.html#filter-rows-with-filter)
+- [geom_line()](http://www.sthda.com/english/wiki/ggplot2-line-plot-quick-start-guide-r-software-and-data-visualization)
+- [ggplot()](https://r4ds.had.co.nz/data-visualisation.html#creating-a-ggplot)
+- [group_by()](https://dplyr.tidyverse.org/reference/group_by.html)
+- [mdy(),lubridate](https://lubridate.tidyverse.org/)
+- [mutate()](https://dplyr.tidyverse.org/reference/mutate.html), 
+- [pivot_longer()](https://r4ds.had.co.nz/tidy-data.html#pivoting)
+- [select()](https://r4ds.had.co.nz/transform.html#select)
+- [summarise_at()](https://suzan.rbind.io/2018/04/dplyr-tutorial-4/#summarise-at)
+- [top_n()](https://dplyr.tidyverse.org/reference/top_n.html)
+- [vertical labels on the x-axis](https://stackoverflow.com/a/1331400/4600290)
+
+**Further References:** Suzan Baert's Tutorial:
+  
+- [Part 1: select columns](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
+- [Part 2: transform columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/)
+- [Part 3: filter rows](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/)
+- [Part 4: summarize and slice data](https://suzan.rbind.io/2018/04/dplyr-tutorial-4/)
+

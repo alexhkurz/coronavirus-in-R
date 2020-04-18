@@ -1,0 +1,144 @@
+---
+title: "Coronavirus Growth in the US States"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+<font size="1"> 
+
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
+
+The program that produces the plots below is available as [report-USA-states.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-USA-states.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+
+(In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+
+</font> 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+
+# Download raw data
+
+deaths_df <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
+
+last_column <- colnames(deaths_df)[ncol(deaths_df)]
+
+# Select, rename, filter what is needed for the analysis
+
+deaths_df %>%
+  as_tibble() %>%
+  select(-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key) %>%
+  rename(county=Admin2,state=Province_State,population=Population) %>%
+  filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
+  mutate(population=as.numeric(population)) ->
+deaths_tibble
+
+deaths_tibble %>%
+  pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
+  mutate(date=mdy(date)) %>%
+  mutate(deaths_per_million = round(as.numeric(deaths)/population*1000000)) ->
+deaths
+
+# Make a table with populations of states
+
+deaths_tibble %>%
+  group_by(state) %>%
+  summarise(state_pop = sum(population)) ->
+state_populations
+
+# Make a table with US population
+
+state_populations %>%
+  summarise(us_pop = sum(state_pop)) ->
+us_population
+
+# Make a table with states and deaths_per_million
+
+deaths %>% 
+  subset(date > as.Date("2020-03-15")) %>%
+  group_by(state,date) %>%
+  summarise_at(vars(deaths),sum) %>%
+  ungroup() %>%
+  inner_join(state_populations, by = c("state" = "state")) %>%
+  mutate(deaths_per_million = round(deaths/state_pop*1000000)) ->
+state_deaths_per_million
+
+# Make a table with all states sorted by deahts_per_million
+
+state_deaths_per_million %>%
+  arrange(desc(deaths_per_million)) %>%
+  distinct(state) ->
+states_by_deaths
+```
+
+<font size="3"> 
+
+## Introduction
+
+If we plot the deaths per million of all states, it looks as if New York and maybe a few others were badly affected, but the other states would not have to worry too much. 
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+## The Question
+
+But the problem with this picture is that for the states with smaller number of deaths it is not possible to see whether they are on an exponential growth trajectory or not. In other words, are they doing genuinely better than New York, or are they doing just as badly and are only lagging behind in time?
+
+To answer this question let us zoom into the picture. 
+
+We start with the states **ranked 1-5**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,1:5), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+It approximately looks like a doubling of cases every week: exponential growth. 
+
+Now let us look at **rank 5-10**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,5:10), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+While the absolute numbers are lower, the picture is very similar. This means that the growth here is exponetial as well and without further evidence against, I expect them to follow New York in the weeks to come. 
+
+Here are the states of **rank 10-20**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,10:20), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+**Rank 20-30**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,20:30), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+**Rank 30-40**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,30:40), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+**Rank 40-50**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,40:50), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+</font>
