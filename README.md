@@ -49,7 +49,8 @@ We are learning this from scratch, but if you want to see how far we got by now,
 
 (... under construction ...)
 
-At the end of this part, we will be able to write much nicer reports about more complicated data with shorter programs and in shorter time. See [here](https://rpubs.com/alexhkurz/600882) for an example.
+At the end of this part, we will be able to write much nicer reports about more complicated data with shorter programs and in shorter time. See [here](https://rpubs.com/alexhkurz/600882) for an example. Moreover, once you have produced such a webpage, to rerun the analysis and republish it with new data takes less than a minute and only 3 clicks of the mouse ... there is a whole set of tools available which is really gratifying to work with.
+
 
 - [Lesson 1 with exercises](https://github.com/alexhkurz/coronavirus-in-R/blob/master/lessons/lesson-data-wrangling.Rmd)
 
