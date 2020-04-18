@@ -47,7 +47,13 @@ We are learning this from scratch, but if you want to see how far we got by now,
 
 ## Part 3: Data Wrangling and Plotting with Tidyverse
 
-[Lesson with exercises](https://github.com/alexhkurz/coronavirus-in-R/blob/master/lessons/lesson-data-wrangling.Rmd)
+(... under construction ...)
+
+At the end of this part, we will be able to write much nicer reports about more complicated data with shorter programs and in shorter time. See [here](https://rpubs.com/alexhkurz/600882) for an example.
+
+- [Lesson 1 with exercises](https://github.com/alexhkurz/coronavirus-in-R/blob/master/lessons/lesson-data-wrangling.Rmd)
+
+- [Lesson 2](https://github.com/alexhkurz/coronavirus-in-R/blob/master/lessons/lesson-data-wrangling-2.Rmd)
 
 **Further Reading:**
 
