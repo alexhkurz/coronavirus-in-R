@@ -1,6 +1,6 @@
 # README
 
-This is both a self-learning and a homeschooling project. I know Mathematics and Computer Science, but have never done data analysis or R before. Johanna is new to programming ... send me an [email](mailto:alexhkurz@gmail.com?subject="coronavirus-in-R") if you want to join us ...
+This is both a self-learning and a home-schooling project. I know Mathematics and Computer Science, but have never done data analysis or R before. Johanna is new to programming. (If you are home-schooling now and interested to join  send me an [email](mailto:alexhkurz@gmail.com?subject=coronavirus-in-R).)
 
 Ideally, these notes will turn into a first  introduction to programming for high-school students with no previous experience. But I will assume that students can install programs, download files and open them in applications.
 
