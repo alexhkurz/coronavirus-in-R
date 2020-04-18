@@ -10,6 +10,8 @@ We are learning this from scratch, but if you want to see how far we got by now,
 
 ## Part I: Extracting and Plotting Data
 
+(can be improved, but should be readable)
+
 **Shortcut:** Sometimes it is fastest to learn from the end. The aim in this part, is to develop a program that can be used to match the curves of the deaths of two countries. If you want to see what it does right now, load [deaths.R](src/deaths.R) into R, run it, and produce some sample graphs. If you understand how the program works and you can modify it to produce your own plots you can skim over Part I or skip it altogether.
 
 **Data exploration:**
@@ -47,7 +49,7 @@ We are learning this from scratch, but if you want to see how far we got by now,
 
 ## Part 3: Data Wrangling and Plotting with Tidyverse
 
-(... under construction ...)
+(under construction)
 
 At the end of this part, we will be able to write much nicer reports about more complicated data with shorter programs and in shorter time. See [here](https://rpubs.com/alexhkurz/600882) for an example. Moreover, once you have produced such a webpage, to rerun the analysis and republish it with new data takes less than a minute and only 3 clicks of the mouse ... there is a whole set of tools available which is really gratifying to work with.
 
