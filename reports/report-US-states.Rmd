@@ -8,7 +8,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv).
 
-The program that produces the plots below is available as [report-USA-states.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-USA-states.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+The program that produces the plots below is available as [report-US-states.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-US-states.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
 
 (In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
 
@@ -76,7 +76,7 @@ states_by_deaths
 
 ## Introduction
 
-If we plot the deaths per million of all states, it looks as if New York and maybe a few others were badly affected, but the other states would not have to worry too much. 
+If we plot the deaths per million of the US states, it looks as if New York was badly affected, but most of the other states would not have to worry too much. 
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
@@ -85,11 +85,9 @@ state_deaths_per_million %>%
 
 ## The Question
 
-But the problem with this picture is that for the states with smaller number of deaths it is not possible to see whether they are on an exponential growth trajectory or not. In other words, are they doing genuinely better than New York, or are they doing just as badly and are only lagging behind in time?
+The problem with this graph is that for the states with smaller number of deaths it is not possible to see whether they are on an exponential growth trajectory. In other words, are they doing genuinely better than New York, or are they doing just as badly and are only lagging behind in time?
 
-To answer this question let us zoom into the picture. 
-
-We start with the states **ranked 1-5**:
+To get a better grip on this question let us zoom into the picture. We start with the states **ranked 1-5**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
@@ -109,7 +107,7 @@ state_deaths_per_million %>%
 
 While the absolute numbers are lower, the picture is very similar. This means that the growth here is exponetial as well and without further evidence against, I expect them to follow New York in the weeks to come. 
 
-Here are the states of **rank 10-20**:
+Here are the states **ranked 10-20**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
