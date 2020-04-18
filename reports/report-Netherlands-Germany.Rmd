@@ -1,11 +1,11 @@
 ---
-title: "Coronavirus Netherlands vs Italy"
+title: "Coronavirus Netherlands vs Germany"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
 
-The program that produces the plots is available as [report-Netherlands.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Netherlands.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+The program that produces the plots is available as [report-Netherlands-Germany.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Netherlands-Germany.Rmd.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
 
 (In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
     
@@ -19,9 +19,13 @@ source("../src/covid-19_global.R")
 
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Netherlands",region2="Italy",lag=17)
+two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Netherlands",range=40,lag=17)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="Netherlands",region2="Italy",range=50,lag=17)
+two_regions(what="deaths",data=deaths_global,region1="Netherlands",region2="Germany",range=40)
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Netherlands",region2="Germany",range=50,lag=0)
 ```

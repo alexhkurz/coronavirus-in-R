@@ -7,10 +7,10 @@
 #   what            a string, eg "cases" or "deaths", for labelling the y-axis
 #   data            data from Johns Hopkins about cases or deaths
 #   region          eg "United States"
-#   last_day=""     last day of data, eg 4/1/20 for April 1, 2020
-#   range=29        width (number of days -1) of the window
+#   last_day = ""   last day of data, eg "4/1/20" for April 1, 2020
+#   range = 29      the plot is `range + 1` days wide
 #   first           how many days before last_day do we start?
-#   state=""        if needed this refers to the first row of the table, eg "Hubei" if region1 is "China"
+#   state = ""      if needed this refers to the first row of the table, eg "Hubei" if `region1` is "China"
 # }
 ###################################################################################################
 
@@ -47,37 +47,38 @@ one_region <- function(
 ###################################################################################################
 #
 # two_regions(){}
-#   what                    a string, eg "cases" or "deaths", for labelling the y-axis
-#   data                    data from Johns Hopkins about cases or deaths
-#   region1                 eg "United States"
-#   region1_pop=region1     eg "US"
-#   region2                 eg "Italy"
-#   region2_pop=region2     eg "Italy"
-#   range=29                width (number of days -1) of the window
-#   first=range             how many days before last_day do we start?
-#   lag=0                   how many days is region2 ahead of region1?
-#   state1=""               if needed this refers to the first row of the table, eg "Hubei" if region1 is "China"
-#   state2=""
-#   last_day=""             last day of data, eg 4/1/20 for April 1, 2020
+#   what                      a string, eg "cases" or "deaths", for labelling the y-axis
+#   data                      data from Johns Hopkins about cases or deaths
+#   region1                   for the Johns Hopkins tables, eg "United States", "Korea, South", 
+#   region1_pop = region1     for the population table, eg "US", "Korea, Rep."
+#   region2                   eg "Italy"
+#   region2_pop = region2     eg "Italy"
+#   range = 29                the plot is `range + 1` days wide
+#   first=range               how many days before `last_day` do we start?
+#   lag = 0                   how many days is `region2` ahead of region1?
+#   state1 = ""               if needed this refers to the first row of the table, eg "Hubei" if `region1` is "China"
+#   state2 = ""
+#   last_day = ""             last day of data, eg 4/1/20 for April 1, 2020
 # }
 ###################################################################################################
 
 two_regions <- function(
-  what="",
+  what = "",
   data,
   region1,
-  region1_pop=region1,  
+  region1_pop = region1,  
   region2,
-  region2_pop=region2,  
-  last_day="",
-  range=29,
+  region2_pop = region2,  
+  last_day = "",
+  range = 29,
   first=range,
-  lag=0,
-  state1="",
-  state2=""
+  lag = 0,
+  state1 = "",
+  state2 = ""
 )
 {
-  # browser()
+  # browser() # Uncomment this line for debugging
+  
   # Truncate data frame at `last_day`
   if (last_day !="") {
     last_index <- grep(last_day,names(data))
