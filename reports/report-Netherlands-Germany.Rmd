@@ -4,7 +4,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 <font size=1>
-We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv). The program that produces the plots is available as [report-Netherlands-Germany.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Netherlands-Germany.Rmd.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details. (In Firefox, the links above may raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv). The program that produces the plots is available as [report-Netherlands-Germany.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Netherlands-Germany.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details. (In Firefox, the links above may raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
 </font>
 
 ```{r, echo=FALSE}    
@@ -23,13 +23,7 @@ As of today the plots of the Netherlands and Germany look as follows:
 two_regions(what="deaths",data=deaths_global,region1="Netherlands",region2="Germany",range=40)
 ```
 
-Another way to visualise the difference between the two countries is to ask the following question. How many days ago did the Netherlands have as many cases as Germany has today (corrected for the different population sizes)? To find this out, we simply move the Dutch curve to the right until the top right corners match up:
-
-```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Germany",region2="Netherlands",range=40,lag=18)
-```
-
-This shows us that at the moment where both countries had (relative to their population sizes) the same number of deaths, Germany was already in linear growth while the Netherlands was still in the exponential phase.
+It looks like both countries are currently on an approximately linear trajectory. Nevertheless there are more new deaths per day (relative to the total population) in the Netherlands than in Germany.
 
 It is also interesting to zoom back to the time when most European countries decided to follow Italy and implement lockdown measures:
 
@@ -37,9 +31,9 @@ It is also interesting to zoom back to the time when most European countries dec
 two_regions(what="deaths",data=deaths_global,region2="Netherlands",region1="Germany",last_day="3/21/20",range=30,lag=6)
 ```
 
-The data shows that on March 21, Germany was approximately a week behind the Netherlands with both countries being on an exponential trajectory. As we have seen above, Germany was able to get out of the exponential growth. It would be interesting to correlate this with the corresponding policy measures.
+The data shows that on March 21, Germany was approximately a week behind the Netherlands with both countries being on an exponential trajectory. It would be interesting to understand how from this similar starting point the quite different developments shown in the first graph developed.
 
-Finally, it is of interest to note that while the number of deaths develops differently in both countries, the number of cases align almost perfectly. My guess is that this is due to the fact that Germany is testing much more as the Netherlands. Corrected by population, Germany is testing [almost 3x](https://www.statista.com/statistics/1109066/coronavirus-testing-in-europe-by-country/) as many people than the Netherlands.
+Finally, it is of interest to note that while the number of deaths develops differently in both countries, the number of cases align almost perfectly. My guess is that this discrepancy is due to the fact that Germany is testing much more than the Netherlands. Corrected by population, Germany is testing [almost 3x](https://www.statista.com/statistics/1109066/coronavirus-testing-in-europe-by-country/) as many people as the Netherlands.
 
 
 ```{r, echo=FALSE}
