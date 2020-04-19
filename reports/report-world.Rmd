@@ -1,0 +1,155 @@
+---
+title: "Coronavirus Deaths in the World"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+<font size=1>
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv). The program that produces the plots is available as [report-world.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-world.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details. (In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+</font>
+
+<font size=3>
+We list the countries with the most coronavirus deaths per million inhabitants, excluding China. While it would be interesting to include China, it also would make sense to exclude the many city states on the list. On the other hand there are a number of countries missing from the data. 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}    
+library(tidyverse)
+library(lubridate)
+
+# Loading and cleaning population data
+
+read.csv(url("https://raw.githubusercontent.com/datasets/population/master/data/population.csv")) %>%
+  as_tibble() %>%
+  filter(Year == "2018") %>%
+  select(-`Country.Code`,-`Year`) %>%
+  rename(country = `Country.Name`, population = `Value`) %>%
+  mutate(country = as.character(country)) %>%
+  mutate(population = as.numeric(population)) %>%
+  mutate(country = if_else(country=="United States", "US",country)) %>%
+  mutate(country = if_else(country=="Korea, Rep.", "South Korea",country)) ->
+populations
+
+# Loading and cleaning deaths data. Making sure that all tables have the same country names.
+
+read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"),check.names = FALSE) %>%
+  as_tibble() %>%
+  select(-Lat,-Long) %>%
+  rename(state=`Province/State`,country = `Country/Region`) %>%
+  filter(state=="") %>%
+  mutate(country = as.character(country)) %>%
+  mutate(country = if_else(country=="Korea, South", "South Korea",country)) %>%
+  mutate(country = if_else(country=="Czechia", "Czech Republic",country)) %>%
+  inner_join(populations, c=("country" = "country")) %>%
+  select(population,everything()) %>%
+  select(country,everything()) %>%
+  select(-state) ->
+deaths_tibble
+
+deaths_tibble %>%
+  pivot_longer(c(`1/22/20`:ncol(.)),names_to="date",values_to="deaths") %>%
+  mutate(date=mdy(date)) %>%
+  mutate(deaths_per_million = round(deaths/population*1000000)) ->
+deaths
+
+# Loading and cleaning cases data. Making sure that all tables have the same country names.
+
+read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")) %>%
+  as_tibble() %>%
+  select(-Lat,-Long) %>%
+  rename(state=`Province/State`,country = `Country/Region`) %>%
+  filter(state=="") %>%
+  mutate(country = as.character(country)) %>%
+  mutate(country = if_else(country=="Korea, South", "South Korea",country)) %>%
+  mutate(country = if_else(country=="Czechia", "Czech Republic",country)) %>%
+  inner_join(populations, c=("country" = "country")) %>%
+  select(population,everything()) %>%
+  select(country,everything()) %>%
+  select(-state) ->
+cases_tibble
+
+cases_tibble %>%
+  pivot_longer(c(`1/22/20`:ncol(.)),names_to="date",values_to="cases") %>%
+  mutate(date=mdy(date)) %>%
+  mutate(cases_per_million = round(cases/population*1000000)) ->
+cases
+```
+
+```{r, echo=FALSE}
+deaths %>%
+  arrange(desc(deaths_per_million)) %>%
+  distinct(country) ->
+countries_by_deaths
+```
+
+#### Rank 1-5
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,1:5), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+#### Rank 5-10
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,6:10), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+#### Rank 11-15
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,11:15), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+#### Rank 21-25
+
+  
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,21:25), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+#### Rank 26-30
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,26:30), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+#### Rank 31-50
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,31:50), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+#### Rank 51-100
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,51:100), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+#### Rank 101-158
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,101:158), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+</font>

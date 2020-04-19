@@ -13,8 +13,6 @@ library(lubridate)
 
 deaths_df <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
 
-last_column <- colnames(deaths_df)[ncol(deaths_df)]
-
 deaths_df %>%
   as_tibble() %>%
   select(-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key) %>%
@@ -26,7 +24,7 @@ deaths_tibble
 
 ```{r}
 deaths_tibble %>%
-  pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
+  pivot_longer(c(`1/22/20`:ncol(.)),names_to="date",values_to="deaths") %>%
   mutate(date=mdy(date)) %>%
   mutate(deaths_per_million = round(as.numeric(deaths)/population*1000000)) ->
 deaths
@@ -96,12 +94,14 @@ deaths %>%
 
 **References** from Lesson 1:
 
+- [%>%](https://magrittr.tidyverse.org/)
 - [filter()](https://r4ds.had.co.nz/transform.html#filter-rows-with-filter)
 - [geom_line()](http://www.sthda.com/english/wiki/ggplot2-line-plot-quick-start-guide-r-software-and-data-visualization)
 - [ggplot()](https://r4ds.had.co.nz/data-visualisation.html#creating-a-ggplot)
 - [group_by()](https://dplyr.tidyverse.org/reference/group_by.html)
 - [mdy(),lubridate](https://lubridate.tidyverse.org/)
 - [mutate()](https://dplyr.tidyverse.org/reference/mutate.html), 
+- [ncol(.)](https://magrittr.tidyverse.org/)
 - [pivot_longer()](https://r4ds.had.co.nz/tidy-data.html#pivoting)
 - [select()](https://r4ds.had.co.nz/transform.html#select)
 - [summarise_at()](https://suzan.rbind.io/2018/04/dplyr-tutorial-4/#summarise-at)

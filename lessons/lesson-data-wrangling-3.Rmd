@@ -1,0 +1,119 @@
+---
+title: "Data Wrangling 3"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+Open this file in Rstudio.
+
+## Data Wrangling
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}    
+library(tidyverse)
+library(lubridate)
+
+# Loading and cleaning population data
+
+read.csv(url("https://raw.githubusercontent.com/datasets/population/master/data/population.csv")) %>%
+  as_tibble() %>%
+  filter(Year == "2018") %>%
+  select(-`Country.Code`,-`Year`) %>%
+  rename(country = `Country.Name`, population = `Value`) %>%
+  mutate(country = as.character(country)) %>%
+  mutate(population = as.numeric(population)) %>%
+  mutate(country = if_else(country=="United States", "US",country)) %>%
+  mutate(country = if_else(country=="Korea, Rep.", "South Korea",country)) ->
+populations
+
+# Loading and cleaning deaths data. Making sure that all tables have the same country names.
+
+read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"),check.names = FALSE) %>%
+  as_tibble() %>%
+  select(-Lat,-Long) %>%
+  rename(state=`Province/State`,country = `Country/Region`) %>%
+  filter(state=="") %>%
+  mutate(country = as.character(country)) %>%
+  mutate(country = if_else(country=="Korea, South", "South Korea",country)) %>%
+  mutate(country = if_else(country=="Czechia", "Czech Republic",country)) %>%
+  inner_join(populations, c=("country" = "country")) %>%
+  select(population,everything()) %>%
+  select(country,everything()) %>%
+  select(-state) ->
+deaths_tibble
+
+deaths_tibble %>%
+  pivot_longer(c(`1/22/20`:ncol(.)),names_to="date",values_to="deaths") %>%
+  mutate(date=mdy(date)) %>%
+  mutate(deaths_per_million = round(deaths/population*1000000)) ->
+deaths
+
+# Loading and cleaning cases data. Making sure that all tables have the same country names.
+
+read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")) %>%
+  as_tibble() %>%
+  select(-Lat,-Long) %>%
+  rename(state=`Province/State`,country = `Country/Region`) %>%
+  filter(state=="") %>%
+  mutate(country = as.character(country)) %>%
+  mutate(country = if_else(country=="Korea, South", "South Korea",country)) %>%
+  mutate(country = if_else(country=="Czechia", "Czech Republic",country)) %>%
+  inner_join(populations, c=("country" = "country")) %>%
+  select(population,everything()) %>%
+  select(country,everything()) %>%
+  select(-state) ->
+cases_tibble
+
+cases_tibble %>%
+  pivot_longer(c(`1/22/20`:ncol(.)),names_to="date",values_to="cases") %>%
+  mutate(date=mdy(date)) %>%
+  mutate(cases_per_million = round(cases/population*1000000)) ->
+cases
+```
+
+```{r}
+deaths %>%
+  arrange(desc(deaths_per_million)) %>%
+  distinct(country) ->
+countries_by_deaths
+```
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,1:5), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,6:10), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,11:15), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+```{r}
+deaths %>%
+  filter(country=="Iceland")
+  View
+```
+  
+  
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,21:25), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
+
+```{r, echo=FALSE}
+deaths %>%
+  subset(date > as.Date("2020-03-01")) %>%
+  inner_join(slice(countries_by_deaths,25:30), by = c("country" = "country")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
+```
