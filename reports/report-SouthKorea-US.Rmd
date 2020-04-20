@@ -29,12 +29,16 @@ California on 19/March
 
 
 ```{r, echo=FALSE}
-one_region(what="deaths",data=deaths_global,region="US",last_day="3/22/20",range=20)
+one_region(what="deaths",data=deaths_global,region="US",last_day="",range=35)
 ```
  
+```{r, echo=FALSE}
+one_region(what="deaths",data=deaths_global,region="Korea, South",last_day="",range=65)
+```
+
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=cases_global,region1="Korea, South",region2="US",last_day="3/22/20",range=20,lag=15)
+two_regions(what="deaths",data=cases_global,region1="Korea, South",region2="US",last_day="",range=65,lag=0)
 ```
 
 
