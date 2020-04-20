@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/601606/36a0b3ecf5174494ae664cfb1a2f9e29
+bundleId: https://api.rpubs.com/api/v1/document/601606/36a0b3ecf5174494ae664cfb1a2f9e29
+url: http://rpubs.com/alexhkurz/601606
+when: 1587336205.15924

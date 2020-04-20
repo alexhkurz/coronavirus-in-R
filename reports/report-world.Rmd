@@ -73,17 +73,29 @@ cases
 ```
 
 ```{r, echo=FALSE}
+
+# Select date range
+
+deaths %>%
+  subset(date > as.Date("2020-03-15")) ->
+deaths
+```
+
+```{r, echo=FALSE}
+
+# Order countries by highest number of deaths
+
 deaths %>%
   arrange(desc(deaths_per_million)) %>%
   distinct(country) ->
 countries_by_deaths
 ```
 
+
 #### Rank 1-5
 
 ```{r, echo=FALSE}
 deaths %>%
-  subset(date > as.Date("2020-03-01")) %>%
   inner_join(slice(countries_by_deaths,1:5), by = c("country" = "country")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
 ```
@@ -92,7 +104,6 @@ deaths %>%
 
 ```{r, echo=FALSE}
 deaths %>%
-  subset(date > as.Date("2020-03-01")) %>%
   inner_join(slice(countries_by_deaths,6:10), by = c("country" = "country")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
 ```
@@ -101,7 +112,6 @@ deaths %>%
 
 ```{r, echo=FALSE}
 deaths %>%
-  subset(date > as.Date("2020-03-01")) %>%
   inner_join(slice(countries_by_deaths,11:15), by = c("country" = "country")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
 ```
@@ -111,7 +121,6 @@ deaths %>%
   
 ```{r, echo=FALSE}
 deaths %>%
-  subset(date > as.Date("2020-03-01")) %>%
   inner_join(slice(countries_by_deaths,21:25), by = c("country" = "country")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
 ```
@@ -120,7 +129,6 @@ deaths %>%
 
 ```{r, echo=FALSE}
 deaths %>%
-  subset(date > as.Date("2020-03-01")) %>%
   inner_join(slice(countries_by_deaths,26:30), by = c("country" = "country")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
 ```
@@ -129,7 +137,6 @@ deaths %>%
 
 ```{r, echo=FALSE}
 deaths %>%
-  subset(date > as.Date("2020-03-01")) %>%
   inner_join(slice(countries_by_deaths,31:50), by = c("country" = "country")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
 ```
@@ -138,7 +145,6 @@ deaths %>%
 
 ```{r, echo=FALSE}
 deaths %>%
-  subset(date > as.Date("2020-03-01")) %>%
   inner_join(slice(countries_by_deaths,51:100), by = c("country" = "country")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
 ```
@@ -147,7 +153,6 @@ deaths %>%
 
 ```{r, echo=FALSE}
 deaths %>%
-  subset(date > as.Date("2020-03-01")) %>%
   inner_join(slice(countries_by_deaths,101:158), by = c("country" = "country")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = country))
 ```
