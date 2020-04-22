@@ -1,0 +1,80 @@
+---
+title: "Coronavirus United Kingdom vs Germany"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r, echo=FALSE}
+source("../src/covid-19_global.R")
+```
+
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
+
+The program that produces the plots is available as [report-United Kingdom-Germany.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-United Kingdom-Germany.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+
+(In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+    
+```{r, echo=FALSE}    
+deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+
+cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="United Kingdom",region2="Germany",last_day="3/12/20",range=12,lag=13)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Germany",last_day="3/12/20",range=12,lag=18)
+```
+
+
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="United Kingdom",region2="Germany",last_day="3/19/20",range=18,lag=9) 
+```
+
+
+
+
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Germany",last_day="3/26/20",lag=16)
+```
+
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Germany",last_day="4/2/20",lag=0)
+```
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="United Kingdom",region2="Germany",last_day="",lag=7)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="United Kingdom",region2="Germany",last_day="4/2/20",lag=7)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="United Kingdom",region2="Germany",last_day="",lag=7, range=42)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region2="United Kingdom",region1="Germany",lag=16, range=40)
+```
+
+
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="Germany",region2="Italy",lag=18,range=42)
+```
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Italy",last_day="",range=40,lag=15)
+```
