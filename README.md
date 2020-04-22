@@ -8,7 +8,7 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 We are learning this from scratch, but if you want to see how far we got by now, you can see **some recent data** at my collection of [coronavirus links](https://alexhkurz.github.io/notes/covid-19.html).
 
-## Part I: Extracting and Plotting Data
+## Part 1: Extracting and Plotting Data
 
 (can be improved, but should be readable)
 
@@ -39,7 +39,7 @@ We are learning this from scratch, but if you want to see how far we got by now,
 - Lesson: How to quickly write and publish reports (needs to be written)
 
 **Programming skills**: (unfinished drafts only)
-- []() How to write reports using functions, Rmarkdown and Knit.
+- []() How to write reports using Rmarkdown and Knit.
 - Functions in R, Debugging Functions, ... 
 - [Managing projects with Git](lessons/lesson-git.md). How to use version control.
 - https://stackoverflow.com/questions/12235677/bold-boxplot-labels-in-r
@@ -47,7 +47,16 @@ We are learning this from scratch, but if you want to see how far we got by now,
 
 **Applying the results of Part 2:** An example report is [here](https://rpubs.com/alexhkurz/594386) and its source code is [here](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Germany-Italy.Rmd). Due to the modular way we constructed the software of this part, and also due to tools such as git, knit, and rpub it takes only a few minutes to adapt this report to a new country.
 
-## Part 3: Data Wrangling and Plotting with Tidyverse
+## Part 3: Functions
+
+(under construction)
+
+Functions play an important role in all of programming. But while you will use functions in R all the time, as opposed to other programming languages, you can go a long way without ever writing your own functions. So this part is optional. If you want to use the opportunity to learn more about programming in general, this chapter is for you. The R debugger is great to understand in detail how functions work. On the other hand, if you want to keep on concentrating on the data part, go to the next part. 
+
+- []() How to write reports using functions ... 
+- Functions in R, Debugging Functions, ... 
+
+## Part 4: Data Wrangling and Plotting with Tidyverse
 
 (under construction)
 
@@ -62,7 +71,7 @@ At the end of this part, we will be able to write much nicer reports about more 
 
 - [Tidy Data](http://www.jstatsoft.org/v59/i10/paper) by Hadley Wickham.
 
-## Part 4: Statistics 
+## Part 5: Statistics 
 
 ...
 

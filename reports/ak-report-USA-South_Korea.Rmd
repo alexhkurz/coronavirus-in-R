@@ -1,0 +1,73 @@
+---
+title: "Coronavirus "
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r, echo=FALSE}
+source("../src/covid-19_global.R")
+```
+
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv).
+
+The program that produces the plots is available as [report-US-South_Korea.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-US-South_Korea.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details.
+
+(In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+    
+```{r, echo=FALSE}    
+deaths_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"))
+
+cases_global <- read.csv(check.names = FALSE,url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"))
+```
+
+
+## Overview of coronavirus cases and deaths in South Korea
+
+```{r, echo=FALSE}
+one_region(what="cases",data=cases_global,region="Korea, South",range=60)
+```
+
+```{r, echo=FALSE}
+one_region(what="deaths",data=deaths_global,region="Korea, South",range=78)
+```
+
+```{r, echo=FALSE}
+one_region(what="deaths",data=deaths_global,region="US",range=78)
+```
+
+We see that the onset of the epidemic happened later in the US than in South Korea. To get a better estimate of the lag let us look at what happened in March in the US and overlay the two curves:
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Korea, South",region2_pop="Korea, Rep.",range=29,lag=21,last_day="3/30/20") 
+```
+
+This shows that around March 20
+
+## Comparison with the US
+
+The comparison of case numbers suggests that South Korea was ahead of the US a month ago. But, crucially, South Korea was on a linear trajectory.
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Korea, South",region2_pop="Korea, Rep.",range=60) 
+```
+
+On the other hand, a month ago the US was already on an expoenential trajectory, as can be seen by zooming into the data:
+
+this picture would be bettr without South Korea ... apdapt one_region ...
+
+
+```{r, echo=FALSE}
+two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Korea, South",region2_pop="Korea, Rep.",range=60,last_day="4/10/20") 
+```
+
+This graph is interesting for a number of reasons.
+
+We see that end of Febuary and beginning of March, the number of cases in South Korea was growing exponentially. Let us zoom in to see this better:
+
+
+```{r, echo=FALSE}
+one_region(what="cases",data=cases_global,region="Korea, South",range=58, last_day="3/30/20") 
+```
+
+We see that South Korea was able to detect the spread of the coronavirus early. This raises the question whether earlier and comprehensive testing in the US could have helped to prevent tens of thousands of deaths
+
+
