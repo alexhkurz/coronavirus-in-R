@@ -71,7 +71,13 @@ At the end of this part, we will be able to write much nicer reports about more 
 
 - [Tidy Data](http://www.jstatsoft.org/v59/i10/paper) by Hadley Wickham.
 
-## Part 5: Statistics 
+
+## Part 5: Maths -- Exponential Growth
+
+(under construction)
+
+[Maths 1](lessons/math-01.md)  
+[Maths 2](lessons/math-02.md)
 
 ...
 
