@@ -76,8 +76,8 @@ At the end of this part, we will be able to write much nicer reports about more 
 
 (under construction)
 
-[Maths 1](lessons/math-01.md)  
-[Maths 2](lessons/math-02.md)
+[Maths 1](lessons/maths-01.md)  
+[Maths 2](lessons/maths-02.md)
 
 ...
 
