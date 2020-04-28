@@ -76,10 +76,10 @@ At the end of this part, we will be able to write much nicer reports about more 
 
 (under construction)
 
-[Maths 1](lessons/maths-01.md)    
-[Maths 2](https://hackmd.io/OiwWCSfzQTmPgUBK_MMgnA)  
-[Maths 3]() to be added tomorrow  
-[Maths 4]() to be added later  
+[Maths 1](lessons/maths-01.md): How does exponential growth look in data  
+[Maths 2](https://hackmd.io/OiwWCSfzQTmPgUBK_MMgnA): Doubling at each step in time  
+[Maths 3](https://hackmd.io/RSPGDf-GRPaBGyj3jHzkmQ): A proof  
+[Maths 4]() to be added 
 
 ...
 
