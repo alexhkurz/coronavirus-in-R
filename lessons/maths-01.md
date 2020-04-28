@@ -3,12 +3,12 @@
 There are (at least) three ways of measuring exponential growth.
 
 - The transmission rate R counts how many people every person infects
-  - If R>1 then we exponential growth.
+  - If R>1 then we have exponential growth.
   - If R<1 then we have exponential decay.
 
 - The daily number of new cases:
   - If we have every day, say,  50 new cases (as currently in Orange County) then growth is linear.
-  - If we have every day, say, 50% new cases then growth is exponential.
+  - If we have every day, say, 50% new cases then growth is exponential. By 50% new cases I mean that *new cases today*/*total cases yesterday* = 0.5.
 
 - The doubling time (DT):
   - If the number of cases doubles every three days (as is typical for the unmitigated coronavirus), we have exponential growth.
