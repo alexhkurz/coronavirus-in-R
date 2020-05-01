@@ -51,9 +51,9 @@ two_regions(what="deaths",data=deaths_global,region1="Sweden",region2="Norway",l
 ## latest
 
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="Sweden",region2="Norway",lag=10)
+two_regions(what="cases",data=cases_global,region1="Sweden",region2="Norway",lag=10,range=40)
 ```
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="Sweden",region2="Norway",lag=0)
+two_regions(what="deaths",data=deaths_global,region1="Sweden",region2="Norway",lag=0, range=40)
 ```

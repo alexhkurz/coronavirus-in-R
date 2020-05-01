@@ -45,18 +45,27 @@ two_regions(what="deaths",data=cases_global,region1="United Kingdom",region2="It
 ```
 
 
-## Latest
+## April 19
 
 We can see that in the latest comaprison the lag is still 15 days.
 
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Italy",last_day="",range=40,lag=15)
+two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Italy",last_day="4/19/20",range=40,lag=15)
 ```
 
 When the lag is zero we can see clearly that the growth in deaths for the two countries is the same but the UK is a few weeks behind Italy.
 
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Italy",last_day="",range=50,lag=0)
+two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Italy",last_day="4/19/20",range=50,lag=0)
+```
+
+
+## latest
+
+UK growth now faster than it was in Italy. To match up the two curves 10 days later, one has to reduce the lag by a week.
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region1="United Kingdom",region2="Italy",range=40,lag=8)
 ```

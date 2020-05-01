@@ -78,8 +78,9 @@ At the end of this part, we will be able to write much nicer reports about more 
 
 [Maths 1](lessons/maths-01.md): How does exponential growth look in data  
 [Maths 2](https://hackmd.io/OiwWCSfzQTmPgUBK_MMgnA): Doubling at each step in time  
-[Maths 3](https://hackmd.io/RSPGDf-GRPaBGyj3jHzkmQ): A proof  
-[Maths 4]() to be added 
+[Maths 3](https://hackmd.io/RSPGDf-GRPaBGyj3jHzkmQ): A proof 
+[Maths 4](lessons/maths-04.md): An introduction to SIR models  
+[Maths 5](): to be added ...   
 
 ...
 
