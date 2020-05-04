@@ -8,7 +8,11 @@ Ideally, these notes will turn into a first  introduction to programming for hig
 
 We are learning this from scratch, but if you want to see how far we got by now, you can see **some recent data** at my collection of [coronavirus links](https://alexhkurz.github.io/notes/covid-19.html).
 
-## Part 1: Extracting and Plotting Data
+Being more a mathematician than a data scientist this course is currently more on questions like how to define the exponential function, what is the number line, how to compute square roots without using a calculator,etc. If you are interestend in this you can jump directly to Part 2 without doing Part 1 first.
+
+## Part 1: Data Exploration in R
+
+### Chapter 1: Extracting and Plotting Data
 
 (can be improved, but should be readable)
 
@@ -28,7 +32,7 @@ We are learning this from scratch, but if you want to see how far we got by now,
 **Applying the results of Part 1:** Examples of [reports](reports/reports.md) one can quickly generated with the program [deaths.R](src/deaths.R). While this works well, if one is interested in comparing just two countries at a specific point in time, this method does not scale to comparing many countries at many points in time for two reasons: First, we should not be forced to copy code around in order to adapt the same algorithm to different inputs. This problem will be solved by functions. Second, we should not be forced to save each single plot we generate at a specific place, then upload it to a webserver and link it by hand. One solution to this problem is to use Knit ... work in progress ...
 
 
-## Part 2: Reports
+### Chapter 2: Reports
 
 (under construction)
 
@@ -47,7 +51,7 @@ We are learning this from scratch, but if you want to see how far we got by now,
 
 **Applying the results of Part 2:** An example report is [here](https://rpubs.com/alexhkurz/594386) and its source code is [here](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Germany-Italy.Rmd). Due to the modular way we constructed the software of this part, and also due to tools such as git, knit, and rpub it takes only a few minutes to adapt this report to a new country.
 
-## Part 3: Functions
+### Chapter 3: Functions
 
 (under construction)
 
@@ -56,7 +60,7 @@ Functions play an important role in all of programming. But while you will use f
 - []() How to write reports using functions ... 
 - Functions in R, Debugging Functions, ... 
 
-## Part 4: Data Wrangling and Plotting with Tidyverse
+## Chapter 4: Data Wrangling and Plotting with Tidyverse
 
 (under construction)
 
@@ -72,15 +76,28 @@ At the end of this part, we will be able to write much nicer reports about more 
 - [Tidy Data](http://www.jstatsoft.org/v59/i10/paper) by Hadley Wickham.
 
 
-## Part 5: Maths -- Exponential Growth
+## Part 2: Mathematics
 
-(under construction)
+### Chapter 1: Introduction
 
-[Maths 1](lessons/maths-01.md): How does exponential growth look in data  
-[Maths 2](https://hackmd.io/OiwWCSfzQTmPgUBK_MMgnA): Doubling at each step in time  
-[Maths 3](https://hackmd.io/RSPGDf-GRPaBGyj3jHzkmQ): A proof 
-[Maths 4](lessons/maths-04.md): An introduction to SIR models  
-[Maths 5](): to be added ...   
+[How does exponential growth look in data](lessons/maths-01.md): Interpreting doronavirus data
+[Exponential on discrete time](https://hackmd.io/OiwWCSfzQTmPgUBK_MMgnA): Doubling every unit of time 
+[The number of nodes in a binary tree](https://hackmd.io/RSPGDf-GRPaBGyj3jHzkmQ): A formula and a proof 
+[SIR models](lessons/maths-04.md): Introduction to the modelling of epidemics 
+[Exponential and logistic growth](https://www.youtube.com/watch?v=Kas0tIxDvrg)    
+
+### Chapter 2: What is the number line?
+
+(These are lessons we have done but I am behind with the write-ups)
+
+[How can we extend the discrete exponential to the number line?](https://hackmd.io/9_pqgfjESP-IzQdSZuu4Xg) Introduction
+[By the way, what are numbers in the first place?](https://hackmd.io/bKz_ly_6S5CY6_j_j3OHqw) Mostly some useful notation
+[Square root of two is not a fraction](https://hackmd.io/ETSe5OjEQve8cXpq9lVNHA) A nice little proof
+[How to compute square roots without a calculator](https://hackmd.io/Z7RPmhptSwK8Jt82lLF8pQ) A simple but important algorithm
+[What is the number line after all?](https://hackmd.io/2Uno7NcsR4S3tTLwx8GA5w)
+...
+
+### Chapter 3: The exponential function
 
 ...
 
