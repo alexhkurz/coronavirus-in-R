@@ -80,21 +80,21 @@ At the end of this part, we will be able to write much nicer reports about more 
 
 ### Chapter 1: Introduction
 
-[How does exponential growth look in data](lessons/maths-01.md): Interpreting doronavirus data
-[Exponential on discrete time](https://hackmd.io/OiwWCSfzQTmPgUBK_MMgnA): Doubling every unit of time 
-[The number of nodes in a binary tree](https://hackmd.io/RSPGDf-GRPaBGyj3jHzkmQ): A formula and a proof 
-[SIR models](lessons/maths-04.md): Introduction to the modelling of epidemics 
+[How does exponential growth look in data](lessons/maths-01.md): Interpreting doronavirus data  
+[Exponential on discrete time](https://hackmd.io/OiwWCSfzQTmPgUBK_MMgnA): Doubling every unit of time  
+[The number of nodes in a binary tree](https://hackmd.io/RSPGDf-GRPaBGyj3jHzkmQ): A formula and a proof  
+[SIR models](lessons/maths-04.md): Introduction to the modelling of epidemics  
 [Exponential and logistic growth](https://www.youtube.com/watch?v=Kas0tIxDvrg)    
 
 ### Chapter 2: What is the number line?
 
 (These are lessons we have done but I am behind with the write-ups)
 
-[How can we extend the discrete exponential to the number line?](https://hackmd.io/9_pqgfjESP-IzQdSZuu4Xg) Introduction
-[By the way, what are numbers in the first place?](https://hackmd.io/bKz_ly_6S5CY6_j_j3OHqw) Mostly some useful notation
-[Square root of two is not a fraction](https://hackmd.io/ETSe5OjEQve8cXpq9lVNHA) A nice little proof
-[How to compute square roots without a calculator](https://hackmd.io/Z7RPmhptSwK8Jt82lLF8pQ) A simple but important algorithm
-[What is the number line after all?](https://hackmd.io/2Uno7NcsR4S3tTLwx8GA5w)
+[How can we extend the discrete exponential to the number line?](https://hackmd.io/9_pqgfjESP-IzQdSZuu4Xg) Introduction  
+[By the way, what are numbers in the first place?](https://hackmd.io/bKz_ly_6S5CY6_j_j3OHqw) Mostly some useful notation  
+[Square root of two is not a fraction](https://hackmd.io/ETSe5OjEQve8cXpq9lVNHA) A nice little proof  
+[How to compute square roots without a calculator](https://hackmd.io/Z7RPmhptSwK8Jt82lLF8pQ) A simple but important algorithm  
+[What is the number line after all?](https://hackmd.io/2Uno7NcsR4S3tTLwx8GA5w)  
 ...
 
 ### Chapter 3: The exponential function
