@@ -1,0 +1,57 @@
+---
+title: "Currencies"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.zip?735d9e0e90cefceb07ab5cb73fa7055a
+
+<font size="1"> 
+
+</font> 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+
+temp <- tempfile() # create temp
+suppressMessages(download.file("https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.zip?735d9e0e90cefceb07ab5cb73fa7055a",temp))
+download <- read.csv(unz(temp, "eurofxref-hist.csv")) # unzip and read 
+unlink(temp) # remove temp
+
+download %>%
+  as_tibble() %>%
+  select(Date,USD,GBP) %>%
+  mutate(Date = as.Date(Date)) ->
+  data_euro
+
+data_euro %>%
+  mutate(EUR_USD = 1/USD) %>%
+  select(-GBP,-USD) ->
+  euro_usd
+
+data_euro %>%
+  mutate(EUR_GBP = 1/GBP) %>%
+  select(-GBP,-USD) ->
+  euro_gbp
+
+data_euro %>%
+  rename(USD_EUR = USD) %>%
+  rename(GBP_EUR = GBP) ->
+  gbp_usd_eur
+
+gbp_usd_eur %>%
+  inner_join(euro_usd, c=("Date"="Date")) %>%
+  inner_join(euro_gbp, c=("Date"="Date")) %>%
+  mutate(USD_GBP = USD_EUR * EUR_GBP) ->
+  data
+```
+
+
+```{r, echo=FALSE}
+data %>%
+  subset(Date > as.Date("2020-02-01")) %>%
+  select(Date,EUR_GBP,USD_GBP, EUR_USD) %>%
+  pivot_longer(-Date, names_to = "Currency", values_to = "value") %>%
+  ggplot(aes(x=Date, y=value, colour=Currency)) + geom_line() 
+```

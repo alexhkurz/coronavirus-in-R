@@ -71,12 +71,14 @@ At the end of this part, we will be able to write much nicer reports about more 
 
 - [Lesson 2](https://github.com/alexhkurz/coronavirus-in-R/blob/master/lessons/lesson-data-wrangling-2.Rmd)
 
+- [Exercises](exercises-I.4.md)
+
 **Further Reading:**
 
 - [Tidy Data](http://www.jstatsoft.org/v59/i10/paper) by Hadley Wickham.
 
 
-## Part 2: Mathematics
+## Part 2: Mathematics (Pre-Calculus)
 
 ### Chapter 1: Introduction
 
@@ -97,9 +99,14 @@ At the end of this part, we will be able to write much nicer reports about more 
 [What is the number line after all?](https://hackmd.io/2Uno7NcsR4S3tTLwx8GA5w)  
 ...
 
-### Chapter 3: The exponential function
+Further Reading:
 
-...
+[Understanding Analysis](https://link.springer.com/content/pdf/10.1007%2F978-1-4939-2712-8.pdf) by Stephen Abbott. Chapter 1 contains a more rigorous but still introductory definition of the real numbers.
+
+### Chapter 3: What is the exponential function?
+
+[Exponential function on the real numbers]() tba
+[What is e?]() tba
 
 ---
 

@@ -20,25 +20,29 @@ library(lubridate)
 
 # Download raw data
 
-deaths_df <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
+# States by population
 
-last_column <- colnames(deaths_df)[ncol(deaths_df)]
-
-# Select, rename, filter what is needed for the analysis
-
-deaths_df %>%
+read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE) %>%
   as_tibble() %>%
   select(-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key) %>%
   rename(county=Admin2,state=Province_State,population=Population) %>%
   filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
-  mutate(population=as.numeric(population)) ->
-deaths_tibble
+  mutate(population=as.numeric(population)) %>%
+  group_by(state) %>%
+  summarise(state_pop = sum(population)) ->
+state_populations
 
-deaths_tibble %>%
-  pivot_longer(c(`1/22/20`:all_of(last_column)),names_to="date",values_to="deaths") %>%
+# States by daily new cases
+
+read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"),check.names = FALSE) %>%
+  as_tibble() %>%
+  select(-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key) %>%
+  rename(county=Admin2,state=Province_State) %>%
+  filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
+  pivot_longer(c(`1/22/20`:ncol(.)),names_to="date",values_to="deaths") %>%
   mutate(date=mdy(date)) %>%
   mutate(deaths_per_million = round(as.numeric(deaths)/population*1000000)) ->
-deaths
+data
 
 # Make a table with populations of states
 
@@ -57,7 +61,6 @@ us_population
 
 deaths %>% 
   subset(date > as.Date("2020-03-15")) %>%
-  subset(date < as.Date("2020-04-21")) %>%
   group_by(state,date) %>%
   summarise_at(vars(deaths),sum) %>%
   ungroup() %>%
@@ -75,20 +78,17 @@ states_by_deaths
 
 <font size="3"> 
 
-## Introduction
+## May 5, 2020
 
-If we plot the deaths per million of the US states, it looks as if New York was badly affected, but most of the other states would not have to worry too much. 
+We continue to see that New York has been slowing down the growth.
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-## The Question
 
-The problem with this graph is that for the states with smaller number of deaths it is not possible to see whether they are on an exponential growth trajectory. In other words, are they doing genuinely better than New York, or are they doing just as badly and are only lagging behind in time?
-
-To get a better grip on this question let us zoom into the picture. We start with the states **ranked 1-5**:
+Let us zoom into the picture. We start with the states **ranked 1-5**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
@@ -96,47 +96,67 @@ state_deaths_per_million %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-It approximately looks like a doubling of cases every week: exponential growth. 
+It looks as if these states got closer to a linear trajectory by now. 
 
-Now let us look at **rank 5-10**:
+Now let us look at **rank 6-10**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,5:10), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,6:10), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-While the absolute numbers are lower, the picture is very similar. This means that the growth here is exponetial as well and without further evidence against, I expect them to follow New York in the weeks to come. 
 
-Here are the states **ranked 10-20**:
+Here are the states **ranked 11-15**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,10:20), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,11:15), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-**Rank 20-30**:
+
+Here are the states **ranked 16-20**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,20:30), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,16:20), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-**Rank 30-40**:
+
+**Rank 21-25**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,30:40), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,21:25), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-**Rank 40-50**:
+I find it interesting how close the states ranked 21-30 are to each other.
+
+**Rank 26-30**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,40:50), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,26:30), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+
+**Rank 31-40**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,31:40), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+**Rank 41-50**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,41:50), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 

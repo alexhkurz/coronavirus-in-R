@@ -77,7 +77,7 @@ states_by_deaths
 
 ## Introduction
 
-If we plot the deaths per million of the US states, it looks as if New York was badly affected, but most of the other states would not have to worry too much. 
+If we plot the deaths per million of all US states as of **April 20, 2020**, it looks as if New York was badly affected, but most of the other states would not have to worry too much. 
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
@@ -115,6 +115,8 @@ state_deaths_per_million %>%
   inner_join(slice(states_by_deaths,10:20), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
+
+Washington started higher but managed a slower growth than many of the others.
 
 **Rank 20-30**:
 
