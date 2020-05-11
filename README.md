@@ -10,7 +10,7 @@ We are learning this from scratch, but if you want to see how far we got by now,
 
 Being more a mathematician than a data scientist this course is currently more on questions like how to define the exponential function, what is the number line, how to compute square roots without using a calculator,etc. If you are interestend in this you can jump directly to Part 2 without doing Part 1 first.
 
-## Part 1: Data Exploration in R
+## Part I: Data Exploration in R
 
 ### Chapter 1: Extracting and Plotting Data
 
@@ -60,7 +60,7 @@ Functions play an important role in all of programming. But while you will use f
 - []() How to write reports using functions ... 
 - Functions in R, Debugging Functions, ... 
 
-## Chapter 4: Data Wrangling and Plotting with Tidyverse
+### Chapter 4: Data Wrangling and Plotting with Tidyverse
 
 (under construction)
 
@@ -78,35 +78,43 @@ At the end of this part, we will be able to write much nicer reports about more 
 - [Tidy Data](http://www.jstatsoft.org/v59/i10/paper) by Hadley Wickham.
 
 
-## Part 2: Mathematics (Pre-Calculus)
+## Part II: Mathematics (Pre-Calculus)
+
+The emphasis is on providing the background on mathematics behine Part I. Our first aim is to define the exponential function. This raises a number of questions, most interestingly, what is the numberline. There are two ways to answer this question. From a practical point of view one only needs to know the [laws of exponents]() and how to use a calculator to compute with decimal numbers. But it would be a pity to pass on the opportunity to investigate the question from a proper mathematical point of view. Moreover, this gives us an opportunity to study examples of two of the fundamental concepts of science, both going back at least to Euclid, namely algorithms and proofs. While the proofs we present here are all simple, they have left their trace in all areas of mathematics. Following Erdos, I call them *proofs from THE BOOK*.
+
+**Further Reading:** The idea of proofs from THE BOOK is explained in the preface of [Proofs from THE BOOK](https://link.springer.com/book/10.1007%2F978-3-662-57265-8), availabe for free online at the time of writing. (But note that the proofs they collected are more demanding than the ones we are doing here.) For the back story I recommend the documentary [N  is a Number](https://vimeo.com/ondemand/nisanumber) about Erdos. (This documentary is not free but I found it well worth supporting.) 
 
 ### Chapter 1: Introduction
 
-[How does exponential growth look in data](lessons/maths-01.md): Interpreting doronavirus data  
-[Exponential on discrete time](https://hackmd.io/OiwWCSfzQTmPgUBK_MMgnA): Doubling every unit of time  
-[The number of nodes in a binary tree](https://hackmd.io/RSPGDf-GRPaBGyj3jHzkmQ): A formula and a proof  
-[SIR models](lessons/maths-04.md): Introduction to the modelling of epidemics  
-[Exponential and logistic growth](https://www.youtube.com/watch?v=Kas0tIxDvrg)    
+[How does exponential growth look in data](lessons/maths-01.md): Interpreting doronavirus data.
+[The discrete exponential](https://hackmd.io/OiwWCSfzQTmPgUBK_MMgnA): Doubling every unit of time  
+[The number of nodes in a binary tree](https://hackmd.io/RSPGDf-GRPaBGyj3jHzkmQ): A formula and a proof from THE BOOK.
+[SIR models](lessons/maths-04.md): Introduction to the modelling of epidemics.
+[Exponential and logistic growth](https://www.youtube.com/watch?v=Kas0tIxDvrg).
 
 ### Chapter 2: What is the number line?
 
-(These are lessons we have done but I am behind with the write-ups)
+(These are lessons we have done but I am behind with the write-ups ... some write-ups contributed by Johanna and Jonathan)
 
-[How can we extend the discrete exponential to the number line?](https://hackmd.io/9_pqgfjESP-IzQdSZuu4Xg) Introduction  
-[By the way, what are numbers in the first place?](https://hackmd.io/bKz_ly_6S5CY6_j_j3OHqw) Mostly some useful notation  
+[How can we extend the discrete exponential to the number line?](https://hackmd.io/9_pqgfjESP-IzQdSZuu4Xg) Introduction.
+[What are numbers and what should they be?](https://hackmd.io/bKz_ly_6S5CY6_j_j3OHqw) Mostly some useful notation  
 [Square root of two is not a fraction](https://hackmd.io/ETSe5OjEQve8cXpq9lVNHA) A nice little proof  
 [How to compute square roots without a calculator](https://hackmd.io/Z7RPmhptSwK8Jt82lLF8pQ) A simple but important algorithm  
 [What is the number line after all?](https://hackmd.io/2Uno7NcsR4S3tTLwx8GA5w)  
 ...
 
-Further Reading:
+**Further Reading**: ... tbc ...
 
 [Understanding Analysis](https://link.springer.com/content/pdf/10.1007%2F978-1-4939-2712-8.pdf) by Stephen Abbott. Chapter 1 contains a more rigorous but still introductory definition of the real numbers.
 
 ### Chapter 3: What is the exponential function?
 
+... this is where we are at the moment ...
+
 [Exponential function on the real numbers]() tba
 [What is e?]() tba
+
+## Part III: ...
 
 ---
 
