@@ -96,16 +96,19 @@ The emphasis is on providing the background on mathematics behine Part I. Our fi
 
 (These are lessons we have done but I am behind with the write-ups ... some write-ups contributed by Johanna and Jonathan)
 
-[How can we extend the discrete exponential to the number line?](https://hackmd.io/9_pqgfjESP-IzQdSZuu4Xg) Introduction.
-[What are numbers and what should they be?](https://hackmd.io/bKz_ly_6S5CY6_j_j3OHqw) Mostly some useful notation  
-[Square root of two is not a fraction](https://hackmd.io/ETSe5OjEQve8cXpq9lVNHA) A nice little proof  
-[How to compute square roots without a calculator](https://hackmd.io/Z7RPmhptSwK8Jt82lLF8pQ) A simple but important algorithm  
-[What is the number line after all?](https://hackmd.io/2Uno7NcsR4S3tTLwx8GA5w)  
-...
+- [How can we extend the discrete exponential to the number line?](https://hackmd.io/9_pqgfjESP-IzQdSZuu4Xg) Introduction.
+- [What are numbers and what should they be?](https://hackmd.io/bKz_ly_6S5CY6_j_j3OHqw) Mostly some useful notation  
+- [Square root of two is not a fraction](https://hackmd.io/ETSe5OjEQve8cXpq9lVNHA) A proof from THE BOOK.  
+- [How to compute square roots without a calculator](https://hackmd.io/Z7RPmhptSwK8Jt82lLF8pQ) A simple but important algorithm.
+- [What is the number line after all?](https://hackmd.io/2Uno7NcsR4S3tTLwx8GA5w)  
+- A mathematical definition of the real numbers:
+  - [Incompleteness of the rationals]() 
+  - [Sequences of nested intervals determine at most one point]()
+  - [Completeness of the real numbers]()
+  - [Axiomatic definition of the reals]()
 
-**Further Reading**: ... tbc ...
 
-[Understanding Analysis](https://link.springer.com/content/pdf/10.1007%2F978-1-4939-2712-8.pdf) by Stephen Abbott. Chapter 1 contains a more rigorous but still introductory definition of the real numbers.
+**Further Reading**: Chapter 1 and 8 of [Understanding Analysis](https://link.springer.com/content/pdf/10.1007%2F978-1-4939-2712-8.pdf) by Stephen Abbott (freely available online at the time of writing) contain a more advanced but still fairly introductory account of what we have done above.  
 
 ### Chapter 3: What is the exponential function?
 
