@@ -103,16 +103,23 @@ The emphasis is on providing the background on mathematics behine Part I. Our fi
 - [What is the number line after all?](https://hackmd.io/2Uno7NcsR4S3tTLwx8GA5w)  
 - A mathematical definition of the real numbers:
   - [Incompleteness of the rationals](https://hackmd.io/@alexhkurz/HJC5yjD5U) 
-  - [Sequences of nested intervals determine at most one point]()
-  - [Completeness of the real numbers]()
-  - [Axiomatic definition of the reals]()
+  - [Sequences of nested intervals determine at most one point](https://hackmd.io/@alexhkurz/SJ8Eehu9U)
+
+---
+
+***We are making a detour here to an [Introduction to axiomatic mathematics](https://github.com/alexhkurz/introduction-to-numbers/blob/master/README.md)***
+
+---
+
+To be continued later:
+
+  - [Completeness of the real numbers]() tbc 
+  - [Axiomatic definition of the reals]() tbc
 
 
 **Further Reading**: Chapter 1 and 8 of [Understanding Analysis](https://link.springer.com/content/pdf/10.1007%2F978-1-4939-2712-8.pdf) by Stephen Abbott (freely available online at the time of writing) contain a more advanced but still fairly introductory account of what we have done above.  
 
 ### Chapter 3: What is the exponential function?
-
-... this is where we are at the moment ...
 
 [Exponential function on the real numbers]() tba
 [What is e?]() tba
