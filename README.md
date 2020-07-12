@@ -73,6 +73,13 @@ At the end of this part, we will be able to write much nicer reports about more 
 
 - [Exercises](exercises-I.4.md)
 
+
+**References:**
+
+- [The Tidyverse Cookbook](https://rstudio-education.github.io/tidyverse-cookbook/tidy.html)
+- [R for Data Science](https://r4ds.had.co.nz/explore-intro.html)
+- [How to calculate a rolling average in R](https://www.storybench.org/how-to-calculate-a-rolling-average-in-r/)
+
 **Further Reading:**
 
 - [Tidy Data](http://www.jstatsoft.org/v59/i10/paper) by Hadley Wickham.

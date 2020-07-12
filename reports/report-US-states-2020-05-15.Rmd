@@ -17,7 +17,6 @@ The program that produces the plots below is available as [report-US-states.Rmd]
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(lubridate)
-library(zoo) # moving averages        
 
 # Download raw data
 
@@ -41,14 +40,6 @@ deaths_tibble %>%
   mutate(deaths_per_million = round(as.numeric(deaths)/population*1000000)) ->
 deaths
 
-# Add a column with new daily deaths using lag()
-
-deaths %>%
-  group_by(county) %>%
-  mutate(daily_deaths = deaths - lag(deaths)) %>%
-  drop_na ->
-  daily_deaths
-
 # Make a table with populations of states
 
 deaths_tibble %>%
@@ -66,6 +57,7 @@ us_population
 
 deaths %>% 
   subset(date > as.Date("2020-03-15")) %>%
+  subset(date < as.Date("2020-05-15")) %>%
   group_by(state,date) %>%
   summarise_at(vars(deaths),sum) %>%
   ungroup() %>%
@@ -73,105 +65,27 @@ deaths %>%
   mutate(deaths_per_million = round(deaths/state_pop*1000000)) ->
 state_deaths_per_million
 
-# Make a table with states and new deaths_per_million
-
-daily_deaths %>% 
-  group_by(state,date) %>%
-  summarise_at(vars(daily_deaths),sum) %>%
-  ungroup() %>%
-  inner_join(state_populations, by = c("state" = "state")) %>%
-  mutate(daily_deaths_per_million = round(daily_deaths/state_pop*1000000)) %>%
-  daily_death_07da = rollmean(deaths, k = 7, fill = NA) %>%
-  subset(date > as.Date("2020-03-15")) ->
-state_daily_deaths_per_million
-
 # Make a table with all states sorted by deahts_per_million
 
 state_deaths_per_million %>%
   arrange(desc(deaths_per_million)) %>%
   distinct(state) ->
 states_by_deaths
-
-state_daily_deaths_per_million %>%
-  arrange(desc(daily_deaths_per_million)) %>%
-  distinct(state) ->
-states_by_daily_deaths
-
 ```
 
 <font size="3"> 
 
+## May 5, 2020
 
-```{r, echo=FALSE}
-state_daily_deaths_per_million %>%
-  ggplot() + geom_line(mapping = aes(x = date, y = daily_deaths_per_million, color = state))
-```
-
-## Daily Deaths
-
-States **ranked 1-5**:
-
-```{r, echo=FALSE}
-state_daily_deaths_per_million %>%
-  inner_join(slice(states_by_daily_deaths,1:5), by = c("state" = "state")) %>%
-  ggplot() + geom_line(mapping = aes(x = date, y = daily_deaths_per_million, color = state))
-```
-
-Now let us look at **rank 5-10**:
-
-```{r, echo=FALSE}
-state_daily_deaths_per_million %>%
-  inner_join(slice(states_by_daily_deaths,6:10), by = c("state" = "state")) %>%
-  ggplot() + geom_line(mapping = aes(x = date, y = daily_deaths_per_million, color = state))
-```
-
-
-Here are the states **ranked 10-20**:
-
-```{r, echo=FALSE}
-state_daily_deaths_per_million %>%
-  inner_join(slice(states_by_daily_deaths,10:15), by = c("state" = "state")) %>%
-  ggplot() + geom_line(mapping = aes(x = date, y = daily_deaths_per_million, color = state))
-```
-
-**Rank 20-30**:
-
-```{r, echo=FALSE}
-state_daily_deaths_per_million %>%
-  inner_join(slice(states_by_daily_deaths,20:30), by = c("state" = "state")) %>%
-  ggplot() + geom_line(mapping = aes(x = date, y = daily_deaths_per_million, color = state))
-```
-
-
-**Rank 30-40**:
-
-```{r, echo=FALSE}
-state_daily_deaths_per_million %>%
-  inner_join(slice(states_by_daily_deaths,20:30), by = c("state" = "state")) %>%
-  ggplot() + geom_line(mapping = aes(x = date, y = daily_deaths_per_million, color = state))
-```
-
-
-**Rank 40-50**:
-
-```{r, echo=FALSE}
-state_daily_deaths_per_million %>%
-  inner_join(slice(states_by_daily_deaths,40:50), by = c("state" = "state")) %>%
-  ggplot() + geom_line(mapping = aes(x = date, y = daily_deaths_per_million, color = state))
-```
-
-
-
-## Total Deaths
+We continue to see that New York has been slowing down the growth.
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-Some states were on a fast exponential growth early on an flattened the curve. Other states where on a slow growth that first looked linear but the turned out to be exponential. The exponential nature becomes more obvious if we zoom in a bit.
 
-States **ranked 1-5**:
+Let us zoom into the picture. We start with the states **ranked 1-5**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
@@ -179,43 +93,67 @@ state_deaths_per_million %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-Now let us look at **rank 5-10**:
+It looks as if these states got closer to a linear trajectory by now. 
+
+Now let us look at **rank 6-10**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,5:10), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,6:10), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-Here are the states **ranked 10-20**:
+
+Here are the states **ranked 11-15**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,10:20), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,11:15), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-**Rank 20-30**:
+
+Here are the states **ranked 16-20**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,20:30), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,16:20), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-**Rank 30-40**:
+
+**Rank 21-25**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,30:40), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,21:25), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 
-**Rank 40-50**:
+I find it interesting how close the states ranked 21-30 are to each other.
+
+**Rank 26-30**:
 
 ```{r, echo=FALSE}
 state_deaths_per_million %>%
-  inner_join(slice(states_by_deaths,40:50), by = c("state" = "state")) %>%
+  inner_join(slice(states_by_deaths,26:30), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+
+**Rank 31-40**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,31:40), by = c("state" = "state")) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
+```
+
+**Rank 41-50**:
+
+```{r, echo=FALSE}
+state_deaths_per_million %>%
+  inner_join(slice(states_by_deaths,41:50), by = c("state" = "state")) %>%
   ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = state))
 ```
 

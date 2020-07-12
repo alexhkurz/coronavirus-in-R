@@ -22,7 +22,7 @@ source("../src/covid-19_global.R")
 The current data of coronavirus deaths from Brazil is:
 
 ```{r, echo=FALSE}
-one_region(what="deaths",data=deaths_global,region="Brazil")
+one_region(what="deaths",data=deaths_global,region="Brazil",range = 120)
 ```
 
 
@@ -35,7 +35,12 @@ two_regions(what="deaths",data=deaths_global,region1="Brazil",region2="Italy",la
 But since then, Brazil has been on a flatter trajectory:
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region2="Italy",region1="Brazil", lag=41)
+two_regions(what="deaths",data=deaths_global,region1="Brazil",region2="Italy",last_day="4/27/20",lag=44, range=40)
+```
+
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data=deaths_global,region2="Italy",region1="Brazil", lag=58, range=60)
 ```
 
 Nevertheless, Brazil's new daily deaths are still growing.

@@ -48,11 +48,16 @@ On the other hand, a month ago the US was already on an expoenential trajectory,
 
 this picture would be bettr without South Korea ... apdapt one_region ...
 
+
 ```{r, echo=FALSE}
-two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Korea, South",region2_pop="Korea, Rep.",range=30, last_day="3/15/20",lag=21) 
+two_regions(what="cases",data=cases_global,region1="US",region1_pop="United States",region2="Korea, South",region2_pop="Korea, Rep.",range=60,last_day="4/10/20") 
 ```
 
+This graph is interesting for a number of reasons.
+
+We see that around 1st of March, the number of cases in South Korea was growing exponentially. Let us zoom in to see this better:
+
 
 ```{r, echo=FALSE}
-two_regions(what="deaths",data=deaths_global,region1="US",region1_pop="United States",region2="Korea, South",region2_pop="Korea, Rep.",range=50) 
+one_region(what="cases",data=cases_global,region1="Korea, South",range=29, last_day="3/30/20") 
 ```

@@ -7,6 +7,7 @@ Here are some examples of visualisations that I would like to be able to do myse
 
 - [How To Tell If We're Beating COVID-19](https://www.youtube.com/watch?v=54XLXg4fYsc)
 - [Cumulative cases by county in California](https://www.latimes.com/projects/california-coronavirus-cases-tracking-outbreak/) 
+- [Top 100 R resources on Novel COVID-19 Coronavirus](https://www.statsandr.com/blog/top-r-resources-on-covid-19-coronavirus/)
 
 But also simple graphs can already be interesting, see eg [here](https://www.nytimes.com/2020/03/31/opinion/coronavirus-cases-united-states.html) and [here](https://www.nytimes.com/2020/04/03/opinion/coronavirus-united-states-europe.html). This can be done already with what we will learn in Part 1.
 

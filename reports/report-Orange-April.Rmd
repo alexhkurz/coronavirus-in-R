@@ -1,0 +1,67 @@
+---
+title: "Coronavirus Orange County, CA, USA vs Italy"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+<font size=1>
+We use the data from Johns Hopkins University about [global deaths](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv)  and [global confirmed cases](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv). The program that produces the plots is available as [report-Orange.Rmd](https://github.com/alexhkurz/coronavirus-in-R/blob/master/reports/report-Orange.Rmd). It is easy to download the program and to modify the relevant parameters for your own experiments, see the [README](https://github.com/alexhkurz/coronavirus-in-R/) for more details. (In Firefox, the links above raise a "Blocked by Content Security Policy", but can be opened with "Open Link in New Tab".)
+</font>
+
+```{r, echo=FALSE}    
+deaths_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
+
+cases_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"),check.names = FALSE)
+
+source("../src/covid-19_US.R")
+```
+
+# Latest plots
+
+The linear growth trend continues ...
+
+```{r, echo=FALSE}
+one_region(what="deaths",data=deaths_us,admin="Orange",province_state="California",range=120)
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=41,range=40)
+```
+
+# April 11
+
+The graphs now suggest that Orange did not enter exponetial growth. Both curves look more linear and the lag to Italy increased by a week in a week:
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=34,last_day="4/11/20")
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=27,last_day="4/11/20")
+```
+
+# April 7
+
+The graphs show that during the last four days the growth has been slowing in down in Orange County:
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=30,last_day="4/7/20")
+```
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=25,last_day="4/7/20")
+```
+
+# April 3
+
+```{r, echo=FALSE}
+two_regions(what="deaths",data_global=deaths_global,data_us=deaths_us,admin2="Orange",province_state="California",region2="Italy",lag=27,last_day="4/3/20")
+```
+
+The graph shows that the number of deaths is doubling approximately every 3 days. This is very much the situation in which Italy was a month ago.
+
+We can also compare the number of confirmed cases. This shows a similar pattern:
+
+```{r, echo=FALSE}
+two_regions(what="cases",data_global=cases_global,data_us=cases_us,admin2="Orange",province_state="California",region2="Italy",lag=22,last_day="4/3/20")
+```
+

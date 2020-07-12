@@ -1,4 +1,53 @@
 ###################################################################################################
+# 
+# one_region(){
+#   what              a string, eg "cases" or "deaths", for labelling the y-axis
+#   data              data from Johns Hopkins about cases or deaths
+#   admin             eg "Orange"
+#   province_state    eg "California"
+#   last_day = ""     last day of data, eg "4/1/20" for April 1, 2020
+#   range = 29        the plot is `range + 1` days wide
+#   first             how many days before last_day do we start?
+#   state = ""        if needed this refers to the first row of the table, eg "Hubei" if `region1` is "China"
+# }
+###################################################################################################
+
+one_region <- function(
+  what="",
+  data,
+  admin,
+  province_state,
+  last_day="",
+  range=29,        
+  first=range,  
+  state=""
+)
+{
+  # browser() # Uncomment this line for debugging
+
+  # Truncate corona data at `last_day`
+  if (last_day !="") {
+    last_index <- grep(last_day,names(data))
+    data <- data[1:last_index]
+  }
+  
+  # Load population data
+  deaths_us <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
+
+  # Abbreviations
+  # name/number of the row (admin,province_state)
+  r1 <- row.names(data[data[, "Admin2"]==admin & data[,"Province_State"]==province_state,])
+
+  region_deaths <- data[r1,(ncol(data)-first):(ncol(data)-first+range)]
+  region_deaths <- gsub(",", "", region_deaths)                     
+  region_deaths <- as.numeric(region_deaths)  
+  
+  plot(region_deaths, 
+       col="black", main=paste(data[r1,6], data[r1,7]), 
+       xlab=paste(colnames(data)[ncol(data)-first], " to ", colnames(data)[ncol(data)-first+range]), 
+       ylab=paste(data[r1,6], data[r1,7], what))   
+}
+###################################################################################################
 #
 # two_regions(){}
 #   what                    a string, eg "cases" or "deaths", for labelling the y-axis
@@ -31,6 +80,8 @@ two_regions <- function(
   lag=0
 )
 {
+  # browser() # Uncomment this line for debugging
+  
   # Truncate data frame at `last_day`
   if (last_day !="") {
     last_index <- grep(last_day,names(data_us))

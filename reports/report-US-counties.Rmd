@@ -1,0 +1,190 @@
+---
+title: "Coronavirus in US Counties"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+
+# Download raw data
+
+deaths_df <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv"),check.names = FALSE)
+
+cases_df <- read.csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"),check.names = FALSE)
+
+
+# Select, rename, filter what is needed for the analysis
+
+deaths_df %>%
+  as_tibble() %>%
+  select(-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key) %>%
+  rename(county=Admin2,state=Province_State,population=Population) %>%
+  filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county)) %>%
+  mutate(population=as.numeric(population)) %>%
+  unite(county,county,state) ->
+deaths_tibble
+
+cases_df %>%
+  as_tibble() %>%
+  select(-UID,-iso2,-iso3,-code3,-FIPS,-Country_Region,-Lat,-Long_,-Combined_Key) %>%
+  rename(county=Admin2,state=Province_State) %>%
+  filter(!(county=="") & !(county=="Unassigned") & !grepl("Out of",county))  %>%
+  unite(county,county,state) ->
+cases_tibble
+
+# Make a table with all counties sorted by deaths_per_million
+# This table is needed to plot deaths in descending order
+
+deaths_tibble %>%
+  filter(!(population==0)) %>%
+  rename(total_deaths=ncol(.)) %>%
+  select(county,total_deaths,population) %>%
+  mutate(total_deaths_per_million = round(as.numeric(total_deaths)/population*1000000)) %>%
+  arrange(desc(total_deaths_per_million)) ->
+counties_by_total_deaths_per_million
+
+# Pivot deaths and add a column with deaths_per_million
+# This is the table we want to plot
+
+deaths_tibble %>%
+  pivot_longer(c(`1/22/20`:ncol(.)),names_to="date",values_to="deaths") %>%
+  mutate(date=mdy(date)) %>%
+  mutate(deaths_per_million = round(as.numeric(deaths)/population*1000000)) ->
+deaths
+
+# Make a table with all counties and their population
+# This is needed since only deaths_df but not cases_df has population data
+
+deaths_tibble %>%
+  filter(!(population==0)) %>%
+  select(county,population) ->
+county_populations
+
+# Make a table with all counties sorted by cases_per_thousand
+# This table is needed to plot cases in descending order
+
+cases_tibble %>%
+  rename(total_cases=ncol(.)) %>%    # the last column contains the total number of cases
+  select(county,total_cases) %>%
+  inner_join(county_populations) %>%    # adds a population column
+  mutate(total_cases_per_tenthousand = round(as.numeric(total_cases)/population*10000)) %>%
+  arrange(desc(total_cases_per_tenthousand)) ->
+counties_by_total_cases_per_tenthousand
+
+# Pivot cases, joint with populations and add a column with cases_per_tenthousands
+# This is the table we want to plot
+
+cases_tibble %>%
+  pivot_longer(c(`1/22/20`:ncol(.)),names_to="date",values_to="cases") %>%
+  mutate(date=mdy(date)) %>%
+  inner_join(county_populations) %>%    # adds a population column
+  mutate(cases_per_tenthousand = round(as.numeric(cases)/population*10000)) ->
+cases
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+cases %>%
+  filter(date > as.Date("2020-03-01")) ->
+cases
+
+deaths %>%
+  subset(date > as.Date("2020-03-15")) ->
+deaths
+```
+
+## Counties of the US by cases 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+cases %>%
+  inner_join(slice(counties_by_total_cases_per_tenthousand,1:10)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = cases_per_tenthousand, color = county_state_population))
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+cases %>%
+  inner_join(slice(counties_by_total_cases_per_tenthousand,11:20)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = cases_per_tenthousand, color = county_state_population))
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+cases %>%
+  inner_join(slice(counties_by_total_cases_per_tenthousand,21:30)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = cases_per_tenthousand, color = county_state_population))
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+cases %>%
+  inner_join(slice(counties_by_total_cases_per_tenthousand,31:40)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = cases_per_tenthousand, color = county_state_population))
+```
+
+## Counties of the US by deaths
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+deaths %>%
+  inner_join(slice(counties_by_total_deaths_per_million,1:10)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = county_state_population))
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+deaths %>%
+  inner_join(slice(counties_by_total_deaths_per_million,11:20)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = county_state_population))
+```
+
+## Counties in California by cases
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+counties_by_total_cases_per_tenthousand %>%
+  filter(grepl('California',county)) ->
+counties_of_california
+
+cases %>%
+  inner_join(slice(counties_of_california,1:10)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = cases_per_tenthousand, color = county_state_population))
+```
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+cases %>%
+  inner_join(slice(counties_of_california,21:30)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = cases_per_tenthousand, color = county_state_population))
+```
+
+## Counties in California by deaths
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+counties_by_total_deaths_per_million %>%
+  filter(grepl('California',county)) ->
+counties_of_california
+
+deaths %>%
+  inner_join(slice(counties_of_california,1:10)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = county_state_population))
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+deaths %>%
+  inner_join(slice(counties_of_california,11:20)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = county_state_population))
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+deaths %>%
+  inner_join(slice(counties_of_california,21:30)) %>%
+  unite(county_state_population,county,population) %>%
+  ggplot() + geom_line(mapping = aes(x = date, y = deaths_per_million, color = county_state_population))
+```
+
